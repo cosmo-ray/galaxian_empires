@@ -22,7 +22,7 @@ typedef	struct	s_mvsys
   int	back;
   int	in_action;
 }	t_mvsys;
-
+<
 typedef	struct	s_armor
 {
   int	front;

@@ -10,6 +10,7 @@
 
 SRC=		main.c \
 		bmap.c \
+		ship.c \
 
 OBJ=		$(SRC:.c=.o)
 
