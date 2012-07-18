@@ -20,7 +20,6 @@ typedef	struct	s_mvsys
   int	front;
   int	side;
   int	back;
-  int	in_action;
 }	t_mvsys;
 
 typedef	struct	s_armor

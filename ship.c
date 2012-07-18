@@ -52,6 +52,28 @@ static	int	read_file(int fd, char *tmp)
   return (0);
 }
 
+static int	handle_line(t_ship *ship, char *line)
+{
+  (void)ship;
+  if (line[0] == '#')
+    return (0);
+  printf("%s\n", line);
+  return (0);
+}
+
+static int	set_data(t_ship *ship, char *file)
+{
+  char	*ret = strtok(file, "\n");
+
+  while (ret != NULL)
+    {
+      if (handle_line(ship, ret))
+	return (-1);
+      ret = strtok(NULL, "\n");
+    }  
+  return (0);
+}
+
 inline const char	*get_ship_name(t_ship *ship)
 {
   return (ship->name);
@@ -68,7 +90,9 @@ int	load_ship(char *file, t_ship *ship)
     return (-1);
   if (read_file(fd, tmp))
     return (-1);
-  printf("name: %s\ncontent: \n%s\n", get_ship_name(ship), tmp);
+  if (set_data(ship, tmp))
+    return (-1);
+  /* printf("name: %s\ncontent: \n%s\n", get_ship_name(ship), tmp );*/
   return (0);
 }
 
