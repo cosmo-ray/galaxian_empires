@@ -7,6 +7,40 @@
 #include	<string.h>
 #include	"ship.h"
 
+/* data_type's define */
+
+#define	DATA_TYPE_SIZE	7
+/* yeah i know, enum is cool but i don't like it for manipulate tab */
+#define PV		0
+#define MWP		1
+#define RMWP		2
+#define RAR		3
+#define AP		4
+#define SP		5
+#define RSP		6
+
+static int (*asign_tab[]) (char *) = {
+  &set_pv,
+  &set_mwp,
+  &set_rmwp,
+  &set_rar,
+  &set_ap,
+  &set_sp,
+  &set_rsp  
+};
+
+static const char	*data_type[] = {
+  "pv",
+  "mwp",
+  "rmwp",
+  "rar",
+  "ap",
+  "sp",
+  "rsp"
+};
+
+/* -------------- lonely static functions ---------------- */
+
 static	int	open_file(char *file)
 {
   int	fd;
@@ -52,12 +86,53 @@ static	int	read_file(int fd, char *tmp)
   return (0);
 }
 
+
+/* -------------- set_data static function ---------------- */
+
+/* replace the ':' by a '\0' and return the position of the character after the ':'*/
+static int	get_end_charact(char *line, char c)
+{
+  int	i = 0;
+
+  while (line[i] != c)
+    {
+      if (line[i] == '\0')
+	return (-1);
+      ++i;
+    }
+  line[i] = '\0';
+  return(i + 1);
+}
+
+int	find_charact_type(char *line)
+{
+  int	i = 0;
+
+  while (i < DATA_TYPE_SIZE)
+    {
+      if (!strcmp(data_type[i], line))
+	return (i);
+      ++i;
+    }
+  return (-1);
+}
+
+/* parse a line and set data in ship */
 static int	handle_line(t_ship *ship, char *line)
 {
+  int	pos_sep;
+  int	charact_type;  
+
   (void)ship;
   if (line[0] == '#')
     return (0);
-  printf("%s\n", line);
+  pos_sep = get_end_charact(line, ':');
+  if ((charact_type = find_charact_type(line)) == -1)
+    return (-1);
+  /*what ? you don't understand this(↓) line ? it's sad... */
+  line = &(line[pos_sep]);
+  printf("type: %s\n", data_type[charact_type]);
+  asign_tab[charact_type](line);
   return (0);
 }
 
@@ -71,6 +146,50 @@ static int	set_data(t_ship *ship, char *file)
 	return (-1);
       ret = strtok(NULL, "\n");
     }  
+  return (0);
+}
+
+/* -------------- non static functions ---------------- */
+
+int	set_pv(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_mwp(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_rmwp(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_rar(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_ap(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_sp(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_rsp(char *line)
+{
+  printf("data: %s\n", line);
   return (0);
 }
 

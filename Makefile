@@ -18,7 +18,7 @@ NAME=		galaxian_empires
 
 CC=		gcc
 
-CFLAGS+=	 -Wall -Werror -Wextra -g3
+CFLAGS+=	 -Wall -Wextra -g3 #-Werror
 
 all:	$(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(SRC)
