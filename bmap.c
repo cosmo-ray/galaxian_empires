@@ -30,11 +30,12 @@ int	init_bmap(t_bmap *map)
 {
   map->x = X_SIZE;
   map->y = Y_SIZE;
-  if (map->data = malloc(sizeof(*(map->data)) * (map->x * map->y + 1)) == NULL)
+  if ((map->data = malloc(sizeof(*(map->data)) * (map->x * map->y + 1))) == NULL)
     return (-1);
   memset(map->data, ' ', map->x * map->y);
   map->data[map->x * map->y] = '\0';
   debug_print_map(map);
+  return (0);
 }
 
 void	destroy_bmap(t_bmap *box)

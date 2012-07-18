@@ -1,4 +1,5 @@
 #include	"bmap.h"
+#include	"ship.h"
 
 int	main()
 {
@@ -6,7 +7,7 @@ int	main()
   t_ship ship;
 
   init_bmap(&map);
-  load_ship("ship.sp", &ship);
+  load_ship("battle_cruse.sp", &ship);
   destroy_ship(&ship);
   destroy_bmap(&map);
   return (0);

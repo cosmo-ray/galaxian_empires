@@ -22,7 +22,7 @@ typedef	struct	s_mvsys
   int	back;
   int	in_action;
 }	t_mvsys;
-<
+
 typedef	struct	s_armor
 {
   int	front;
@@ -38,5 +38,8 @@ typedef	struct	s_ship
   t_armor	armor;
   int		pv;
 }	t_ship;
+
+int     load_ship(char *file, t_ship *ship);
+void    destroy_ship(t_ship *ture);
 
 #endif
