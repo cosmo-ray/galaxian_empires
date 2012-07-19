@@ -7,6 +7,14 @@
 #include	<string.h>
 #include	"ship.h"
 
+static	int     set_pv(char *line);
+static	int     set_mwp(char *line);
+static	int     set_rmwp(char *line);
+static	int     set_rar(char *line);
+static	int     set_ap(char *line);
+static	int     set_sp(char *line);
+static	int     set_rsp(char *line);
+
 /* data_type's define */
 
 #define	DATA_TYPE_SIZE	7
@@ -89,6 +97,50 @@ static	int	read_file(int fd, char *tmp)
 
 /* -------------- set_data static function ---------------- */
 
+/* Erk ...*/
+
+static	int	set_pv(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_mwp(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_rmwp(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_rar(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_ap(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_sp(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
+int	set_rsp(char *line)
+{
+  printf("data: %s\n", line);
+  return (0);
+}
+
 /* replace the ':' by a '\0' and return the position of the character after the ':'*/
 static int	get_end_charact(char *line, char c)
 {
@@ -150,48 +202,6 @@ static int	set_data(t_ship *ship, char *file)
 }
 
 /* -------------- non static functions ---------------- */
-
-int	set_pv(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_mwp(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_rmwp(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_rar(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_ap(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_sp(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_rsp(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
 
 inline const char	*get_ship_name(t_ship *ship)
 {

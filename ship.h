@@ -40,12 +40,5 @@ typedef	struct	s_ship
 
 int     load_ship(char *file, t_ship *ship);
 void    destroy_ship(t_ship *ture);
-int	set_pv(char *line);
-int	set_mwp(char *line);
-int	set_rmwp(char *line);
-int	set_rar(char *line);
-int	set_ap(char *line);
-int	set_sp(char *line);
-int	set_rsp(char *line);
 
 #endif
