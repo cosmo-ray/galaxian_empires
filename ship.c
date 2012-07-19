@@ -146,11 +146,11 @@ static	int	set_rmwp(char *line, t_ship *ship)
 
   valure = atoi(line);
   jmp = get_end_charact(line, ',');
-  ship->mwp.front = (valure * ship->mwp.front) / 100;
+  ship->mwp.side = (valure * ship->mwp.side) / 100;
   line = &(line[jmp]);
 
   valure = atoi(line);
-  ship->mwp.front = (valure * ship->mwp.front) / 100;
+  ship->mwp.back = (valure * ship->mwp.back) / 100;
 
   return (0);
 }
@@ -203,11 +203,11 @@ static	int	set_rsp(char *line, t_ship *ship)
 
   valure = atoi(line);
   jmp = get_end_charact(line, ',');
-  ship->mvsys.front = (valure * ship->mvsys.front) / 100;
+  ship->mvsys.side = (valure * ship->mvsys.side) / 100;
   line = &(line[jmp]);
 
   valure = atoi(line);
-  ship->mvsys.front = (valure * ship->mvsys.front) / 100;
+  ship->mvsys.back = (valure * ship->mvsys.back) / 100;
   return (0);
 }
 
@@ -268,6 +268,15 @@ int	get_muldmg(t_ship *ship, int dir)
   if (dir == SIDE)
     return (ship->armor.side);
   return (ship->armor.back);
+}
+
+int	get_ship_atk(t_ship *ship, int dir)
+{
+  if (dir == FRONT)
+    return (ship->mwp.front);
+  if (dir == SIDE)
+    return (ship->mwp.side);
+  return (ship->mwp.back);
 }
 
 inline const char	*get_ship_name(t_ship *ship)
