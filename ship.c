@@ -7,13 +7,13 @@
 #include	<string.h>
 #include	"ship.h"
 
-static	int     set_pv(char *line);
-static	int     set_mwp(char *line);
-static	int     set_rmwp(char *line);
-static	int     set_rar(char *line);
-static	int     set_ap(char *line);
-static	int     set_sp(char *line);
-static	int     set_rsp(char *line);
+static	int     set_pv(char *line, t_ship *ship);
+static	int     set_mwp(char *line, t_ship *ship);
+static	int     set_rmwp(char *line, t_ship *ship);
+static	int     set_rar(char *line, t_ship *ship);
+static	int     set_ap(char *line, t_ship *ship);
+static	int     set_sp(char *line, t_ship *ship);
+static	int     set_rsp(char *line, t_ship *ship);
 
 /* data_type's define */
 
@@ -27,7 +27,7 @@ static	int     set_rsp(char *line);
 #define SP		5
 #define RSP		6
 
-static int (*asign_tab[]) (char *) = {
+static int (*asign_tab[]) (char *, t_ship *) = {
   &set_pv,
   &set_mwp,
   &set_rmwp,
@@ -97,50 +97,6 @@ static	int	read_file(int fd, char *tmp)
 
 /* -------------- set_data static function ---------------- */
 
-/* Erk ...*/
-
-static	int	set_pv(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_mwp(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_rmwp(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_rar(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_ap(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_sp(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
-int	set_rsp(char *line)
-{
-  printf("data: %s\n", line);
-  return (0);
-}
-
 /* replace the ':' by a '\0' and return the position of the character after the ':'*/
 static int	get_end_charact(char *line, char c)
 {
@@ -154,6 +110,105 @@ static int	get_end_charact(char *line, char c)
     }
   line[i] = '\0';
   return(i + 1);
+}
+
+
+/* Erk ...*/
+static	int	set_pv(char *line, t_ship *ship)
+{
+  int	valure = atoi(line);
+
+  ship->pv = valure;
+  return (0);
+}
+
+static	int	set_mwp(char *line, t_ship *ship)
+{
+  int	valure = atoi(line);
+
+  ship->mwp.front = valure;
+  ship->mwp.back = valure;
+  ship->mwp.side = valure;
+  ship->mwp.pa = 1;
+  ship->mwp.flag = MV_AT;
+  return (0);
+}
+
+static	int	set_rmwp(char *line, t_ship *ship)
+{
+  int	valure;
+  int	jmp;
+
+  valure = atoi(line);
+  jmp = get_end_charact(line, ',');
+  ship->mwp.front = (valure * ship->mwp.front) / 100;
+  line = &(line[jmp]);
+
+  valure = atoi(line);
+  jmp = get_end_charact(line, ',');
+  ship->mwp.front = (valure * ship->mwp.front) / 100;
+  line = &(line[jmp]);
+
+  valure = atoi(line);
+  ship->mwp.front = (valure * ship->mwp.front) / 100;
+
+  return (0);
+}
+
+static	int	set_rar(char *line, t_ship *ship)
+{
+  float	valure;
+  int	jmp;
+
+  jmp = get_end_charact(line, ',');
+  valure = atoi(line);
+  ship->armor.front = valure;
+  line = &(line[jmp]);
+  valure = atoi(line);
+  jmp = get_end_charact(line, ',');
+  ship->armor.side = valure;
+  line = &(line[jmp]);
+  valure = atoi(line);
+  ship->armor.back = valure;
+  return (0);
+}
+
+static	int	set_ap(char *line, t_ship *ship)
+{
+  int	valure = atoi(line);
+
+  ship->ap = valure;
+  return (0);
+}
+
+static	int	set_sp(char *line, t_ship *ship)
+{
+  int	valure = atoi(line);
+
+  ship->mvsys.front = valure;
+  ship->mvsys.back = valure;
+  ship->mvsys.side = valure;  
+  return (0);
+}
+
+static	int	set_rsp(char *line, t_ship *ship)
+{
+  int	valure;
+  int	jmp;
+
+  valure = atoi(line);
+  jmp = get_end_charact(line, ',');
+  ship->mvsys.front = (valure * ship->mvsys.front) / 100;
+  line = &(line[jmp]);
+
+  valure = atoi(line);
+  jmp = get_end_charact(line, ',');
+  ship->mvsys.front = (valure * ship->mvsys.front) / 100;
+  line = &(line[jmp]);
+
+  valure = atoi(line);
+  ship->mvsys.front = (valure * ship->mvsys.front) / 100;
+  return (0);
 }
 
 int	find_charact_type(char *line)
@@ -175,7 +230,6 @@ static int	handle_line(t_ship *ship, char *line)
   int	pos_sep;
   int	charact_type;  
 
-  (void)ship;
   if (line[0] == '#')
     return (0);
   pos_sep = get_end_charact(line, ':');
@@ -184,7 +238,7 @@ static int	handle_line(t_ship *ship, char *line)
   /*what ? you don't understand this(↓) line ? it's sad... */
   line = &(line[pos_sep]);
   printf("type: %s\n", data_type[charact_type]);
-  asign_tab[charact_type](line);
+  asign_tab[charact_type](line, ship);
   return (0);
 }
 

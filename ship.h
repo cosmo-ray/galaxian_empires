@@ -4,7 +4,7 @@
 
 #define	SHIP_DIR	"ship"
 /*the pos in the weapon's flag to say if you can use this weapon when you move*/
-#define	MV_AT	2
+#define	MV_AT	1
 
 typedef	struct	s_weapon
 {
@@ -24,9 +24,9 @@ typedef	struct	s_mvsys
 
 typedef	struct	s_armor
 {
-  int	front;
-  int	side;
-  int	back;  
+  float	front;
+  float	side;
+  float	back;  
 }	t_armor;
 
 typedef	struct	s_ship
@@ -36,6 +36,7 @@ typedef	struct	s_ship
   t_mvsys	mvsys;
   t_armor	armor;
   int		pv;
+  int		ap;
 }	t_ship;
 
 int     load_ship(char *file, t_ship *ship);
