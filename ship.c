@@ -256,6 +256,20 @@ static int	set_data(t_ship *ship, char *file)
 
 /* -------------- non static functions ---------------- */
 
+int	get_pv(t_ship *ship)
+{
+  return (ship->pv);
+}
+
+int	get_muldmg(t_ship *ship, int dir)
+{
+  if (dir == FRONT)
+    return (ship->armor.front);
+  if (dir == SIDE)
+    return (ship->armor.side);
+  return (ship->armor.back);
+}
+
 inline const char	*get_ship_name(t_ship *ship)
 {
   return (ship->name);

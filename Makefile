@@ -11,6 +11,7 @@
 SRC=		main.c \
 		bmap.c \
 		ship.c \
+		fleet.c
 
 OBJ=		$(SRC:.c=.o)
 
