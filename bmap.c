@@ -12,7 +12,7 @@ char	get_x_y(t_bmap *map, int x, int y)
   return (map->data[x + (y * map->x)]);
 }
 
-static	void	debug_print_map(t_bmap *map)
+void	debug_print_map(t_bmap *map)
 {
   int	x = 0;
   int	y = 0;
@@ -34,7 +34,6 @@ int	init_bmap(t_bmap *map)
     return (-1);
   memset(map->data, ' ', map->x * map->y);
   map->data[map->x * map->y] = '\0';
-  debug_print_map(map);
   return (0);
 }
 
