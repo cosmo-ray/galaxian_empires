@@ -11,7 +11,9 @@
 SRC=		main.c \
 		bmap.c \
 		ship.c \
-		fleet.c
+		fleet.c \
+		glist.c \
+		sdl_util.c
 
 OBJ=		$(SRC:.c=.o)
 
@@ -19,10 +21,12 @@ NAME=		galaxian_empires
 
 CC=		gcc
 
-CFLAGS+=	 -Wall -Wextra -g3 #-Werror
+CFLAGS		+= -Wall -Wextra -g3 -Werror
+CFLAGS		+= ${shell sdl-config --cflags}
+LDFLAGS		+= ${shell sdl-config --libs} -lSDL_image
 
 all:	$(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(SRC)
+	$(CC) -o $(NAME) $(LDFLAGS) $(OBJ)
 
 clean:
 		rm -f $(OBJ)

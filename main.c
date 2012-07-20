@@ -1,6 +1,10 @@
 #include	"bmap.h"
 #include	"fleet.h"
+#include	<unistd.h>
 #include	<stdio.h>
+#include	"sdl_util.h"
+
+SDL_Surface	*win;
 
 int	main()
 {
@@ -11,10 +15,10 @@ int	main()
   init_bmap(&map);
   load_ship("battle_cruse.sp", &ship);
   init_fleet("toto", &ship, 1, &fleet);
-  printf("fleet: %s\nnbr: %d\n", get_fleet_name(&fleet), get_fleet_nbr(&fleet));
-  printf("attack: %d\n", get_fleet_dmg(&fleet, FRONT));
-  do_dmg(&fleet, get_fleet_dmg(&fleet, FRONT), BACK);
-  printf("fleet: %s\nnbr: %d\n", get_fleet_name(&fleet), get_fleet_nbr(&fleet));
+  if ((win = sdl_init(500, 500)) == NULL)
+    return (-1);
+  sleep(1);
+  sdl_uninit();
   delet_fleet(&fleet);
   destroy_ship(&ship);
   destroy_bmap(&map);

@@ -1,0 +1,27 @@
+#ifndef GLIST_H
+# define GLIST_H
+
+typedef struct s_node
+{
+  void *data;
+  struct s_node *prev;
+  struct s_node *next;
+}	t_node;
+
+struct	s_list
+{
+  int	len;
+  t_node *last_elem;
+  t_node *first_elem;
+};
+
+# define	T_LIST
+typedef struct s_list t_list;
+
+void	init_list(t_list *list);
+t_node	*get_data(void *data);
+void	*pop_data(t_list *list);
+void	push_elem(t_list *elem, t_node *add_elem);
+t_node	*new_elem(void *data);
+
+#endif /* !GLIST1_H */
