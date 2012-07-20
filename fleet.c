@@ -24,7 +24,7 @@ void	delet_fleet(t_fleet *fleet)
   free(fleet->name);
 }
 
-void	do_dmg(t_fleet *fleet, int nbr, int dir)
+void	do_fleet_dmg(t_fleet *fleet, int nbr, int dir)
 {
   nbr *= get_muldmg(get_fleet_type(fleet), dir);
   fleet->nbr -= (nbr / get_pv(get_fleet_type(fleet)));
@@ -43,4 +43,16 @@ char	*get_fleet_name(t_fleet *fleet)
 int	get_fleet_nbr(t_fleet *fleet)
 {
   return (fleet->nbr);
+}
+
+int	get_dir_fleet_target(t_pos *pos)
+{
+  (void) pos;
+  return (FRONT);
+}
+
+int	get_dir_fleet_dmg(t_pos *pos)
+{
+  (void) pos;
+  return (BACK);
 }
