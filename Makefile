@@ -13,7 +13,8 @@ SRC=		main.c \
 		ship.c \
 		fleet.c \
 		glist.c \
-		sdl_util.c
+		sdl_util.c \
+		player.c
 
 OBJ=		$(SRC:.c=.o)
 
