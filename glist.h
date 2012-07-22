@@ -15,7 +15,6 @@ struct	s_list
   t_node *first_elem;
 };
 
-# define	T_LIST
 typedef struct s_list t_list;
 
 void	init_list(t_list *list);

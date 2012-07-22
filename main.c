@@ -2,9 +2,9 @@
 #include	"fleet.h"
 #include	<unistd.h>
 #include	<stdio.h>
-#include	"sdl_util.h"
+#include	"game.h"
 
-SDL_Surface	*win;
+t_game	life;
 
 int	main()
 {
@@ -15,7 +15,7 @@ int	main()
   init_bmap(&map);
   load_ship("battle_cruse.sp", &ship);
   init_fleet("toto", &ship, 1, &fleet);
-  if ((win = sdl_init(500, 500)) == NULL)
+  if (sdl_init(500, 500) == -1)
     return (-1);
   sleep(1);
   sdl_uninit();
