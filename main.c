@@ -21,13 +21,15 @@ int	main()
   add_fleet(&p1, 10000, &ship);
   add_fleet(&p2, 10000, &ship);
 
-  if (sdl_init(500, 500) == -1)
-    return (-1);
+  /* if (sdl_init(500, 500) == -1) */
+  /*   return (-1); */
   printf("p1: %d\np2: %d\n", p1.id, p2.id);
 
   sleep(1);
   sdl_uninit();
   destroy_ship(&ship);
   destroy_bmap(&map);
+  delet_player(&p1);
+  delet_player(&p2);
   return (0);
 }

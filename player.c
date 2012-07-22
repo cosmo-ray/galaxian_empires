@@ -10,6 +10,18 @@
    life.nb_plyaers += 1;
  }
 
+void	delet_player(t_player *p)
+{
+  t_fleet	*dom;
+
+  while(p->fleets.len)
+    {
+      dom = pop_data(&(p->fleets));
+      delet_fleet(dom);
+      free(dom);
+    }
+}
+
 int	add_fleet(t_player *p, int nbr, t_ship *ship)
 {
   t_fleet	*new = malloc(sizeof(*new));
