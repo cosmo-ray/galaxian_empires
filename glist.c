@@ -17,14 +17,14 @@ void *pop_data(t_list *list)
 
   if (list->len == 0)
     return (NULL);
-  tmp = list->last_elem->data;
+  tmp = list->last->data;
   if (list->len > 1)
-    list->last_elem->prev->next = NULL;
+    list->last->prev->next = NULL;
   list->len -= 1;
-  dent = list->last_elem;
-  list->last_elem = list->last_elem->prev;
+  dent = list->last;
+  list->last = list->last->prev;
   if (list->len == 0)
-    list->first_elem = NULL;
+    list->first = NULL;
   free(dent);
   return (tmp);
 }
@@ -35,14 +35,14 @@ void *pop_data(t_list *list)
 
 void push_elem(t_list *list, t_node *add_elem)
 {
-  if (list->first_elem == NULL)
-    list->first_elem = add_elem;
+  if (list->first == NULL)
+    list->first = add_elem;
   else
-    list->last_elem->next = add_elem;
-  add_elem->prev = list->last_elem;
+    list->last->next = add_elem;
+  add_elem->prev = list->last;
   add_elem->next = NULL;
   list->len += 1;
-  list->last_elem = add_elem;
+  list->last = add_elem;
 }
 
 /*
@@ -66,6 +66,6 @@ t_node *new_elem(void *data)
 void init_list(t_list *list)
 {
   list->len = 0;
-  list->last_elem = NULL;
-  list->first_elem = NULL;
+  list->last = NULL;
+  list->first = NULL;
 }

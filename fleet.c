@@ -56,3 +56,10 @@ int	get_dir_fleet_dmg(t_pos *pos)
   (void) pos;
   return (BACK);
 }
+
+void	pos_fleet(t_fleet *fleet, int x, int y, int dir)
+{
+  fleet->pos.x = x;
+  fleet->pos.y = y;
+  fleet->pos.dir = dir;
+}

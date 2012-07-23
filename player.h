@@ -14,4 +14,6 @@ typedef	struct	s_player
 void	init_player(t_player *player);
 int	add_fleet(t_player *p, int nbr, t_ship *ship);
 void	delet_player(t_player *p);
+void	pos_player_fleets(t_player *p, t_bmap *map, int	dir);
+
 #endif

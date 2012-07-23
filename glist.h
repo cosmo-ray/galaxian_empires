@@ -11,8 +11,8 @@ typedef struct s_node
 struct	s_list
 {
   int	len;
-  t_node *last_elem;
-  t_node *first_elem;
+  t_node *last;
+  t_node *first;
 };
 
 typedef struct s_list t_list;

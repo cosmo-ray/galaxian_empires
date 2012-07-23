@@ -3,6 +3,7 @@
 
 #include	"ship.h"
 #include	"pos.h"
+#include	"bmap.h"
 
 typedef	struct	s_fleet
 {
@@ -21,5 +22,6 @@ int	init_fleet(char *name, t_ship *type, int nbr, t_fleet *fleet);
 int	get_fleet_dmg(t_fleet *fleet, int dir);
 int	get_dir_fleet_target(t_pos *pos);
 int	get_dir_fleet_dmg(t_pos *pos);
+void	pos_fleet(t_fleet *fleet, int x, int y, int dir);
 
 #endif
