@@ -14,7 +14,8 @@ SRC=		main.c \
 		fleet.c \
 		glist.c \
 		sdl_util.c \
-		player.c
+		player.c \
+		battle.c
 
 OBJ=		$(SRC:.c=.o)
 
