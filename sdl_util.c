@@ -1,6 +1,6 @@
 #include	"game.h"
 
-#define	FILE_NAME "sprites.png"
+#define	FILE_NAME "sprite/ship.png"
 
 extern t_game	life;
 
@@ -23,7 +23,14 @@ void	sdl_uninit()
   SDL_Quit();
 }
 
-SDL_Surface	*draw_load(void)
+SDL_Surface	*draw_load(char *file)
 {
-  return (IMG_Load(FILE_NAME));
+  return (IMG_Load(file));
+}
+
+int	load_sprite(void)
+{
+  if ((life.sprite = draw_load(FILE_NAME)) == NULL)
+    return (-1);
+  return (0);
 }

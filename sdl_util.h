@@ -6,6 +6,7 @@
 
 int		sdl_init(int width, int height);
 void		sdl_uninit();
-SDL_Surface	*draw_load(void);
+SDL_Surface	*draw_load(char *file);
+int		load_sprite(void);
 
 #endif

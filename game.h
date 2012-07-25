@@ -8,6 +8,7 @@
 typedef	struct	s_game
 {
   SDL_Surface	*win;
+  SDL_Surface	*sprite;/* gordon, what do you mean? sprite gordon approching */
   int		nb_plyaers;
 }	t_game;
 

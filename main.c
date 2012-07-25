@@ -15,6 +15,7 @@ int	main()
   load_ship("battle_cruse.sp", &ship);
   init_player(&p1);
   init_player(&p2);
+  printf("load sprite ret: %d\n", load_sprite());
   add_fleet(&p1, 10000, &ship);
   add_fleet(&p2, 10000, &ship);
 
