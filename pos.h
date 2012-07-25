@@ -2,9 +2,9 @@
 #define	POS_H_
 
 #define	NORTH	0
-#define	EAST	1
-#define	WEST	0
-#define	SOUTH	1
+#define	WEST	1
+#define	EAST	2
+#define	SOUTH	3
 
 
 typedef	struct	s_pos

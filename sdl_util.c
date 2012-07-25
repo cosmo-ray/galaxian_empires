@@ -34,3 +34,29 @@ int	load_sprite(void)
     return (-1);
   return (0);
 }
+
+
+/* i write the descriprtion of SDL_Rect(the src and dest argument of SDL_BlitSurface), because it's usefull*/
+
+/*
+CWtypedef struct{
+  Sint16 x, y;
+  Uint16 w, h;
+} SDL_Rect;
+*/
+
+int	display_sprite(t_pos *pos)
+{
+  static SDL_Rect	src;
+  static SDL_Rect	dest;
+
+  src.y = 0;
+  src.x = pos->dir * 50;
+  src.w = src.h = dest.w = dest.h = 50;
+  dest.x = pos->x * 50;
+  dest.y = pos->y * 50;
+  if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
+    return (-1);
+  SDL_UpdateRect(life.win, pos->x, pos->y, 50, 50);
+  return (0);
+}
