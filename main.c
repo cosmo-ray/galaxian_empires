@@ -13,16 +13,19 @@ int	main()
   t_player	p2;  
 
   memset(&life, '\0', sizeof(life));
+
+  if (load_ship("battle_cruse.sp", &ship))
+    return (-1);
   init_player(&p1);
   init_player(&p2);
-  load_sprite();
   add_fleet(&p1, 10000, &ship);
   add_fleet(&p2, 10000, &ship);
 
   if (sdl_init(500, 500) == -1)
     return (-1);
-  if (load_ship("battle_cruse.sp", &ship))
-    return (-1);
+
+  load_sprite();
+
   printf("p1: %d\np2: %d\n", p1.id, p2.id);
   battle(&p1, &p2);
 
@@ -31,6 +34,15 @@ int	main()
   pos.y = 0;
   pos.dir = 0;
 
+  printf("display sprite ret %d\n", display_sprite(&pos));
+
+  pos.x = 0;
+  pos.y = 1;
+  pos.dir = 0;
+  printf("display sprite ret %d\n", display_sprite(&pos));
+  pos.x = 1;
+  pos.y = 0;
+  pos.dir = 0;
   printf("display sprite ret %d\n", display_sprite(&pos));
   sleep(1);
 
