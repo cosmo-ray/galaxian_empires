@@ -8,7 +8,10 @@ int	sdl_init(int width, int height)
 {
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
     return (-1);
-  life.win = SDL_SetVideoMode(width, height, 32, SDL_SWSURFACE);
+  (void) width;
+  (void) height;
+  life.win = SDL_SetVideoMode(500, 500, 16, SDL_SWSURFACE);
+  /* life.win = SDL_SetVideoMode(width, height, 32, SDL_SWSURFACE); */
   if (life.win == NULL)
     {
       SDL_Quit();
@@ -55,8 +58,13 @@ int	display_sprite(t_pos *pos)
   src.w = src.h = dest.w = dest.h = 50;
   dest.x = pos->x * 50;
   dest.y = pos->y * 50;
-  if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
-    return (-1);
-  SDL_UpdateRect(life.win, pos->x, pos->y, 50, 50);
+  printf("%d. %d\n", src.x, src.y);
+  printf("%d. %d\n", dest.w, dest.h);
+  /* if (SDL_BlitSurface(life.sprite, &src, life.win, &dest)) */
+  /*   return (-1); */
+  if (SDL_FillRect(life.win, &dest, 0xffffff))
+    return -1;
+
+  SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
   return (0);
 }

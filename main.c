@@ -1,4 +1,4 @@
-#include	<unistd.h>
+ #include	<unistd.h>
 #include	<stdio.h>
 #include	"game.h"
 #include	"player.h"
@@ -12,7 +12,7 @@ int	main()
   t_player	p1;
   t_player	p2;  
 
-  load_ship("battle_cruse.sp", &ship);
+  memset(&life, '\0', sizeof(life));
   init_player(&p1);
   init_player(&p2);
   load_sprite();
@@ -21,16 +21,18 @@ int	main()
 
   if (sdl_init(500, 500) == -1)
     return (-1);
+  if (load_ship("battle_cruse.sp", &ship))
+    return (-1);
   printf("p1: %d\np2: %d\n", p1.id, p2.id);
   battle(&p1, &p2);
 
   t_pos pos;
-  pos.x = 5;
-  pos.y = 2;
+  pos.x = 0;
+  pos.y = 0;
   pos.dir = 0;
 
   printf("display sprite ret %d\n", display_sprite(&pos));
-  sleep(2);
+  sleep(1);
 
   sdl_uninit();
   destroy_ship(&ship);
