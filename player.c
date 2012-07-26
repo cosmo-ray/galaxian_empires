@@ -43,3 +43,7 @@ void	pos_player_fleets(t_player *p, t_bmap *map, int	dir)
     pos_fleet((t_fleet *)p->fleets.first->data, map->x / 2, map->y - 1, NORTH);
 }
 
+t_fleet	*get_fleet(t_player *p, int nbr)
+{
+  return (get_data(&p->fleets, nbr));
+}

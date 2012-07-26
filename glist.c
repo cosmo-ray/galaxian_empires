@@ -29,6 +29,22 @@ void *pop_data(t_list *list)
   return (tmp);
 }
 
+void	*get_data(t_list *list, int nbr)
+{
+  int		i = 0;
+  t_node	*ret;
+
+  ret = list->first;
+  if (nbr > list->len)
+    return (NULL);  
+  while (i < nbr)
+    {
+      ret = ret->next;
+      ++nbr;
+    }
+  return (ret-> data);
+}
+
 /*
 ** add the element to the element given
 */

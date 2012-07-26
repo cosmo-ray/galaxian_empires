@@ -18,9 +18,9 @@ struct	s_list
 typedef struct s_list t_list;
 
 void	init_list(t_list *list);
-t_node	*get_data(void *data);
 void	*pop_data(t_list *list);
 void	push_elem(t_list *elem, t_node *add_elem);
 t_node	*new_elem(void *data);
+void	*get_data(t_list *list, int nbr);
 
 #endif /* !GLIST1_H */
