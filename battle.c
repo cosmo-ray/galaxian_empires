@@ -15,7 +15,9 @@ int	battle(t_player *p1, t_player *p2)
       return (-1);
     pos_player_fleets(p1, &map, NORTH);
     pos_player_fleets(p1, &map, SOUTH);
-
+    print_ship(get_fleet(p1, 0));
+    print_ship(get_fleet(p2, 0));
+    sleep(2);
     destroy_bmap(&map);
     return (0);
 }

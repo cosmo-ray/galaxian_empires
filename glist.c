@@ -35,7 +35,7 @@ void	*get_data(t_list *list, int nbr)
   t_node	*ret;
 
   ret = list->first;
-  if (nbr > list->len)
+  if (nbr >= list->len)
     return (NULL);  
   while (i < nbr)
     {

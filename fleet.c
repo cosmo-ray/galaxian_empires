@@ -1,6 +1,7 @@
 #include	<stdlib.h>
 #include	<string.h>
 #include	"fleet.h"
+#include	"sdl_util.h"
 
 int	init_fleet(char *name, t_ship *type, int nbr, t_fleet *fleet)
 {
@@ -62,4 +63,9 @@ void	pos_fleet(t_fleet *fleet, int x, int y, int dir)
   fleet->pos.x = x;
   fleet->pos.y = y;
   fleet->pos.dir = dir;
+}
+
+int	print_ship(t_fleet *fleet)
+{
+  return (display_ship_sprite(&fleet->pos));
 }

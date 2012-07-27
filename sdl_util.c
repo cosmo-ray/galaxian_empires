@@ -48,7 +48,7 @@ CWtypedef struct{
 } SDL_Rect;
 */
 
-int	display_sprite(t_pos *pos)
+int	display_ship_sprite(t_pos *pos)
 {
   static SDL_Rect	src;
   static SDL_Rect	dest;
@@ -58,8 +58,7 @@ int	display_sprite(t_pos *pos)
   src.w = src.h = dest.w = dest.h = 50;
   dest.x = pos->x * 50;
   dest.y = pos->y * 50;
-  printf("%d. %d\n", src.x, src.y);
-  printf("%d. %d\n", dest.w, dest.h);
+  printf("%d. %d\n", pos->x, pos->y);
   if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
     return (-1);
   /* if (SDL_FillRect(life.win, &dest, 0xffffff)) */

@@ -23,5 +23,6 @@ int	get_fleet_dmg(t_fleet *fleet, int dir);
 int	get_dir_fleet_target(t_pos *pos);
 int	get_dir_fleet_dmg(t_pos *pos);
 void	pos_fleet(t_fleet *fleet, int x, int y, int dir);
+int	print_ship(t_fleet *fleet);
 
 #endif
