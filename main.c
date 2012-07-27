@@ -19,7 +19,7 @@ int	main()
   add_fleet(&p1, 10000, &ship);
   add_fleet(&p2, 10000, &ship);
 
-  if (sdl_init(500, 500) == -1)
+  if (sdl_init(2500, 2500) == -1)
     return (-1);
   /*very important: load_sprite(like all other sdl func) must be after sdl_init*/
   load_sprite();

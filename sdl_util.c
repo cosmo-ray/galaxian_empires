@@ -10,8 +10,7 @@ int	sdl_init(int width, int height)
     return (-1);
   (void) width;
   (void) height;
-  life.win = SDL_SetVideoMode(500, 500, 16, SDL_SWSURFACE);
-  /* life.win = SDL_SetVideoMode(width, height, 32, SDL_SWSURFACE); */
+  life.win = SDL_SetVideoMode(width, height, 32, SDL_SWSURFACE);
   if (life.win == NULL)
     {
       SDL_Quit();

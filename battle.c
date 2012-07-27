@@ -14,7 +14,7 @@ int	battle(t_player *p1, t_player *p2)
     if (p1->fleets.len == 0 || p2->fleets.len == 0)
       return (-1);
     pos_player_fleets(p1, &map, NORTH);
-    pos_player_fleets(p1, &map, SOUTH);
+    pos_player_fleets(p2, &map, SOUTH);
     print_ship(get_fleet(p1, 0));
     print_ship(get_fleet(p2, 0));
     sleep(2);
