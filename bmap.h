@@ -8,7 +8,7 @@ typedef struct	s_bmap
   char	*data;
 }	t_bmap;
 
-int	init_bmap(t_bmap *map);
+int	init_bmap(t_bmap *map, int x, int y);
 void	destroy_bmap(t_bmap *box);
 char	get_x_y(t_bmap *map, int x, int y);
 
