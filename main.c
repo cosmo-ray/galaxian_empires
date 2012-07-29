@@ -8,11 +8,13 @@ t_game	life;
 
 int	main()
 {
+  t_battle	battle_data;
   t_ship	ship;
   t_player	p1;
   t_player	p2;  
   t_bmap	map;
 
+  (void)battle_data;
   if (sdl_init(500, 500) == -1)
     return (-1);
   /*very important: load_sprite(like all other sdl func) must be after sdl_init*/

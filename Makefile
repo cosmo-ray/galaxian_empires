@@ -15,7 +15,8 @@ SRC=		main.c \
 		glist.c \
 		sdl_util.c \
 		player.c \
-		battle.c
+		battle.c \
+		game.c
 
 OBJ=		$(SRC:.c=.o)
 

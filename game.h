@@ -10,6 +10,7 @@ typedef	struct	s_game
 {
   SDL_Surface	*win;
   SDL_Surface	*sprite;/* gordon, what do you mean? sprite gordon approching */
+  t_list	ships; /*lays*/  
   int		nb_plyaers;
 }	t_game;
 
@@ -24,6 +25,7 @@ typedef	struct	s_battle
 
 }	t_battle;
 
+int	give_life(void);
 int	battle(t_player *p1, t_player *p2, t_bmap *map);
 
 #endif /* !GAME1_H */
