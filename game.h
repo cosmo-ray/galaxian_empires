@@ -13,6 +13,17 @@ typedef	struct	s_game
   int		nb_plyaers;
 }	t_game;
 
+typedef	struct	s_battle
+{
+  int		nb_players;
+  t_bmap	map;
+  t_player	*p1;
+  t_player	*p2;  
+  t_player	*p3;
+  t_player	*p4;  
+
+}	t_battle;
+
 int	battle(t_player *p1, t_player *p2, t_bmap *map);
 
 #endif /* !GAME1_H */
