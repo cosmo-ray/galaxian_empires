@@ -26,6 +26,7 @@ typedef	struct	s_battle
 }	t_battle;
 
 int	give_life(void);
+void    take_life();
 int	battle(t_player *p1, t_player *p2, t_bmap *map);
 
 #endif /* !GAME1_H */
