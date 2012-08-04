@@ -67,5 +67,9 @@ void	pos_fleet(t_fleet *fleet, int x, int y, int dir)
 
 int	print_ship(t_fleet *fleet)
 {
-  return (display_ship_sprite(&fleet->pos));
+  static char int_tab[5];
+
+  display_ship_sprite(&fleet->pos);
+  sprintf(int_tab, "%d", fleet->nbr);
+  return (display_txt_on_pos(&fleet->pos, int_tab));
 }

@@ -10,7 +10,10 @@ typedef	struct	s_game
 {
   SDL_Surface	*win;
   SDL_Surface	*sprite;/* gordon, what do you mean? sprite gordon approching */
-  t_list	ships; /*lays*/  
+  SDL_Surface   *txtsurface;
+  SDL_Color     color;  
+  TTF_Font      *font;
+  t_list	ships; /*lays*/
   int		nb_plyaers;
 }	t_game;
 
