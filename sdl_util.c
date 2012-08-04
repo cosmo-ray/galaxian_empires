@@ -26,7 +26,7 @@ int	sdl_init(int width, int height)
   if (TTF_Init() < 0)
     return (-1);
   /*for the moment we use FOO.ttf*/
-  life.font = TTF_OpenFont("./font/FOO.ttf", 15);
+  life.font = TTF_OpenFont("./font/FOO.ttf", 10);
   /*we set the default color of the text to white*/
   set_color(0xFFFFFF);
   return (0);
@@ -81,16 +81,16 @@ int	display_ship_sprite(t_pos *pos)
 
 int	display_txt_on_pos(t_pos *pos, char *txt)
 {
-  static SDL_Rect	src;
+  static SDL_Rect	dest;
 
-  src.y = 0;
-  src.x = pos->dir * 50;
-  src.w = src.h = 50;
+  dest.w = dest.h = 50;
+  dest.x = pos->x * 50;
+  dest.y = pos->y * 50;
 
   life.txtsurface = TTF_RenderText_Solid(life.font, txt, life.color);
 
   /* printf("%d. %d\n", pos->x, pos->y); */
-  if (SDL_BlitSurface(life.txtsurface, NULL, life.win, &src))
+  if (SDL_BlitSurface(life.txtsurface, NULL, life.win, &dest))
     return (-1);
   /* if (SDL_FillRect(life.win, &dest, 0xffffff)) */
   /*   return -1; */
