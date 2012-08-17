@@ -2,6 +2,24 @@
 #include	<stdio.h>
 #include	"game.h"
 
+static void	battle_loop()
+{
+  SDL_Event event;
+
+  while (!0)
+    {
+      SDL_waitEvent(&event);
+      switch (event.type)
+	{
+	case SDL_KEYDOWN:
+	  printf("the %s touch wat touch\n", SDL_GetKeyName(event.key.keysym.sym));
+	  break;
+	case SDL_QUIT:
+	  return ;
+	}
+    }
+}
+
 int	battle(t_player *p1, t_player *p2, t_bmap *map)
 {
   (void) p1;
@@ -12,7 +30,7 @@ int	battle(t_player *p1, t_player *p2, t_bmap *map)
   pos_player_fleets(p2, map, SOUTH);
   print_ship(get_fleet(p1, 0));
   print_ship(get_fleet(p2, 0));
-  sleep(10);
+  battle_loop();
   destroy_bmap(map);
   return (0);
 }
