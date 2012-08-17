@@ -12,7 +12,7 @@ static void	battle_loop()
       switch (event.type)
 	{
 	case SDL_KEYDOWN:
-	  printf("the %s touch wat touch\n", SDL_GetKeyName(event.key.keysym.sym));
+	  printf("the %s touch wat touch, his sym his: %d\n", SDL_GetKeyName(event.key.keysym.sym), event.key.keysym.sym);
 	  break;
 	case SDL_QUIT:
 	  return ;
