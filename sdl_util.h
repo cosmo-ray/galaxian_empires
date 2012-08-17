@@ -10,6 +10,10 @@
 #define	KEY_DOWN	274
 #define	KEY_RIGHT	275
 #define	KEY_LEFT	276
+#define	KEY_ESCAPE	27
+#define	KEY_SPACE	32
+#define	KEY_ENTER	13
+
 
 int		sdl_init(int width, int height);
 void		sdl_uninit();
