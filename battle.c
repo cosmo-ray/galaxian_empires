@@ -11,6 +11,10 @@ static void	battle_loop()
       SDL_WaitEvent(&event);
       switch (event.type)
 	{
+	case SDL_MOUSEBUTTONDOWN:
+	  printf("Mouse button %d pressed at (%d,%d)\n",
+		 event.button.button, event.button.x, event.button.y);
+	  break;
 	case SDL_KEYDOWN:
 	  printf("the %s touch wat touch, his sym his: %d\n", SDL_GetKeyName(event.key.keysym.sym), event.key.keysym.sym);
 	  break;
