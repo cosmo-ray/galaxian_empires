@@ -8,7 +8,7 @@ static void	battle_loop()
 
   while (!0)
     {
-      SDL_waitEvent(&event);
+      SDL_WaitEvent(&event);
       switch (event.type)
 	{
 	case SDL_KEYDOWN:
