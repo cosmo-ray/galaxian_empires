@@ -98,3 +98,20 @@ int	display_txt_on_pos(t_pos *pos, char *txt)
   SDL_Flip(life.win);
   return (0);
 }
+
+
+int	display_bg_sprite(int x, int y, int id)
+{
+  static SDL_Rect	src;
+  static SDL_Rect	dest;
+
+  src.y = 0;
+  src.x = id * 50;
+  src.w = src.h = dest.w = dest.h = 50;
+  dest.x = x * 50;
+  dest.y = y * 50;
+  if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
+    return (-1);
+  SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
+  return (0);
+}
