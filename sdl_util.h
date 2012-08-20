@@ -30,7 +30,6 @@ SDL_Surface	*draw_load(char *file);
 int		load_sprite(void);
 int		display_ship_sprite(t_pos *pos);
 int		display_txt_on_pos(t_pos *pos, char *txt);
-int		get_x_case(int pix_x_pos);
-int		get_y_case(int pix_y_pos);
+int		get_pos_case(int pix_pos);
 
 #endif

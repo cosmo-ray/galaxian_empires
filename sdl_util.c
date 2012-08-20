@@ -82,15 +82,10 @@ int	display_txt_on_pos(t_pos *pos, char *txt)
   dest.w = dest.h = CASE_SIZE;
   dest.x = pos->x * CASE_SIZE;
   dest.y = pos->y * CASE_SIZE;
-
   life.txtsurface = TTF_RenderText_Solid(life.font, txt, life.color);
 
-  /* printf("%d. %d\n", pos->x, pos->y); */
   if (SDL_BlitSurface(life.txtsurface, NULL, life.win, &dest))
     return (-1);
-  /* if (SDL_FillRect(life.win, &dest, 0xffffff)) */
-  /*   return -1; */
-
   SDL_Flip(life.win);
   return (0);
 }
@@ -111,12 +106,7 @@ int	display_bg_sprite(int x, int y, int id)
   return (0);
 }
 
-int	get_x_case(int pix_x_pos)
+int	get_pos_case(int pix_pos)
 {
-  return (pix_x_pos / CASE_SIZE);
-}
-
-int	get_y_case(int pix_y_pos)
-{
-  return (pix_y_pos / CASE_SIZE);
+  return (pix_pos / CASE_SIZE);
 }
