@@ -1,7 +1,5 @@
 #include	"game.h"
 
-#define	FILE_NAME "sprite/ship.png"
-
 extern t_game	life;
 
 /*yeah !, hem no fuck you balck magic !*/

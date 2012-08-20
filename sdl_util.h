@@ -20,7 +20,7 @@
 #define	KEY_MOUSE_ROL_UP	4
 #define	KEY_MOUSE_ROL_DOWN	5
 
-#define	FILE_NAME		"sprite/ship.png"
+#define	FILE_NAME		"sprite/image_set.png"
 
 #define	CASE_SIZE		50
 
