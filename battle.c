@@ -2,7 +2,7 @@
 #include	<stdio.h>
 #include	"game.h"
 
-static void	battle_loop()
+static int	battle_loop()
 {
   SDL_Event event;
 
@@ -19,15 +19,14 @@ static void	battle_loop()
 	  printf("the %s touch wat touch, his sym his: %d\n", SDL_GetKeyName(event.key.keysym.sym), event.key.keysym.sym);
 	  break;
 	case SDL_QUIT:
-	  return ;
+	  return (0);
 	}
     }
+  return (0);
 }
 
 int	battle(t_player *p1, t_player *p2, t_bmap *map)
 {
-  (void) p1;
-  (void) p2;
   if (p1->fleets.len == 0 || p2->fleets.len == 0)
     return (-1);
   pos_player_fleets(p1, map, NORTH);

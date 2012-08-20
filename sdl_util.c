@@ -65,16 +65,12 @@ int	display_ship_sprite(t_pos *pos)
   static SDL_Rect	dest;
 
   src.y = 0;
-  src.x = pos->dir * 50;
-  src.w = src.h = dest.w = dest.h = 50;
-  dest.x = pos->x * 50;
-  dest.y = pos->y * 50;
-  /* printf("%d. %d\n", pos->x, pos->y); */
+  src.x = pos->dir * CASE_SIZE;
+  src.w = src.h = dest.w = dest.h = CASE_SIZE;
+  dest.x = pos->x * CASE_SIZE;
+  dest.y = pos->y * CASE_SIZE;
   if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
     return (-1);
-  /* if (SDL_FillRect(life.win, &dest, 0xffffff)) */
-  /*   return -1; */
-
   SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
   return (0);
 }
@@ -83,9 +79,9 @@ int	display_txt_on_pos(t_pos *pos, char *txt)
 {
   static SDL_Rect	dest;
 
-  dest.w = dest.h = 50;
-  dest.x = pos->x * 50;
-  dest.y = pos->y * 50;
+  dest.w = dest.h = CASE_SIZE;
+  dest.x = pos->x * CASE_SIZE;
+  dest.y = pos->y * CASE_SIZE;
 
   life.txtsurface = TTF_RenderText_Solid(life.font, txt, life.color);
 
@@ -99,19 +95,28 @@ int	display_txt_on_pos(t_pos *pos, char *txt)
   return (0);
 }
 
-
 int	display_bg_sprite(int x, int y, int id)
 {
   static SDL_Rect	src;
   static SDL_Rect	dest;
 
   src.y = 0;
-  src.x = id * 50;
-  src.w = src.h = dest.w = dest.h = 50;
-  dest.x = x * 50;
-  dest.y = y * 50;
+  src.x = id * CASE_SIZE;
+  src.w = src.h = dest.w = dest.h = CASE_SIZE;
+  dest.x = x * CASE_SIZE;
+  dest.y = y * CASE_SIZE;
   if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
     return (-1);
   SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
   return (0);
+}
+
+int	get_x_case(int pix_x_pos)
+{
+  return (pix_x_pos / CASE_SIZE);
+}
+
+int	get_y_case(int pix_y_pos)
+{
+  return (pix_y_pos / CASE_SIZE);
 }

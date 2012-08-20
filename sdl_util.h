@@ -20,11 +20,17 @@
 #define	KEY_MOUSE_ROL_UP	4
 #define	KEY_MOUSE_ROL_DOWN	5
 
+#define	FILE_NAME		"sprite/ship.png"
+
+#define	CASE_SIZE		50
+
 int		sdl_init(int width, int height);
 void		sdl_uninit();
 SDL_Surface	*draw_load(char *file);
 int		load_sprite(void);
 int		display_ship_sprite(t_pos *pos);
 int		display_txt_on_pos(t_pos *pos, char *txt);
+int		get_x_case(int pix_x_pos);
+int		get_y_case(int pix_y_pos);
 
 #endif
