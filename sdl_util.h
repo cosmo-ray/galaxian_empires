@@ -6,14 +6,6 @@
 #include <SDL/SDL_ttf.h>
 #include "pos.h"
 
-#define	KEY_UP			273
-#define	KEY_DOWN		274
-#define	KEY_RIGHT		275
-#define	KEY_LEFT		276
-#define	KEY_ESCAPE		27
-#define	KEY_SPACE		32
-#define	KEY_ENTER		13
-
 #define	KEY_MOUSE_1		1
 #define	KEY_MOUSE_2		3
 #define	KEY_MOUSE_ROL		2

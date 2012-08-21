@@ -1,29 +1,15 @@
 #include	<unistd.h>
 #include	<stdio.h>
 #include	"game.h"
+#include	"selector.h"
 
 static int	do_turn(t_player *p, t_bmap *map)
 {
-  SDL_Event event;
-
+  t_spos pos;
   (void) p;
   (void) map;
-  while (!0)
-    {
-      SDL_WaitEvent(&event);
-      switch (event.type)
-	{
-	case SDL_MOUSEBUTTONDOWN:
-	  printf("Mouse button %d pressed at (%d,%d)\n",
-		 event.button.button, get_pos_case(event.button.x), get_pos_case(event.button.y));
-	  break;
-	case SDL_KEYDOWN:
-	  printf("the %s touch wat touch, his sym his: %d\n", SDL_GetKeyName(event.key.keysym.sym), event.key.keysym.sym);
-	  break;
-	case SDL_QUIT:
-	  return (2);
-	}
-    }
+
+  select_case(&pos);
   return (0);
 }
 
