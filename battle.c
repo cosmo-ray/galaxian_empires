@@ -6,11 +6,12 @@
 static int	do_turn(t_player *p, t_bmap *map)
 {
   t_spos pos;
+  int	ret;
   (void) p;
   (void) map;
 
-  select_case(&pos);
-  return (0);
+ ret = select_case(&pos);
+ return (ret);
 }
 
 static int	battle_loop(t_player *p1, t_player *p2, t_bmap *map)

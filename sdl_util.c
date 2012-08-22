@@ -104,6 +104,22 @@ int	display_bg_sprite(int x, int y, int id)
   return (0);
 }
 
+int	display_somethink(int x, int y, int id_x, int id_y)
+{
+  static SDL_Rect	src;
+  static SDL_Rect	dest;
+
+  src.y = id_y * CASE_SIZE;
+  src.x = id_x * CASE_SIZE;
+  src.w = src.h = dest.w = dest.h = CASE_SIZE;
+  dest.x = x * CASE_SIZE;
+  dest.y = y * CASE_SIZE;
+  if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
+    return (-1);
+  SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
+  return (0);
+}
+
 int	get_pos_case(int pix_pos)
 {
   return (pix_pos / CASE_SIZE);
