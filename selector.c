@@ -16,15 +16,16 @@
 	}
  */
 
-void	display_pos(t_spos *pos)
+static void	display_pos(t_spos *pos)
 {
   display_somethink(pos->x, pos->y, 0, SELECTOR);
 }
 
-int	select_case(t_spos *pos)
+int	select_case(t_spos *pos, t_bmap *map)
 {
   SDL_Event event;
 
+  (void)map;
   pos->x = 0;
   pos->y = 0;
   while (!0)

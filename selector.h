@@ -8,6 +8,6 @@ typedef	struct
   int	y;
 }	t_spos;
 
-int	select_case(t_spos *pos);
+int	select_case(t_spos *pos, t_bmap *map);
 
 #endif
