@@ -17,6 +17,8 @@ int	give_life()
   if (sdl_init(500, 500) == -1)
     return (-1);
   load_sprite();
+  if ((life.bg = draw_load(BG_NAME)) == NULL)
+    return (-1);
   return (0);
 }
 

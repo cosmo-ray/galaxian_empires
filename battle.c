@@ -8,9 +8,8 @@ static int	do_turn(t_player *p, t_bmap *map)
   t_spos pos;
   int	ret;
   (void) p;
-  (void) map;
 
-  ret = select_case(&pos, map);
+  ret = select_case(&pos, map, p);
   return (ret);
 }
 

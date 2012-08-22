@@ -47,3 +47,17 @@ t_fleet	*get_fleet(t_player *p, int nbr)
 {
   return (get_data(&p->fleets, nbr));
 }
+
+int	is_fleet_on(t_player *p, int x, int y)
+{
+  t_node	*node = p->fleets.first;
+
+  while (node != NULL)
+    {
+      if (((t_fleet *)node->data)->pos.x == x 
+	  && ((t_fleet *)node->data)->pos.y == y)
+	return (1);
+      node = node->next;
+    }
+  return (0);
+}

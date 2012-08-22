@@ -10,7 +10,7 @@
 typedef	struct	s_game
 {
 SDL_Surface	*win;
-SDL_Surface	*sprite;/* gordon, what do you mean? sprite gordon approching */
+SDL_Surface	*sprite; /*gordon, what do you mean? sprite gordon approching*/
 SDL_Surface	*bg;
 SDL_Surface   *txtsurface;
 SDL_Color     color;  

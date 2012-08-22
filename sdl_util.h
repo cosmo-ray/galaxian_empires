@@ -13,6 +13,7 @@
 #define	KEY_MOUSE_ROL_DOWN	5
 
 #define	FILE_NAME		"sprite/image_set.png"
+#define	BG_NAME			"sprite/background_set.png"
 
 #define	CASE_SIZE		50
 
@@ -23,6 +24,7 @@ int		load_sprite(void);
 int		display_ship_sprite(t_pos *pos);
 int		display_txt_on_pos(t_pos *pos, char *txt);
 int		display_somethink(int x, int y, int id_x, int id_y);
+int		display_bg_sprite(int x, int y);
 int		get_pos_case(int pix_pos);
 
 #endif

@@ -88,19 +88,19 @@ int	display_txt_on_pos(t_pos *pos, char *txt)
   return (0);
 }
 
-int	display_bg_sprite(int x, int y, int id)
+int	display_bg_sprite(int x, int y)
 {
   static SDL_Rect	src;
   static SDL_Rect	dest;
 
-  src.y = 0;
-  src.x = id * CASE_SIZE;
+  src.y = y * CASE_SIZE;
+  src.x = x * CASE_SIZE;
   src.w = src.h = dest.w = dest.h = CASE_SIZE;
   dest.x = x * CASE_SIZE;
   dest.y = y * CASE_SIZE;
-  if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
+  if (SDL_BlitSurface(life.bg, &src, life.win, &dest))
     return (-1);
-  SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
+  SDL_UpdateRect(life.win, dest.x, dest.y, CASE_SIZE, CASE_SIZE);
   return (0);
 }
 
