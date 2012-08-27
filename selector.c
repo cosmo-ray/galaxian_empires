@@ -1,20 +1,5 @@
 #include	"selector.h"
 
-/*memo of old debug*/
-/*
-      switch (event.type)
-	{
-	case SDL_MOUSEBUTTONDOWN:
-	  printf("Mouse button %d pressed at (%d,%d)\n",
-		 event.button.button, get_pos_case(event.button.x), get_pos_case(event.button.y));
-	  break;
-	case SDL_KEYDOWN:
-	  printf("the %s touch wat touch, his sym his: %d\n", SDL_GetKeyName(event.key.keysym.sym), event.key.keysym.sym);
-	  break;
-	case SDL_QUIT:
-	  return (1);
-	}
- */
 
 static void	display_pos(t_spos *pos)
 {
@@ -30,13 +15,18 @@ static void	undisplay_pos(t_spos *pos, t_battle *bd)
     print_ship(get_fleet(bd->p2, 0));
 }
 
+static	void	init_pos(t_spos *pos)
+{
+  pos->x = 0;
+  pos->y = 0;
+}
+
 int	select_case(t_spos *pos, t_battle *bd)
 {
   SDL_Event event;
   t_spos old;
 
-  pos->x = 0;
-  pos->y = 0;
+  init_pos(pos);
   display_pos(pos);
   while (!0)
     {
