@@ -1,6 +1,7 @@
 #ifndef SELECTOR_H
 #define SELECTOR_H
 #include	"game.h"
+#include	"battle.h"
 
 typedef	struct	
 {
@@ -8,6 +9,6 @@ typedef	struct
   int	y;
 }	t_spos;
 
-int	select_case(t_spos *pos, t_bmap *map, t_player *p);
+int	select_case(t_spos *pos, t_battle *bd);
 
 #endif

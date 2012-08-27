@@ -4,13 +4,12 @@
 #include	"battle.h"
 #include	"selector.h"
 
-static int	do_turn(t_player *p, t_bmap *map)
+static int	do_turn(t_battle * bd)
 {
   t_spos pos;
   int	ret;
-  (void) p;
 
-  ret = select_case(&pos, map, p);
+  ret = select_case(&pos, bd);
   return (ret);
 }
 
@@ -27,14 +26,14 @@ static int	battle_loop(t_battle * bd)
   int	ret = 0;
   while(1)
     {
-      if ((ret = do_turn(bd->p1, &(bd->map))))
+      if ((ret = do_turn(bd)))
 	{
 	  if (ret == 1)
 	    return (0);
 	  else
 	    return (-1);
 	}
-      if ((ret = do_turn(bd->p2, &(bd->map))))
+      if ((ret = do_turn(bd)))
 	{
 	  if (ret == 1)
 	    return (0);

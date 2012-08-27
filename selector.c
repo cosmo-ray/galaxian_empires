@@ -21,19 +21,20 @@ static void	display_pos(t_spos *pos)
   display_somethink(pos->x, pos->y, 0, SELECTOR);
 }
 
-static void	undisplay_pos(t_spos *pos, t_player *p)
+static void	undisplay_pos(t_spos *pos, t_battle *bd)
 {
   display_bg_sprite(pos->x, pos->y);
-  if (is_fleet_on(p, pos->x, pos->y))
-    print_ship(get_fleet(p, 0));
+  if (is_fleet_on(bd->p1, pos->x, pos->y))
+    print_ship(get_fleet(bd->p1, 0));
+  else if (is_fleet_on(bd->p2, pos->x, pos->y))
+    print_ship(get_fleet(bd->p2, 0));
 }
 
-int	select_case(t_spos *pos, t_bmap *map, t_player *p)
+int	select_case(t_spos *pos, t_battle *bd)
 {
   SDL_Event event;
   t_spos old;
 
-  (void)map;
   pos->x = 0;
   pos->y = 0;
   display_pos(pos);
@@ -64,7 +65,7 @@ int	select_case(t_spos *pos, t_bmap *map, t_player *p)
 	    default:
 	      break;
 	    }
-	  undisplay_pos(&old, p);
+	  undisplay_pos(&old, bd);
 	  display_pos(pos);
 	  break;
 	case SDL_QUIT:
