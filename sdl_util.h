@@ -5,6 +5,7 @@
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 #include "pos.h"
+#include "battle.h"
 
 #define	KEY_MOUSE_1		1
 #define	KEY_MOUSE_2		3
@@ -26,5 +27,6 @@ int		display_txt_on_pos(t_pos *pos, char *txt);
 int		display_somethink(int x, int y, int id_x, int id_y);
 int		display_bg_sprite(int x, int y);
 int		get_pos_case(int pix_pos);
+int		display_map(t_battle *bd);
 
 #endif

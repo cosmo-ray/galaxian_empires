@@ -111,12 +111,37 @@ int	display_somethink(int x, int y, int id_x, int id_y)
 
   src.y = id_y * CASE_SIZE;
   src.x = id_x * CASE_SIZE;
-  src.w = src.h = dest.w = dest.h = CASE_SIZE;
+  src.w = src.h = CASE_SIZE;
   dest.x = x * CASE_SIZE;
   dest.y = y * CASE_SIZE;
   if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
     return (-1);
   SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
+  return (0);
+}
+
+static int	display_all_bg(t_battle *bd)
+{
+  SDL_Rect	src;
+  SDL_Rect	dest;
+
+  src.y = src.x = dest.x = dest.y = 0;
+  src.h = bd->map.x * CASE_SIZE;
+  src.w = bd->map.y * CASE_SIZE;
+  if (SDL_BlitSurface(life.bg, &src, life.win, &dest))
+    return (-1);
+  SDL_UpdateRect(life.win, 0, 0, 0, 0);
+  return (0);
+}
+
+int	display_map(t_battle *bd)
+{
+  if (display_all_bg(bd))
+    return (-1);
+  if (print_ship(get_fleet(bd->p1, 0)))
+    return (-1);
+  if (print_ship(get_fleet(bd->p2, 0)))
+    return (-1);
   return (0);
 }
 

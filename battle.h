@@ -1,6 +1,9 @@
 #ifndef BATTLE_H
 #define BATTLE_H
 
+#include	"bmap.h"
+#include	"player.h"
+
 typedef	struct	s_battle
 {
   int		nb_players;
