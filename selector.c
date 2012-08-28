@@ -15,6 +15,12 @@ static void	undisplay_pos(t_spos *pos, t_battle *bd)
     print_ship(get_fleet(bd->p2, 0));
 }
 
+static	void	move_pos(t_spos *opos, t_spos *npos, t_battle *bd)
+{
+  undisplay_pos(opos, bd);
+  display_pos(npos);  
+}
+
 static	void	init_pos(t_spos *pos)
 {
   pos->x = 0;
@@ -55,8 +61,7 @@ int	select_case(t_spos *pos, t_battle *bd)
 	    default:
 	      break;
 	    }
-	  undisplay_pos(&old, bd);
-	  display_pos(pos);
+	  move_pos(&old, pos, bd);
 	  break;
 	case SDL_QUIT:
 	  return (1);

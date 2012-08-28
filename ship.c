@@ -235,7 +235,7 @@ static int	handle_line(t_ship *ship, char *line)
   pos_sep = get_end_charact(line, ':');
   if ((charact_type = find_charact_type(line)) == -1)
     return (-1);
-  /*what ? you don't understand this(↓) line ? it's sad... */
+  /*what? you don't understand this(↓) line? it's sad... */
   line = &(line[pos_sep]);
   asign_tab[charact_type](line, ship);
   return (0);
