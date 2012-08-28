@@ -27,6 +27,28 @@ static	void	init_pos(t_spos *pos)
   pos->y = 0;
 }
 
+static	void	select_case_gere_keybork(t_spos *old, t_spos *pos, t_battle *bd, SDL_Event *event)
+{
+  switch (event->key.keysym.sym)
+    {
+    case SDLK_UP:
+      pos->y -= 1;
+      break;
+    case SDLK_DOWN:
+      pos->y += 1;
+      break;
+    case SDLK_RIGHT:
+      pos->x += 1;
+      break;
+    case SDLK_LEFT:
+      pos->x -= 1;
+      break;
+    default:
+      break;
+    }
+  move_pos(old, pos, bd);
+}
+
 int	select_case(t_spos *pos, t_battle *bd)
 {
   SDL_Event event;
@@ -44,24 +66,7 @@ int	select_case(t_spos *pos, t_battle *bd)
 	case SDL_MOUSEBUTTONDOWN:
 	  break;
 	case SDL_KEYDOWN:
-	  switch (event.key.keysym.sym)
-	    {
-	    case SDLK_UP:
-	      pos->y -= 1;
-	      break;
-	    case SDLK_DOWN:
-	      pos->y += 1;
-	      break;
-	    case SDLK_RIGHT:
-	      pos->x += 1;
-	      break;
-	    case SDLK_LEFT:
-	      pos->x -= 1;
-	      break;
-	    default:
-	      break;
-	    }
-	  move_pos(&old, pos, bd);
+	  select_case_gere_keybork(&old, pos, bd, &event);
 	  break;
 	case SDL_QUIT:
 	  return (1);
