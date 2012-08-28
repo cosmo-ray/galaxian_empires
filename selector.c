@@ -27,7 +27,7 @@ static	void	init_pos(t_spos *pos)
   pos->y = 0;
 }
 
-static	void	select_case_gere_keybork(t_spos *old, t_spos *pos, t_battle *bd, SDL_Event *event)
+static	void	select_case_handle_keybork(t_spos *old, t_spos *pos, t_battle *bd, SDL_Event *event)
 {
   switch (event->key.keysym.sym)
     {
@@ -49,10 +49,26 @@ static	void	select_case_gere_keybork(t_spos *old, t_spos *pos, t_battle *bd, SDL
   move_pos(old, pos, bd);
 }
 
+static	int	select_case_switch_type_event(t_spos *old, t_spos *pos, t_battle *bd, SDL_Event *event)
+{
+  switch (event->type)
+    {
+    case SDL_MOUSEBUTTONDOWN:
+     return (0);
+    case SDL_KEYDOWN:
+      select_case_handle_keybork(old, pos, bd, event);
+      return (0);
+     case SDL_QUIT:
+      return (1);
+    }
+  return (0);
+}
+
 int	select_case(t_spos *pos, t_battle *bd)
 {
   SDL_Event event;
   t_spos old;
+  int	ret;
 
   init_pos(pos);
   display_pos(pos);
@@ -61,16 +77,8 @@ int	select_case(t_spos *pos, t_battle *bd)
       old.x = pos->x;
       old.y = pos->y;
       SDL_WaitEvent(&event);
-      switch (event.type)
-	{
-	case SDL_MOUSEBUTTONDOWN:
-	  break;
-	case SDL_KEYDOWN:
-	  select_case_gere_keybork(&old, pos, bd, &event);
-	  break;
-	case SDL_QUIT:
-	  return (1);
-	}
+      if ((ret = select_case_switch_type_event(&old, pos, bd, &event)))
+	return (ret);
     }
   return (0);
 }
