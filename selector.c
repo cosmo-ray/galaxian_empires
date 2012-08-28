@@ -33,15 +33,23 @@ static	void	select_case_handle_keybork(t_spos *old, t_spos *pos, t_battle *bd, S
     {
     case SDLK_UP:
       pos->y -= 1;
+      if (pos->y < 0)
+	pos->y = bd->map.y - 1;
       break;
     case SDLK_DOWN:
       pos->y += 1;
+      if (pos->y == bd->map.y)
+	pos->y = 0;
       break;
     case SDLK_RIGHT:
       pos->x += 1;
+      if (pos->x == bd->map.x)
+	pos->x = 0;
       break;
     case SDLK_LEFT:
       pos->x -= 1;
+      if (pos->x < 0)
+	pos->x = bd->map.x - 1;
       break;
     default:
       break;
