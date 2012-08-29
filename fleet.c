@@ -65,7 +65,7 @@ void	pos_fleet(t_fleet *fleet, int x, int y, int dir)
   fleet->pos.dir = dir;
 }
 
-int	print_ship(t_fleet *fleet)
+int	print_fleet_ship(t_fleet *fleet)
 {
   static char int_tab[5];
 

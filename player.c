@@ -34,21 +34,12 @@ int	add_fleet(t_player *p, int nbr, t_ship *ship)
   return (0);
 }
 
-void	pos_player_fleets(t_player *p, t_bmap *map, int	dir)
-{
-  /*maybe one day the loop who ask to the player where he want to pos his fleets will be implement here*/
-  if (dir == NORTH)
-    pos_fleet((t_fleet *)p->fleets.first->data, map->x / 2 - 1, 0, SOUTH);
-  else
-    pos_fleet((t_fleet *)p->fleets.first->data, map->x / 2 - 1, map->y - 1, NORTH);
-}
-
 t_fleet	*get_fleet(t_player *p, int nbr)
 {
-  return (get_data(&p->fleets, nbr));
+  return (get_data(&p->fleets, nbr - 1));
 }
 
-int	is_fleet_on(t_player *p, int x, int y)
+int	get_fleet_on(t_player *p, int x, int y)
 {
   t_node	*node = p->fleets.first;
   int		ret = 1;

@@ -9,10 +9,11 @@ static void	display_pos(t_spos *pos)
 static void	undisplay_pos(t_spos *pos, t_battle *bd)
 {
   display_bg_sprite(pos->x, pos->y);
-  if (is_fleet_on(bd->p1, pos->x, pos->y))
-    print_ship(get_fleet(bd->p1, 0));
-  else if (is_fleet_on(bd->p2, pos->x, pos->y))
-    print_ship(get_fleet(bd->p2, 0));
+  if (IS_SHIP_ON(get_x_y(&bd->map, pos->x, pos->y)))
+    {
+      print_fleet_ship(get_fleet(bd->p1, get_fleet_on(bd->p1, pos->x, pos->y)));
+      print_fleet_ship(get_fleet(bd->p2, get_fleet_on(bd->p2, pos->x, pos->y)));
+    }
 }
 
 static	void	move_pos(t_spos *opos, t_spos *npos, t_battle *bd)

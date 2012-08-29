@@ -120,7 +120,7 @@ int	display_somethink(int x, int y, int id_x, int id_y)
   return (0);
 }
 
-static int	display_all_bg(t_battle *bd)
+static	int	display_all_bg(t_battle *bd)
 {
   SDL_Rect	src;
   SDL_Rect	dest;
@@ -138,9 +138,9 @@ int	display_map(t_battle *bd)
 {
   if (display_all_bg(bd))
     return (-1);
-  if (print_ship(get_fleet(bd->p1, 0)))
+  if (print_fleet_ship(get_fleet(bd->p1, 0)))
     return (-1);
-  if (print_ship(get_fleet(bd->p2, 0)))
+  if (print_fleet_ship(get_fleet(bd->p2, 0)))
     return (-1);
   return (0);
 }
