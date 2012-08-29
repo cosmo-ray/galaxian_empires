@@ -4,9 +4,19 @@
 #include	<string.h>
 #include	"bmap.h"
 
-char	get_x_y(t_bmap *map, int x, int y)
+char	bmap_get_x_y(t_bmap *map, int x, int y)
 {
   return (map->data[x + (y * map->x)]);
+}
+
+void	bmap_add_ship(t_bmap *map, int x, int y)
+{
+  map->data[x + (y * map->x)] |= SHIP;
+}
+
+void	bmap_rm_ship(t_bmap *map, int x, int y)
+{
+  map->data[x + (y * map->x)] ^= SHIP;
 }
 
 int	init_bmap(t_bmap *map, int x, int y)

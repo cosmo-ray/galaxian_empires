@@ -4,6 +4,7 @@
 #define	EMPTY	0
 #define	SHIP	1
 #define	BLOCK	2
+#define	ALL	3
 
 #define	IS_SHIP_ON(X)	 X & SHIP ? 1 : 0 
 #define	IS_BLOCK_ON(X)	 X & BLOCK ? 1 : 0 
@@ -18,9 +19,8 @@ char	*data;
 
 int	init_bmap(t_bmap *map, int x, int y);
 void	destroy_bmap(t_bmap *box);
-char	get_x_y(t_bmap *map, int x, int y);
-
-/*debug function*/
-void	debug_print_map(t_bmap *map);
+char	bmap_get_x_y(t_bmap *map, int x, int y);
+void	bmap_add_ship(t_bmap *map, int x, int y);
+void	bmap_rm_ship(t_bmap *map, int x, int y);
 
 #endif
