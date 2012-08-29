@@ -28,7 +28,7 @@ static	void	init_pos(t_spos *pos)
   pos->y = 0;
 }
 
-static	void	select_case_handle_keybork(t_spos *old, t_spos *pos, t_battle *bd, SDL_Event *event)
+static	int	select_case_handle_keybork(t_spos *old, t_spos *pos, t_battle *bd, SDL_Event *event)
 {
   switch (event->key.keysym.sym)
     {
@@ -52,10 +52,13 @@ static	void	select_case_handle_keybork(t_spos *old, t_spos *pos, t_battle *bd, S
       if (pos->x < 0)
 	pos->x = bd->map.x - 1;
       break;
+    case SDLK_RETURN:
+      return (2);
     default:
       break;
     }
   move_pos(old, pos, bd);
+  return (0);
 }
 
 static	int	select_case_switch_type_event(t_spos *old, t_spos *pos, t_battle *bd, SDL_Event *event)
@@ -65,8 +68,7 @@ static	int	select_case_switch_type_event(t_spos *old, t_spos *pos, t_battle *bd,
     case SDL_MOUSEBUTTONDOWN:
      return (0);
     case SDL_KEYDOWN:
-      select_case_handle_keybork(old, pos, bd, event);
-      return (0);
+      return (select_case_handle_keybork(old, pos, bd, event));
      case SDL_QUIT:
       return (1);
     }
@@ -87,7 +89,11 @@ int	select_case(t_spos *pos, t_battle *bd)
       old.y = pos->y;
       SDL_WaitEvent(&event);
       if ((ret = select_case_switch_type_event(&old, pos, bd, &event)))
-	return (ret);
+	{
+	  if (ret != 2)
+	    return (ret);
+	  return (0);
+	}
     }
   return (0);
 }
