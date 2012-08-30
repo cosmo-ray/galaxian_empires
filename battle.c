@@ -55,17 +55,34 @@ static int	pos_fleets_on_map(t_battle *bd, int dir, t_spos *pos, t_fleet *fleet)
   return (0);
 }
 
+/*set the position of the fleet of a player on a map*/
+static	int	pos_player_fleets_on_map(t_battle *bd, t_player *p, t_spos *pos, int dir)
+{
+  t_node	*node = p->fleets.first;
+  int	i = -1; /*i set i to -1 because like this i increment i one time less*/
+
+  while (node != NULL)
+    {
+      ++i;
+      if (select_case(pos, bd))
+	return (1);
+      pos_fleets_on_map(bd, dir, pos, get_fleet(p, i));
+      node = node->next;
+    }
+  return (0);
+}
+
+/*set the position of the 2 players in the map*/
 static	int	pos_players_fleets_on_map(t_battle *bd)
 {
-  int		ret;
   t_spos	pos;
 
-
-  if (select_case(&pos, bd))
+  if (pos_player_fleets_on_map(bd, bd->p1, &pos, NORTH))
     return (1);
-/*(t_fleet *)p->fleets.first->data*/
-  ret = pos_fleets_on_map(bd, NORTH, &pos, get_fleet(bd->p1, 0));
-  return (ret);
+  display_map(bd);
+  if (pos_player_fleets_on_map(bd, bd->p2, &pos, SOUTH))
+    return (1);
+  return (0);
 }
 
 static	int	end_battle(t_battle *bd)
