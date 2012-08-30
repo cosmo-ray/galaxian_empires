@@ -64,7 +64,7 @@ static	int	pos_player_fleets_on_map(t_battle *bd, t_player *p, t_spos *pos, int 
   while (node != NULL)
     {
       ++i;
-      if (select_case(pos, bd))
+      if (select_empty_case(pos, bd))
 	return (1);
       pos_fleets_on_map(bd, dir, pos, get_fleet(p, i));
       node = node->next;

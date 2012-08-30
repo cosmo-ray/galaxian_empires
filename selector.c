@@ -97,3 +97,12 @@ int	select_case(t_spos *pos, t_battle *bd)
     }
   return (0);
 }
+
+int	select_empty_case(t_spos *pos, t_battle *bd)
+{
+  if (select_case(pos, bd))
+    return (1);
+  if (bmap_get_x_y(&bd->map, pos->x, pos->y) == EMPTY)
+    return (0);
+  return (select_empty_case(pos, bd));
+}
