@@ -7,7 +7,8 @@ SRC=		main.c \
 		player.c \
 		battle.c \
 		selector.c \
-		game.c
+		game.c \
+		printer.c
 
 OBJ=		$(SRC:.c=.o)
 
