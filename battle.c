@@ -6,10 +6,16 @@
 #include	"mesage_box.h"
 #include	"menu_box.h"
 
+#define	ATTAQUE	0
+#define	MOVE	1
+#define	TURN	2
+#define	SKIP	3
+
+
 char	*menu_tab[] = {
   "Attaque",
   "Move",
-  "Turn",
+  "Turn", /*A TURN, TURN A TURN TURN AAAAAAAAAAAAA*/
   "Skip turn",
 };
 
@@ -26,9 +32,27 @@ static int	do_turn(t_battle * bd, int player)
   int	ret;
 
   print_msg("player's "); print_int(player); print_msg(" turns\n");
-  ret = select_ally_fleet(&pos, bd, get_player_from_int(bd, player));
-  print_menu(menu_tab);
-  return (ret);
+  if (select_ally_fleet(&pos, bd, get_player_from_int(bd, player)))
+    return (1);
+  ret = print_menu(menu_tab);
+  if (ret == -2)
+    return (1);
+  switch (ret)
+    {
+    case ATTAQUE:
+      printf("pan pan\n");
+      break;
+    case MOVE:
+      printf("tchu tchu\n");
+      break;
+    case TURN:
+      printf("wroum wroum\n");
+      break;
+    case SKIP:
+      printf("not me\n");      
+      break;
+    }
+  return (0);
 }
 
 static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)
