@@ -1,6 +1,16 @@
 #include	<stdio.h>
 #include	"sdl_util.h"
 
+static	inline int	mb_is_num_key(unsigned int  key, unsigned int nb_anw)
+{
+  return ((key - SDLK_0) <= nb_anw && (key - SDLK_0) > 0);
+}
+
+static	inline int	mb_is_numpad_key(unsigned int  key, unsigned int nb_anw)
+{
+  return ((key - SDLK_KP0) <= nb_anw && (key - SDLK_KP0) > 0);
+}
+
 int	wait_answer(int nb_anw)
 {
   static SDL_Event event;
@@ -9,8 +19,10 @@ int	wait_answer(int nb_anw)
   switch (event.type)
     {
     case SDL_KEYDOWN:
-      if ((int)(event.key.keysym.sym  - SDLK_0) <= nb_anw && (event.key.keysym.sym  - SDLK_0) > 0)
+      if (mb_is_num_key(event.key.keysym.sym, nb_anw))
 	return (event.key.keysym.sym  - SDLK_0 - 1);
+      else if (mb_is_numpad_key(event.key.keysym.sym, nb_anw))
+	return (event.key.keysym.sym  - SDLK_KP0 - 1);
       break;
     case SDL_QUIT:
       return (-2);
