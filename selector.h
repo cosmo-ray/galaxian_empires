@@ -11,4 +11,6 @@ typedef	struct
 
 int	select_case(t_spos *pos, t_battle *bd);
 int	select_empty_case(t_spos *pos, t_battle *bd);
+int	select_ship(t_spos *pos, t_battle *bd);
+
 #endif

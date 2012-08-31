@@ -1,6 +1,5 @@
 #include	"selector.h"
 
-
 static void	display_pos(t_spos *pos)
 {
   display_somethink(pos->x, pos->y, 0, SELECTOR);
@@ -105,4 +104,13 @@ int	select_empty_case(t_spos *pos, t_battle *bd)
   if (bmap_get_x_y(&bd->map, pos->x, pos->y) == EMPTY)
     return (0);
   return (select_empty_case(pos, bd));
+}
+
+int	select_ship(t_spos *pos, t_battle *bd)
+{
+  if (select_case(pos, bd))
+    return (1);
+  if (bmap_get_x_y(&bd->map, pos->x, pos->y) & SHIP)
+    return (0);
+  return (select_ship(pos, bd));
 }
