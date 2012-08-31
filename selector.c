@@ -1,4 +1,5 @@
 #include	"selector.h"
+#include	"mesage_box.h"
 
 static void	display_pos(t_spos *pos)
 {
@@ -103,14 +104,27 @@ int	select_empty_case(t_spos *pos, t_battle *bd)
     return (1);
   if (bmap_get_x_y(&bd->map, pos->x, pos->y) == EMPTY)
     return (0);
+  print_msg("an empty case must be selected\n");
   return (select_empty_case(pos, bd));
 }
 
-int	select_ship(t_spos *pos, t_battle *bd)
+int	select_fleet(t_spos *pos, t_battle *bd)
 {
   if (select_case(pos, bd))
     return (1);
   if (bmap_get_x_y(&bd->map, pos->x, pos->y) & SHIP)
     return (0);
-  return (select_ship(pos, bd));
+  print_msg("an case whith a fleet must be selected\n");
+  return (select_fleet(pos, bd));
 }
+
+int	select_ally_fleet(t_spos *pos, t_battle *bd, t_player *p)
+{
+  if (select_fleet(pos, bd))
+    return (1);
+  if (get_fleet_on(p, pos->x, pos->y))
+    return (0);
+  print_msg("an case whith a ally fleet must be selected\n");
+  return (select_ally_fleet(pos, bd, p));
+}
+

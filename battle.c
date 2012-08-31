@@ -5,12 +5,20 @@
 #include	"selector.h"
 #include	"mesage_box.h"
 
-static int	do_turn(t_battle * bd)
+static	t_player	*get_player_from_int(t_battle * bd, int nbr)
+{
+  if (nbr == 1)
+    return (bd->p1);
+  return (bd->p2);
+}
+
+static int	do_turn(t_battle * bd, int player)
 {
   t_spos pos;
   int	ret;
 
-  ret = select_case(&pos, bd);
+  print_msg("player's "); print_int(player); print_msg(" turns\n");
+  ret = select_ally_fleet(&pos, bd, get_player_from_int(bd, player));
   return (ret);
 }
 
@@ -22,24 +30,32 @@ static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)
   return (0);
 }
 
+static	int is_battle_end()
+{
+  return (0);
+}
+
+static	int	get_nbr_player()
+{
+  return (2);
+}
+
 static int	battle_loop(t_battle * bd)
 {
   int	ret = 0;
-  while(1)
+  int	player;
+
+  while (!is_battle_end())
     {
-      if ((ret = do_turn(bd)))
+      for (player = 1; player <= get_nbr_player(); ++player)
 	{
-	  if (ret == 1)
-	    return (0);
-	  else
-	    return (-1);
-	}
-      if ((ret = do_turn(bd)))
-	{
-	  if (ret == 1)
-	    return (0);
-	  else
-	    return (-1);
+	  if ((ret = do_turn(bd, player)))
+	    {
+	      if (ret == 1)
+		return (0);
+	      else
+		return (-1);
+	    }
 	}
     }
   return (0);
@@ -78,10 +94,11 @@ static	int	pos_players_fleets_on_map(t_battle *bd)
 {
   t_spos	pos;
 
-  print_msg(" turns\n", print_int(2, print_msg("player's ", 0)));
+  print_msg("player's "); print_int(1); print_msg(" turns\n");
   if (pos_player_fleets_on_map(bd, bd->p1, &pos, NORTH))
     return (1);
   display_map(bd);
+  print_msg("player's "); print_int(2); print_msg(" turns\n");
   if (pos_player_fleets_on_map(bd, bd->p2, &pos, SOUTH))
     return (1);
   return (0);

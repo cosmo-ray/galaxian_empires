@@ -3,16 +3,14 @@
 #include	<stdio.h>
 #include	"mesage_box.h"
 
-int	print_msg(char *msg, int ret)
+int	print_msg(char *msg)
 {
-  (void) ret;
   printf("%s", msg);
   return (0);
 }
 
-int	print_int(int nbr, int ret)
+int	print_int(int nbr)
 {
-  (void) ret;
   printf("%d", nbr);
   return (0);
 }
