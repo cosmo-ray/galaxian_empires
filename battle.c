@@ -4,6 +4,14 @@
 #include	"battle.h"
 #include	"selector.h"
 #include	"mesage_box.h"
+#include	"menu_box.h"
+
+char	*menu_tab[] = {
+  "Attaque",
+  "Move",
+  "Turn",
+  "Skip turn",
+};
 
 static	t_player	*get_player_from_int(t_battle * bd, int nbr)
 {
@@ -19,6 +27,7 @@ static int	do_turn(t_battle * bd, int player)
 
   print_msg("player's "); print_int(player); print_msg(" turns\n");
   ret = select_ally_fleet(&pos, bd, get_player_from_int(bd, player));
+  print_menu(menu_tab);
   return (ret);
 }
 
