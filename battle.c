@@ -3,6 +3,7 @@
 #include	"game.h"
 #include	"battle.h"
 #include	"selector.h"
+#include	"mesage_box.h"
 
 static int	do_turn(t_battle * bd)
 {
@@ -77,6 +78,7 @@ static	int	pos_players_fleets_on_map(t_battle *bd)
 {
   t_spos	pos;
 
+  print_msg(" turns\n", print_int(2, print_msg("player's ", 0)));
   if (pos_player_fleets_on_map(bd, bd->p1, &pos, NORTH))
     return (1);
   display_map(bd);
