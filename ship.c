@@ -114,6 +114,7 @@ static int	get_end_charact(char *line, char c)
 
 
 /* Erk ...*/
+
 static	int	set_pv(char *line, t_ship *ship)
 {
   int	valure = atoi(line);
@@ -122,6 +123,7 @@ static	int	set_pv(char *line, t_ship *ship)
   return (0);
 }
 
+/*set equalitary the power of the "main" weapon*/
 static	int	set_mwp(char *line, t_ship *ship)
 {
   int	valure = atoi(line);
@@ -134,6 +136,7 @@ static	int	set_mwp(char *line, t_ship *ship)
   return (0);
 }
 
+/*repartition of the weapon power on the ship*/
 static	int	set_rmwp(char *line, t_ship *ship)
 {
   int	valure;
@@ -155,6 +158,7 @@ static	int	set_rmwp(char *line, t_ship *ship)
   return (0);
 }
 
+/*"armor"*/
 static	int	set_rar(char *line, t_ship *ship)
 {
   float	valure;
@@ -173,6 +177,7 @@ static	int	set_rar(char *line, t_ship *ship)
   return (0);
 }
 
+/*action point*/
 static	int	set_ap(char *line, t_ship *ship)
 {
   int	valure = atoi(line);
@@ -181,6 +186,7 @@ static	int	set_ap(char *line, t_ship *ship)
   return (0);
 }
 
+/*speed*/
 static	int	set_sp(char *line, t_ship *ship)
 {
   int	valure = atoi(line);
@@ -191,6 +197,7 @@ static	int	set_sp(char *line, t_ship *ship)
   return (0);
 }
 
+/*repartition of speed*/
 static	int	set_rsp(char *line, t_ship *ship)
 {
   int	valure;

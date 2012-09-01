@@ -26,7 +26,33 @@ static	t_player	*get_player_from_int(t_battle * bd, int nbr)
   return (bd->p2);
 }
 
-static int	do_turn(t_battle * bd, int player)
+static	void	map_modifier_dmg(t_bmap *map, t_spos *src, t_spos *target, int *dmg)
+{
+  (void) map;
+  (void) src;
+  (void) target;
+  (void) dmg;
+}
+
+static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
+{
+  t_spos	target;
+  int		dmg;
+  /*player's fleet*/
+  t_fleet	*pfleet = get_fleet_by_pos(p, pos->x, pos->y);
+  t_fleet	*tfleet; /*target fleet*/
+  
+  printf("pan pan\n"); /*pit heur*/
+  if (select_enemy_fleet(&target, bd, p))
+    return (1);
+  tfleet = get_fleet_by_pos(p, target.x, target.y);
+  dmg = get_fleet_dmg(pfleet, get_dir_fleet_target(pfleet, &target));
+  map_modifier_dmg(&bd->map, pos, &target, &dmg);
+  do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, pos));
+  return (0);
+}
+
+static	int	do_turn(t_battle * bd, int player)
 {
   t_spos pos;
   int	ret;
@@ -40,8 +66,9 @@ static int	do_turn(t_battle * bd, int player)
   switch (ret)
     {
     case ATTAQUE:
-      printf("pan pan\n");
-      break;
+      if (attaque(bd, &pos, get_player_from_int(bd, player)))
+	return (1);
+       break;
     case MOVE:
       printf("tchu tchu\n");
       break;

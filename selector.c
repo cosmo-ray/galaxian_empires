@@ -128,3 +128,13 @@ int	select_ally_fleet(t_spos *pos, t_battle *bd, t_player *p)
   return (select_ally_fleet(pos, bd, p));
 }
 
+int	select_enemy_fleet(t_spos *pos, t_battle *bd, t_player *p)
+{
+  if (select_fleet(pos, bd))
+    return (1);
+  if (!get_fleet_on(p, pos->x, pos->y))
+    return (0);
+  print_msg("yeah shoot your friend, good idie !\n");
+  return (select_ally_fleet(pos, bd, p));
+}
+

@@ -10,7 +10,7 @@ typedef	struct	s_battle
   t_bmap	map;
   t_player	*p1;
   t_player	*p2;  
-
+  int		cur_turn; /*TODO*/
 }	t_battle;
 
 int	battle(t_player *p1, t_player *p2);

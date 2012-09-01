@@ -9,6 +9,12 @@
 #define	IS_SHIP_ON(X)	 X & SHIP ? 1 : 0 
 #define	IS_BLOCK_ON(X)	 X & BLOCK ? 1 : 0 
 
+typedef	struct	
+{
+  int	x;
+  int	y;
+}	t_spos;
+
 typedef struct	s_bmap	
 {
 int	x;

@@ -46,14 +46,16 @@ int	get_fleet_nbr(t_fleet *fleet)
   return (fleet->nbr);
 }
 
-int	get_dir_fleet_target(t_pos *pos)
+int	get_dir_fleet_target(t_fleet *fleet, t_spos *pos)
 {
+  (void)fleet;
   (void) pos;
   return (FRONT);
 }
 
-int	get_dir_fleet_dmg(t_pos *pos)
+int	get_dir_fleet_dmg(t_fleet *fleet, t_spos *pos)
 {
+  (void)fleet;
   (void) pos;
   return (BACK);
 }

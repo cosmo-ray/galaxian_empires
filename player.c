@@ -55,3 +55,7 @@ int	get_fleet_on(t_player *p, int x, int y)
   return (0);
 }
 
+t_fleet	*get_fleet_by_pos(t_player *p, int x, int y)
+{
+  return (get_fleet(p, get_fleet_on(p, x, y)));
+}
