@@ -90,8 +90,9 @@ static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)
   return (0);
 }
 
-static	int is_battle_end()
+static	int is_battle_end(t_battle * bd)
 {
+  (void)bd;
   return (0);
 }
 
@@ -105,7 +106,7 @@ static int	battle_loop(t_battle * bd)
   int	ret = 0;
   int	player;
 
-  while (!is_battle_end())
+  while (!is_battle_end(bd))
     {
       for (player = 1; player <= get_nbr_player(); ++player)
 	{

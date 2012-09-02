@@ -244,7 +244,7 @@ static int	handle_line(t_ship *ship, char *line)
     return (-1);
   line += pos_sep;
   /*Hey, you know what? at the begin, instead of the previous line, i've write the netx commentd one*/
- /*line = &(line[pos_sep]);*/
+  /* line = &(line[pos_sep]); */
   asign_tab[charact_type](line, ship);
   return (0);
 }

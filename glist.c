@@ -29,6 +29,48 @@ void *pop_data(t_list *list)
   return (tmp);
 }
 
+static	t_node *get_node(t_list *list, int nbr)
+{
+  int	i = 1;
+  t_node *ret;
+
+  if (!nbr)
+    return (NULL);
+  ret = list->first;
+  while (i < nbr && i < list->len)
+    {
+      ret = ret->next;
+      ++i;
+    }
+  if (i != nbr)
+    return (NULL);
+  return (ret);
+}
+
+/*pop a node of the list at the position pos*/
+void	*pop_data_pos(t_list *list, int pos)
+{
+  void *tmp;
+  t_node *dent;
+
+  if (pos > list->len)
+    return (NULL);
+  dent = get_node(list, pos);
+  if (dent == NULL)
+    return (NULL);
+  if (list->first == dent)
+    list->first = dent->next;
+  else
+    dent->prev->next = dent->next;
+  if (list->last == dent)
+    list->first = dent->prev;
+  else
+    dent->next->prev = dent->prev;
+  tmp = dent->data;
+  free(dent);
+  return (tmp);
+}
+
 void	*get_data(t_list *list, int nbr)
 {
   int		i = 0;
@@ -46,7 +88,7 @@ void	*get_data(t_list *list, int nbr)
 }
 
 /*
-** add the element to the element given
+** add the node add_elem to the list
 */
 
 void push_elem(t_list *list, t_node *add_elem)
