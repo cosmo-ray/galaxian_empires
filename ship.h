@@ -12,13 +12,18 @@
 
 typedef	struct	s_weapon
 {
+  /*the power with the front batrie*/
   int	front;
+  /*the power with the side batrie*/
   int	side;
+  /*the power with the back batrie*/
   int	back;
+  /*the AP needed for one shoot*/
   int	pa;
   char	flag;
 }	t_weapon;
 
+/*the power of the booster in the front, the back, and the side of the ship in case by AP*/
 typedef	struct	s_mvsys
 {
   int	front;
@@ -26,6 +31,7 @@ typedef	struct	s_mvsys
   int	back;
 }	t_mvsys;
 
+/*the armor is in fact a domage multiplicator, more the armor is near 0 more the armor is usefull*/
 typedef	struct	s_armor
 {
   float	front;
@@ -36,10 +42,13 @@ typedef	struct	s_armor
 typedef	struct	s_ship
 {
   char		*name;
+  /*main weapon*/
   t_weapon	mwp;
+  /*movement system*/
   t_mvsys	mvsys;
   t_armor	armor;
   int		pv;
+  /*action point*/
   int		ap;
 }	t_ship;
 
