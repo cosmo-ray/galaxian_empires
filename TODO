@@ -1,0 +1,19 @@
+For Alpha 1 (do a working game):
+- move cmd.
+- turn cmd
+- rm fleet then his number is under 1 (uso)
+- detect then a player loose
+ 
+After:
+- have a full SDL graphical view
+- creat a IA players
+- print error then ther's one
+- have a full non-graphical view
+- handle mouse
+- restructure sprite files
+
+
+very after:
+- include 3d gameplay
+- have a see fleet variante of the game
+- network
