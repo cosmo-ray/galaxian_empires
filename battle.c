@@ -34,6 +34,17 @@ static	void	map_modifier_dmg(t_bmap *map, t_spos *src, t_spos *target, int *dmg)
   (void) dmg;
 }
 
+static	t_fleet	*get_fleet_by_pos_battle(t_battle * bd, int x, int y)
+{
+  t_fleet	*fleet;
+
+  if ((fleet = get_fleet_by_pos(bd->p1, x, y)) != NULL)
+    return (fleet);
+  if ((fleet = get_fleet_by_pos(bd->p2, x, y)) != NULL)
+    return (fleet);
+  return (NULL);
+}
+
 static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
 {
   t_spos	target;
@@ -45,7 +56,7 @@ static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
   printf("pan pan\n"); /*pit heur*/
   if (select_enemy_fleet(&target, bd, p))
     return (1);
-  tfleet = get_fleet_by_pos(p, target.x, target.y);
+  tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
   dmg = get_fleet_dmg(pfleet, get_dir_fleet_target(pfleet, &target));
   map_modifier_dmg(&bd->map, pos, &target, &dmg);
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, pos));
@@ -144,7 +155,7 @@ static	int	pos_player_fleets_on_map(t_battle *bd, t_player *p, t_spos *pos, int 
       ++i;
       if (select_empty_case(pos, bd))
 	return (1);
-      pos_fleets_on_map(bd, dir, pos, get_fleet(p, i));
+      pos_fleets_on_map(bd, dir, pos, get_fleet(p, i + 1));
       node = node->next;
     }
   return (0);

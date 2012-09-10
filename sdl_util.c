@@ -138,10 +138,6 @@ int	display_map(t_battle *bd)
 {
   if (display_all_bg(bd))
     return (-1);
-  if (print_fleet_ship(get_fleet(bd->p1, 0)))
-    return (-1);
-  if (print_fleet_ship(get_fleet(bd->p2, 0)))
-    return (-1);
   return (0);
 }
 

@@ -77,7 +77,7 @@ void	*get_data(t_list *list, int nbr)
   t_node	*ret;
 
   ret = list->first;
-  if (nbr >= list->len)
+  if (nbr >= list->len || nbr < 0)
     return (NULL);  
   while (i < nbr)
     {

@@ -71,6 +71,8 @@ int	print_fleet_ship(t_fleet *fleet)
 {
   static char int_tab[5];
 
+  if (fleet == NULL)
+    return (0);
   display_ship_sprite(&fleet->pos);
   sprintf(int_tab, "%d", fleet->nbr);
   return (display_txt_on_pos(&fleet->pos, int_tab));
