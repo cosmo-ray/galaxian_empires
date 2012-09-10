@@ -59,3 +59,16 @@ t_fleet	*get_fleet_by_pos(t_player *p, int x, int y)
 {
   return (get_fleet(p, get_fleet_on(p, x, y)));
 }
+
+int	display_all_fleet(t_player *p)
+{
+  int	i = 0;
+  int	len = p->fleets.len;
+
+  while (i < len)
+    {
+      print_fleet_ship(get_data(&p->fleets, i));
+      ++i;
+    }
+  return (0);
+}
