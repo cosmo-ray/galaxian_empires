@@ -45,6 +45,17 @@ static	t_fleet	*get_fleet_by_pos_battle(t_battle * bd, int x, int y)
   return (NULL);
 }
 
+static	t_player *get_enemy_player(t_battle *bd, t_fleet *fleet)
+{
+  t_pos	*pos = &fleet->pos;
+
+  if (get_fleet_on(bd->p1, pos->x, pos->y))
+    return (bd->p1);
+  if (get_fleet_on(bd->p2, pos->x, pos->y))
+    return (bd->p2);
+  return (NULL);
+}
+
 static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
 {
   t_spos	target;
@@ -60,6 +71,9 @@ static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
   dmg = get_fleet_dmg(pfleet, get_dir_fleet_target(pfleet, &target));
   map_modifier_dmg(&bd->map, pos, &target, &dmg);
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, pos));
+  printf("%d\n", tfleet->nbr);
+  if (tfleet->nbr < 1)
+    player_delet_fleet(get_enemy_player(bd, tfleet), tfleet);
   return (0);
 }
 
@@ -74,6 +88,7 @@ static	int	do_turn(t_battle * bd, int player)
   ret = print_menu(menu_tab);
   if (ret == -2)
     return (1);
+  /*divise this part of the function should be a good idie*/
   switch (ret)
     {
     case ATTAQUE:

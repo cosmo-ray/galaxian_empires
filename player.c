@@ -72,3 +72,11 @@ int	display_all_fleet(t_player *p)
     }
   return (0);
 }
+
+int	player_delet_fleet(t_player *p, t_fleet *f)
+{
+  if (pop_data_elem(&p->fleets, f))
+    return (-1);
+  delet_fleet(f);
+  return (0);
+}

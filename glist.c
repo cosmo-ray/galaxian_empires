@@ -29,7 +29,7 @@ void *pop_data(t_list *list)
   return (tmp);
 }
 
-static	t_node *get_node(t_list *list, int nbr)
+static	t_node *get_node_by_pos(t_list *list, int nbr)
 {
   int	i = 1;
   t_node *ret;
@@ -47,6 +47,8 @@ static	t_node *get_node(t_list *list, int nbr)
   return (ret);
 }
 
+
+
 /*pop a node of the list at the position pos*/
 void	*pop_data_pos(t_list *list, int pos)
 {
@@ -55,7 +57,7 @@ void	*pop_data_pos(t_list *list, int pos)
 
   if (pos > list->len)
     return (NULL);
-  dent = get_node(list, pos);
+  dent = get_node_by_pos(list, pos);
   if (dent == NULL)
     return (NULL);
   if (list->first == dent)
@@ -70,6 +72,41 @@ void	*pop_data_pos(t_list *list, int pos)
   free(dent);
   return (tmp);
 }
+
+static	t_node *get_node(t_list *list, void *elem)
+{
+  int	i = 1;
+  t_node *ret;
+
+  ret = list->first;
+  while (ret->data != elem && i < list->len)
+    {
+      ret = ret->next;
+      ++i;
+    }
+  if (ret->data != elem)
+    return (NULL);
+  return (ret);
+}
+
+int	pop_data_elem(t_list *list, void *elem)
+{
+  t_node *dent;
+
+  if ((dent = get_node(list, elem)) == NULL) /*assign dent to te return valur of get_node and check if it's egale to NOLL*/
+    return (-1); /*if the elem is't found in the list, then 0 is return*/
+  if (list->first == dent) /*if elem is the first elem in the list*/
+    list->first = dent->next; /*then the new first elem, is the odl 2nd elem*/
+  else
+    dent->prev->next = dent->next; /*else the previous next node is the next node of the actuel one (so much segfault, because of this line at my first list)*/
+  if (list->last == dent) 
+    list->first = dent->prev;
+  else
+    dent->next->prev = dent->prev;
+  free(dent);
+  return (0);
+}
+
 
 void	*get_data(t_list *list, int nbr)
 {
@@ -126,4 +163,11 @@ void init_list(t_list *list)
   list->len = 0;
   list->last = NULL;
   list->first = NULL;
+}
+
+int	is_empty(t_list *list)
+{
+  if (list->len)
+    return (0);
+  return (1);
 }

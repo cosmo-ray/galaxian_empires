@@ -22,5 +22,7 @@ void	*pop_data(t_list *list);
 void	push_elem(t_list *elem, t_node *add_elem);
 t_node	*new_elem(void *data);
 void	*get_data(t_list *list, int nbr);
+int	is_empty(t_list *list);
+int	pop_data_elem(t_list *list, void *elem);
 
 #endif /* !GLIST1_H */
