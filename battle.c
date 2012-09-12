@@ -17,6 +17,7 @@ char	*menu_tab[] = {
   "Move",
   "Turn", /*A TURN, TURN A TURN TURN AAAAAAAAAAAAA*/
   "Skip turn",
+  NULL
 };
 
 static	t_player	*get_player_from_int(t_battle * bd, int nbr)
