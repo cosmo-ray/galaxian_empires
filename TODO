@@ -1,8 +1,8 @@
 For Alpha 1 (do a working game):
 - move cmd.
 - turn cmd
-- rm fleet then his number is under 1 (uso)
 - detect then a player loose
+- finish the detetcion of the multipliers
  
 After:
 - have a full SDL graphical view
