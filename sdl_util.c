@@ -120,7 +120,12 @@ int	display_somethink(int x, int y, int id_x, int id_y)
   return (0);
 }
 
-static	int	display_all_bg(t_battle *bd)
+int	get_pos_case(int pix_pos)
+{
+  return (pix_pos / CASE_SIZE);
+}
+
+int	display_all_bg(t_battle *bd)
 {
   SDL_Rect	src;
   SDL_Rect	dest;
@@ -132,18 +137,4 @@ static	int	display_all_bg(t_battle *bd)
     return (-1);
   SDL_UpdateRect(life.win, 0, 0, 0, 0);
   return (0);
-}
-
-int	display_map(t_battle *bd)
-{
-  if (display_all_bg(bd))
-    return (-1);
-  display_all_fleet(bd->p1);  
-  display_all_fleet(bd->p2);
-  return (0);
-}
-
-int	get_pos_case(int pix_pos)
-{
-  return (pix_pos / CASE_SIZE);
 }

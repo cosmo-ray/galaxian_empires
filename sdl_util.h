@@ -27,6 +27,6 @@ int		display_txt_on_pos(t_pos *pos, char *txt);
 int		display_somethink(int x, int y, int id_x, int id_y);
 int		display_bg_sprite(int x, int y);
 int		get_pos_case(int pix_pos);
-int		display_map(t_battle *bd);
+int		display_all_bg(t_battle *bd);
 
 #endif
