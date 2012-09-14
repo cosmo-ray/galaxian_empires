@@ -95,6 +95,7 @@ int	pop_data_elem(t_list *list, void *elem)
 
   if ((dent = get_node(list, elem)) == NULL) /*assign dent to te return valur of get_node and check if it's egale to NOLL*/
     return (-1); /*if the elem is't found in the list, then 0 is return*/
+  list->len -= 1;
   if (list->first == dent) /*if elem is the first elem in the list*/
     list->first = dent->next; /*then the new first elem, is the odl 2nd elem*/
   else
