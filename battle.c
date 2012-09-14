@@ -160,7 +160,6 @@ static int	battle_loop(t_battle * bd)
 
 static int	pos_fleets_on_map(t_battle *bd, int dir, t_spos *pos, t_fleet *fleet)
 {
-  /*maybe one day the loop who ask to the player where he want to pos his fleets will be implement here*/
   bmap_add_ship(&bd->map, pos->x, pos->y);
   if (dir == NORTH)
     pos_fleet(fleet, pos->x, pos->y, SOUTH);
@@ -217,8 +216,6 @@ int	battle(t_player *p1, t_player *p2)
   display_map(&battle_data);
   if (pos_players_fleets_on_map(&battle_data))
     return (end_battle(&battle_data));
-  /* pos_player_fleets(p1, &battle_data.map, NORTH); */
-  /* pos_player_fleets(p2, &battle_data.map, SOUTH); */
   display_map(&battle_data);
   battle_loop(&battle_data);
   return (end_battle(&battle_data));
