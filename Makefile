@@ -6,10 +6,11 @@ SRC=		main.c \
 		sdl_util.c \
 		player.c \
 		battle.c \
+		battle_display.c \
 		selector.c \
 		game.c \
 		mesage_box.c \
-		menu_box.c
+		menu_box.c \
 
 OBJ=		$(SRC:.c=.o)
 

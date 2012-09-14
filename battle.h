@@ -13,6 +13,7 @@ typedef	struct	s_battle
   int		cur_turn; /*TODO*/
 }	t_battle;
 
+void	display_case(t_battle *bd, int x, int y);
 int	battle(t_player *p1, t_player *p2);
 
 #endif

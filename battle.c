@@ -74,7 +74,10 @@ static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, pos));
   printf("%d\n", tfleet->nbr);
   if (tfleet->nbr < 1)
-    player_delet_fleet(get_enemy_player(bd, tfleet), tfleet);
+    {
+      player_delet_fleet(get_enemy_player(bd, tfleet), tfleet);
+      display_bg_sprite(target.x, target.y);
+    }
   return (0);
 }
 
@@ -89,7 +92,7 @@ static	int	do_turn(t_battle * bd, int player)
   ret = print_menu(menu_tab);
   if (ret == -2)
     return (1);
-  /*divise this part of the function should be a good idie*/
+  /*divise this part of the function should be a good idea*/
   switch (ret)
     {
     case ATTAQUE:
