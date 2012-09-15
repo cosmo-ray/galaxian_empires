@@ -269,6 +269,20 @@ int	get_pv(t_ship *ship)
   return (ship->pv);
 }
 
+int	get_ap(t_ship *this)
+{
+  return (this->ap);
+}
+
+float	get_speed(t_ship *this, int dir)
+{
+  if (dir == FRONT)
+    return (this->mvsys.front);
+  else if (dir == SIDE)
+    return (this->mvsys.side);
+  return (this->mvsys.back);
+}
+
 int	get_muldmg(t_ship *ship, int dir)
 {
   if (dir == FRONT)

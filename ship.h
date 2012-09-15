@@ -26,9 +26,9 @@ typedef	struct	s_weapon
 /*the power of the booster in the front, the back, and the side of the ship in case by AP*/
 typedef	struct	s_mvsys
 {
-  int	front;
-  int	side;
-  int	back;
+  float	front;
+  float	side;
+  float	back;
 }	t_mvsys;
 
 /*the armor is in fact a domage multiplicator, more the armor is near 0 more the armor is usefull*/
