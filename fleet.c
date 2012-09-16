@@ -110,3 +110,27 @@ int	print_fleet_ship(t_fleet *fleet)
   sprintf(int_tab, "%d", fleet->nbr);
   return (display_txt_on_pos(&fleet->pos, int_tab));
 }
+
+void	turn_left(t_fleet *fleet)
+{
+  if (fleet->pos.dir == WEST)
+    fleet->pos.dir = NORTH;
+  else if (fleet->pos.dir == NORTH)
+    fleet->pos.dir = EAST;
+  else if (fleet->pos.dir == EAST)
+    fleet->pos.dir = SOUTH;
+  else if (fleet->pos.dir == SOUTH)
+    fleet->pos.dir = WEST;
+}
+
+void	turn_right(t_fleet *fleet)
+{
+  if (fleet->pos.dir == WEST)
+    fleet->pos.dir = SOUTH;
+  else if (fleet->pos.dir == NORTH)
+    fleet->pos.dir = WEST;
+  else if (fleet->pos.dir == EAST)
+    fleet->pos.dir = NORTH;
+  else if (fleet->pos.dir == SOUTH)
+    fleet->pos.dir = EAST;
+}

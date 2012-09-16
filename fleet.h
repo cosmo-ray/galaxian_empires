@@ -33,4 +33,8 @@ void	pos_fleet(t_fleet *fleet, int x, int y, int dir);
 /*display the fleet on the screen*/
 int	print_fleet_ship(t_fleet *fleet);
 
+void	turn_right(t_fleet *fleet);
+
+void	turn_left(t_fleet *fleet);
+
 #endif

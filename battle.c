@@ -20,6 +20,12 @@ char	*menu_tab[] = {
   NULL
 };
 
+char	*turn_tab[] = {
+  "Left",
+  "Right",
+  NULL
+};
+
 static	t_player	*get_player_from_int(t_battle * bd, int nbr)
 {
   if (nbr == 1)
@@ -70,7 +76,6 @@ static	int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
   int		dmg;
   t_fleet	*tfleet; /*target fleet*/
   
-  printf("pan pan\n"); /*pit heur*/
   if (select_enemy_fleet(&target, bd, p))
     return (1);
   tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
@@ -84,7 +89,20 @@ static	int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
   return (0);
 }
 
-static	int	exec_player_action(t_battle * bd, t_spos *pos, int player, int action_type)
+static	void	turn(t_battle *bd, t_fleet *pfleet)
+{
+  int	ret;
+
+  print_msg("Turn in which direction ?");
+  ret = print_menu(turn_tab);
+  if (ret == 0)
+    turn_left(pfleet);
+  else
+    turn_right(pfleet);
+  display_case(bd, pfleet->pos.x, pfleet->pos.y);
+}
+
+static	int	exec_player_action(t_battle *bd, t_spos *pos, int player, int action_type)
 {
   t_player *p = get_player_from_int(bd, player);
 
@@ -93,17 +111,15 @@ static	int	exec_player_action(t_battle * bd, t_spos *pos, int player, int action
   switch (action_type)
     {
     case ATTAQUE:
-      if (attaque(bd,p , get_fleet_by_pos(p, pos->x, pos->y)))
+      if (attaque(bd, p, get_fleet_by_pos(p, pos->x, pos->y)))
 	return (1);
       break;
     case MOVE:
-      printf("tchu tchu\n");
       break;
     case TURN:
-      printf("wroum wroum\n");
+      turn(bd, get_fleet_by_pos(p, pos->x, pos->y));
       break;
     case SKIP:
-      printf("not me\n");
       break;
     }
   return (0);  
