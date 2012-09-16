@@ -61,15 +61,13 @@ static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet, int x, int y)
 {
   player_delet_fleet(get_enemy_player(bd, fleet), fleet);
   bmap_rm_ship(&bd->map, x, y);
-  display_case(bd, x, y);
   return (0);
 }
 
-static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
+static	int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
 {
   t_spos	target;
   int		dmg;
-  t_fleet	*pfleet = get_fleet_by_pos(p, pos->x, pos->y); /*player's fleet*/
   t_fleet	*tfleet; /*target fleet*/
   
   printf("pan pan\n"); /*pit heur*/
@@ -77,24 +75,27 @@ static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
     return (1);
   tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
   dmg = get_fleet_dmg(pfleet, get_dir_fleet_target(pfleet, (t_pos *)&target));
-  map_modifier_dmg(&bd->map, pos, &target, &dmg);
-  do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, pos));
+  map_modifier_dmg(&bd->map, (t_spos *)&pfleet->pos, &target, &dmg);
+  do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, &pfleet->pos));
   printf("%d\n", tfleet->nbr);
   if (tfleet->nbr < 1)
     battle_rm_fleet(bd, tfleet, target.x, target.y);
+  display_case(bd, target.x, target.y);
   return (0);
 }
 
 static	int	exec_player_action(t_battle * bd, t_spos *pos, int player, int action_type)
 {
+  t_player *p = get_player_from_int(bd, player);
+
   if (action_type == -2)
     return (1);
   switch (action_type)
     {
     case ATTAQUE:
-      if (attaque(bd, pos, get_player_from_int(bd, player)))
+      if (attaque(bd,p , get_fleet_by_pos(p, pos->x, pos->y)))
 	return (1);
-       break;
+      break;
     case MOVE:
       printf("tchu tchu\n");
       break;

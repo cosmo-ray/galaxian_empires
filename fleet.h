@@ -25,7 +25,7 @@ int	get_fleet_dmg(t_fleet *fleet, int dir);
 int	get_dir_fleet_target(t_fleet *fleet, t_pos *pos);
 
 /*get the direction define in ship.h(FRONT, SIDE, or BACK) of the direction of the incoming attaque*/
-int	get_dir_fleet_dmg(t_fleet *fleet, t_spos *pos);
+int	get_dir_fleet_dmg(t_fleet *fleet, t_pos *pos);
 
 /*position the fleet a the position defined by x, y, and dir*/
 void	pos_fleet(t_fleet *fleet, int x, int y, int dir);

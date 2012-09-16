@@ -86,7 +86,7 @@ int	get_dir_fleet_target(t_fleet *fleet, t_pos *target)
   return (FRONT);
 }
 
-int	get_dir_fleet_dmg(t_fleet *fleet, t_spos *pos)
+int	get_dir_fleet_dmg(t_fleet *fleet, t_pos *pos)
 {
   (void)fleet;
   (void) pos;
