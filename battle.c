@@ -76,7 +76,7 @@ static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
   if (select_enemy_fleet(&target, bd, p))
     return (1);
   tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
-  dmg = get_fleet_dmg(pfleet, get_dir_fleet_target(pfleet, &target));
+  dmg = get_fleet_dmg(pfleet, get_dir_fleet_target(pfleet, (t_pos *)&target));
   map_modifier_dmg(&bd->map, pos, &target, &dmg);
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, pos));
   printf("%d\n", tfleet->nbr);

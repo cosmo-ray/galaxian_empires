@@ -8,6 +8,7 @@ SRC=		main.c \
 		battle.c \
 		battle_display.c \
 		selector.c \
+		calculaor.c \
 		game.c \
 		mesage_box.c \
 		menu_box.c \
@@ -20,7 +21,7 @@ CC=		gcc
 
 CFLAGS		+= -Wall -Wextra -g3 -Werror
 CFLAGS		+= ${shell sdl-config --cflags}
-LDFLAGS		+= ${shell sdl-config --libs} -lSDL_image -lSDL_ttf
+LDFLAGS		+= ${shell sdl-config --libs} -lSDL_image -lSDL_ttf -lm
 
 all:	$(OBJ)
 	$(CC) -o $(NAME) $(LDFLAGS) $(OBJ)

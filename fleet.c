@@ -1,5 +1,6 @@
 #include	<stdlib.h>
 #include	<string.h>
+#include	"calculaor.h"
 #include	"fleet.h"
 #include	"sdl_util.h"
 
@@ -46,10 +47,42 @@ int	get_fleet_nbr(t_fleet *fleet)
   return (fleet->nbr);
 }
 
-int	get_dir_fleet_target(t_fleet *fleet, t_spos *pos)
+int	get_dir_fleet_target(t_fleet *fleet, t_pos *target)
 {
-  (void)fleet;
-  (void) pos;
+  double rad;
+
+  target = cal_get_Line(&fleet->pos, target);
+  rad = get_rad(target);
+  if ((target->y > 0 && fleet->pos.dir == SOUTH)
+      || (target->y < 0 && fleet->pos.dir == NORTH))
+    {
+      if (rad < 0.321751 && rad > -0.321751)
+	{ printf ("front attaque\n"); return (FRONT); }
+      else
+	{ printf ("side attaque\n"); return (SIDE); }
+    }
+  else if (fleet->pos.dir == NORTH || fleet->pos.dir == SOUTH)
+    {
+      if (rad < 0.321751 && rad > -0.321751)
+	{ printf ("back attaque\n"); return (BACK); }
+      else
+	{ printf ("side attaque\n"); return (SIDE); }
+    }
+  else if ((target->x > 0 && fleet->pos.dir == WEST)
+      || (target->x < 0 && fleet->pos.dir == EAST))
+    {
+      if (rad < 1.249046 && rad > -1.249046)
+	{ printf ("front attaque\n"); return (FRONT); }
+      else
+	{ printf ("side attaque\n"); return (SIDE); }
+    }
+  else
+    {
+      if (rad < 1.249046 && rad > -1.249046)
+	{ printf ("back attaque\n"); return (BACK); }
+      else
+	{ printf ("side attaque\n"); return (SIDE); }
+    }
   return (FRONT);
 }
 

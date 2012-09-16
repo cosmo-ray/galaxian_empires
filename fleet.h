@@ -22,7 +22,7 @@ int	init_fleet(char *name, t_ship *type, int nbr, t_fleet *fleet);
 int	get_fleet_dmg(t_fleet *fleet, int dir);
 
 /*get the direction define in ship.h(FRONT, SIDE, or BACK) of the direction of the target*/
-int	get_dir_fleet_target(t_fleet *fleet, t_spos *pos);
+int	get_dir_fleet_target(t_fleet *fleet, t_pos *pos);
 
 /*get the direction define in ship.h(FRONT, SIDE, or BACK) of the direction of the incoming attaque*/
 int	get_dir_fleet_dmg(t_fleet *fleet, t_spos *pos);
