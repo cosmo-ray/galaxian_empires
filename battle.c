@@ -69,8 +69,7 @@ static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
 {
   t_spos	target;
   int		dmg;
-  /*player's fleet*/
-  t_fleet	*pfleet = get_fleet_by_pos(p, pos->x, pos->y);
+  t_fleet	*pfleet = get_fleet_by_pos(p, pos->x, pos->y); /*player's fleet*/
   t_fleet	*tfleet; /*target fleet*/
   
   printf("pan pan\n"); /*pit heur*/
@@ -103,7 +102,7 @@ static	int	exec_player_action(t_battle * bd, t_spos *pos, int player, int action
       printf("wroum wroum\n");
       break;
     case SKIP:
-      printf("not me\n");      
+      printf("not me\n");
       break;
     }
   return (0);  
