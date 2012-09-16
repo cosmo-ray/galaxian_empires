@@ -86,22 +86,14 @@ static	int	attaque(t_battle * bd, t_spos *pos, t_player *p)
   return (0);
 }
 
-static	int	do_turn(t_battle * bd, int player)
+static	int	exec_player_action(t_battle * bd, t_spos *pos, int player, int action_type)
 {
-  t_spos pos;
-  int	ret;
-
-  print_msg("player's "); print_int(player); print_msg(" turns\n");
-  if (select_ally_fleet(&pos, bd, get_player_from_int(bd, player)))
+  if (action_type == -2)
     return (1);
-  ret = print_menu(menu_tab);
-  if (ret == -2)
-    return (1);
-  /*divise this part of the function should be a good idea*/
-  switch (ret)
+  switch (action_type)
     {
     case ATTAQUE:
-      if (attaque(bd, &pos, get_player_from_int(bd, player)))
+      if (attaque(bd, pos, get_player_from_int(bd, player)))
 	return (1);
        break;
     case MOVE:
@@ -114,7 +106,19 @@ static	int	do_turn(t_battle * bd, int player)
       printf("not me\n");      
       break;
     }
-  return (0);
+  return (0);  
+}
+
+static	int	do_turn(t_battle * bd, int player)
+{
+  t_spos pos;
+  int	ret;
+
+  print_msg("player's "); print_int(player); print_msg(" turns\n");
+  if (select_ally_fleet(&pos, bd, get_player_from_int(bd, player)))
+    return (1);
+  ret = print_menu(menu_tab);
+  return (exec_player_action(bd, &pos, player, ret));
 }
 
 static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)
