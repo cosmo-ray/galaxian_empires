@@ -51,7 +51,7 @@ int	get_dir_fleet_target(t_fleet *fleet, t_pos *target)
 {
   double rad;
 
-  target = cal_get_Line(&fleet->pos, target);
+  cal_get_Line(&fleet->pos, target);
   rad = get_rad(target);
   if ((target->y > 0 && fleet->pos.dir == SOUTH)
       || (target->y < 0 && fleet->pos.dir == NORTH))
@@ -89,11 +89,12 @@ int	get_dir_fleet_target(t_fleet *fleet, t_pos *target)
 int	get_dir_fleet_dmg(t_fleet *fleet, t_pos *from)
 {
   double rad;
+  t_pos	 droite;
 
-  from = cal_get_Line(&fleet->pos, from);
-  rad = get_rad(from);
-  if ((from->y > 0 && fleet->pos.dir == SOUTH)
-      || (from->y < 0 && fleet->pos.dir == NORTH))
+  cal_get_Line_ret(&fleet->pos, from, &droite);
+  rad = get_rad(&droite);
+  if ((droite.y > 0 && fleet->pos.dir == SOUTH)
+      || (droite.y < 0 && fleet->pos.dir == NORTH))
     {
       if (rad < 0.321751 && rad > -0.321751)
 	{ printf ("front dmg\n"); return (FRONT); }
@@ -107,8 +108,8 @@ int	get_dir_fleet_dmg(t_fleet *fleet, t_pos *from)
       else
 	{ printf ("side dmg\n"); return (SIDE); }
     }
-  else if ((from->x > 0 && fleet->pos.dir == WEST)
-      || (from->x < 0 && fleet->pos.dir == EAST))
+  else if ((droite.x > 0 && fleet->pos.dir == WEST)
+      || (droite.x < 0 && fleet->pos.dir == EAST))
     {
       if (rad < 1.249046 && rad > -1.249046)
 	{ printf ("front dmg\n"); return (FRONT); }

@@ -63,10 +63,10 @@ static	t_player *get_enemy_player(t_battle *bd, t_fleet *fleet)
   return (NULL);
 }
 
-static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet, int x, int y)
+static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet)
 {
+  bmap_rm_ship(&bd->map, fleet->pos.x, fleet->pos.y);
   player_delet_fleet(get_enemy_player(bd, fleet), fleet);
-  bmap_rm_ship(&bd->map, x, y);
   return (0);
 }
 
@@ -84,7 +84,7 @@ static	int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, &pfleet->pos));
   printf("%d\n", tfleet->nbr);
   if (tfleet->nbr < 1)
-    battle_rm_fleet(bd, tfleet, target.x, target.y);
+    battle_rm_fleet(bd, tfleet);
   display_case(bd, target.x, target.y);
   return (0);
 }
