@@ -68,17 +68,17 @@ int	get_dir_fleet_target(t_fleet *fleet, t_pos *target)
       else
 	{ printf ("side attaque\n"); return (SIDE); }
     }
-  else if ((target->x > 0 && fleet->pos.dir == WEST)
-      || (target->x < 0 && fleet->pos.dir == EAST))
+  else if ((target->x < 0 && fleet->pos.dir == WEST)
+      || (target->x > 0 && fleet->pos.dir == EAST))
     {
-      if (rad < 1.249046 && rad > -1.249046)
+      if (rad > 1.249046 || (rad < -1.249046 && rad > -2))
 	{ printf ("front attaque\n"); return (FRONT); }
       else
 	{ printf ("side attaque\n"); return (SIDE); }
     }
   else
     {
-      if (rad < 1.249046 && rad > -1.249046)
+      if (rad > 1.249046 || (rad < -1.249046 && rad > -2))
 	{ printf ("back attaque\n"); return (BACK); }
       else
 	{ printf ("side attaque\n"); return (SIDE); }
@@ -111,14 +111,14 @@ int	get_dir_fleet_dmg(t_fleet *fleet, t_pos *from)
   else if ((droite.x > 0 && fleet->pos.dir == WEST)
       || (droite.x < 0 && fleet->pos.dir == EAST))
     {
-      if (rad < 1.249046 && rad > -1.249046)
+      if (rad > 1.249046 || (rad < -1.249046 && rad > -2))
 	{ printf ("front dmg\n"); return (FRONT); }
       else
 	{ printf ("side dmg\n"); return (SIDE); }
     }
   else
     {
-      if (rad < 1.249046 && rad > -1.249046)
+      if (rad > 1.249046 || (rad < -1.249046 && rad > -2))
 	{ printf ("back dmg\n"); return (BACK); }
       else
 	{ printf ("side dmg\n"); return (SIDE); }
