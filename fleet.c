@@ -108,8 +108,8 @@ int	get_dir_fleet_dmg(t_fleet *fleet, t_pos *from)
       else
 	{ printf ("side dmg\n"); return (SIDE); }
     }
-  else if ((droite.x > 0 && fleet->pos.dir == WEST)
-      || (droite.x < 0 && fleet->pos.dir == EAST))
+  else if ((droite.x < 0 && fleet->pos.dir == WEST)
+      || (droite.x > 0 && fleet->pos.dir == EAST))
     {
       if (rad > 1.249046 || (rad < -1.249046 && rad > -2))
 	{ printf ("front dmg\n"); return (FRONT); }
