@@ -30,19 +30,22 @@ static	t_player	*get_player_from_int(t_battle * bd, int nbr)
 static	int	exec_player_action(t_battle *bd, t_spos *pos, int player, int action_type)
 {
   t_player *p = get_player_from_int(bd, player);
+  t_fleet  *fleet = get_fleet_by_pos(p, pos->x, pos->y);
 
   if (action_type == -2)
     return (1);
   switch (action_type)
     {
     case ATTAQUE:
-      if (attaque(bd, p, get_fleet_by_pos(p, pos->x, pos->y)))
+      if (attaque(bd, p, fleet))
 	return (1);
       break;
     case MOVE:
+      if (move(bd, fleet))
+	return (1);
       break;
     case TURN:
-      turn(bd, get_fleet_by_pos(p, pos->x, pos->y));
+      turn(bd, fleet);
       break;
     case SKIP:
       break;

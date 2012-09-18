@@ -79,3 +79,10 @@ void	turn(t_battle *bd, t_fleet *pfleet)
     turn_right(pfleet);
   display_case(bd, pfleet->pos.x, pfleet->pos.y);
 }
+
+int	move(t_battle *bd, t_fleet *pfleet)
+{
+  (void)bd;
+  (void)pfleet;
+  return (0);
+}
