@@ -11,6 +11,7 @@ typedef	struct	s_fleet
   char		*name;
   t_ship	*type;
   int		nbr;
+  float		remain_ap;
 }	t_fleet;
 
 char    *get_fleet_name(t_fleet *fleet);
@@ -34,7 +35,6 @@ void	pos_fleet(t_fleet *fleet, int x, int y, int dir);
 int	print_fleet_ship(t_fleet *fleet);
 
 void	turn_right(t_fleet *fleet);
-
 void	turn_left(t_fleet *fleet);
 
 #endif

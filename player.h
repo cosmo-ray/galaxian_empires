@@ -19,5 +19,8 @@ int	get_fleet_on(t_player *p, int x, int y);
 t_fleet	*get_fleet_by_pos(t_player *p, int x, int y);
 int	display_all_fleet(t_player *p);
 int	player_delet_fleet(t_player *p, t_fleet *f);
+/*set the action point at ther initial valure stocked in type*/
+void	reset_ap(t_player *p);
+
 
 #endif

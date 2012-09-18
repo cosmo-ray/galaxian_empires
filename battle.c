@@ -27,9 +27,8 @@ static	t_player	*get_player_from_int(t_battle * bd, int nbr)
   return (bd->p2);
 }
 
-static	int	exec_player_action(t_battle *bd, t_spos *pos, int player, int action_type)
+static	int	exec_player_action(t_battle *bd, t_spos *pos, t_player *p, int action_type)
 {
-  t_player *p = get_player_from_int(bd, player);
   t_fleet  *fleet = get_fleet_by_pos(p, pos->x, pos->y);
 
   if (action_type == -2)
@@ -55,14 +54,16 @@ static	int	exec_player_action(t_battle *bd, t_spos *pos, int player, int action_
 
 static	int	do_turn(t_battle * bd, int player)
 {
+  t_player *p = get_player_from_int(bd, player);
   t_spos pos;
   int	ret;
 
+  reset_ap(p);
   print_msg("player's "); print_int(player); print_msg(" turns\n");
   if (select_ally_fleet(&pos, bd, get_player_from_int(bd, player)))
     return (1);
   ret = print_menu(menu_tab);
-  return (exec_player_action(bd, &pos, player, ret));
+  return (exec_player_action(bd, &pos, p, ret));
 }
 
 static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)

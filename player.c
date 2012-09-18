@@ -73,6 +73,20 @@ int	display_all_fleet(t_player *p)
   return (0);
 }
 
+void	reset_ap(t_player *p)
+{
+  int		i = 0;
+  int		len = p->fleets.len;
+  t_fleet	*fleet;
+  
+  while (i < len)
+    {
+      fleet = get_data(&p->fleets, i);
+      fleet->remain_ap = fleet->type->ap;
+      ++i;
+    }
+}
+
 int	player_delet_fleet(t_player *p, t_fleet *f)
 {
   if (pop_data_elem(&p->fleets, f))
