@@ -3,6 +3,11 @@
 #include	<stdio.h>
 #include	"mesage_box.h"
 
+void	v_print_msg(char *msg)
+{
+  printf("%s", msg);  
+}
+
 int	print_msg(char *msg)
 {
   printf("%s", msg);

@@ -171,7 +171,7 @@ void	turn_right(t_fleet *fleet)
 int	fleet_rm_ap(t_fleet *fleet, float nbr)
 {
   if (nbr > fleet->remain_ap)
-    return (0);
+    return (1);
   fleet->remain_ap -= nbr;
-  return (1);
+  return (0);
 }

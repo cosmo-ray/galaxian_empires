@@ -71,6 +71,8 @@ void	turn(t_battle *bd, t_fleet *pfleet)
 {
   int	ret;
 
+  if (fleet_rm_ap(pfleet, get_speed(pfleet->type, SIDE)))
+    return (v_print_msg("not enought mp, you want to get it")); /*Fuck you Dougram*/
   print_msg("Turn in which direction ?");
   ret = print_menu(turn_tab);
   if (ret == 0)
