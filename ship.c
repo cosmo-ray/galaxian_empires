@@ -13,7 +13,6 @@ static	int     set_rmwp(char *line, t_ship *ship);
 static	int     set_rar(char *line, t_ship *ship);
 static	int     set_ap(char *line, t_ship *ship);
 static	int     set_sp(char *line, t_ship *ship);
-static	int     set_rsp(char *line, t_ship *ship);
 
 /* data_type's define */
 
@@ -25,7 +24,6 @@ static	int     set_rsp(char *line, t_ship *ship);
 #define RAR		3
 #define AP		4
 #define SP		5
-#define RSP		6
 
 static int (*asign_tab[]) (char *, t_ship *) = {
   &set_pv,
@@ -34,7 +32,6 @@ static int (*asign_tab[]) (char *, t_ship *) = {
   &set_rar,
   &set_ap,
   &set_sp,
-  &set_rsp  
 };
 
 static const char	*data_type[] = {
@@ -44,7 +41,6 @@ static const char	*data_type[] = {
   "rar",
   "ap",
   "sp",
-  "rsp"
 };
 
 /* -------------- lonely static functions ---------------- */
@@ -186,35 +182,33 @@ static	int	set_ap(char *line, t_ship *ship)
   return (0);
 }
 
+/*old speed*/
+/* static	int	set_sp(char *line, t_ship *ship) */
+/* { */
+/*   int	valure = atoi(line); */
+
+/*   ship->mvsys.front = valure; */
+/*   ship->mvsys.back = valure; */
+/*   ship->mvsys.side = valure;   */
+/*   return (0); */
+/* } */
+
 /*speed*/
 static	int	set_sp(char *line, t_ship *ship)
 {
-  int	valure = atoi(line);
-
-  ship->mvsys.front = valure;
-  ship->mvsys.back = valure;
-  ship->mvsys.side = valure;  
-  return (0);
-}
-
-/*repartition of speed*/
-static	int	set_rsp(char *line, t_ship *ship)
-{
-  int	valure;
+  float	valure;
   int	jmp;
 
+  valure = atof(line);
+  jmp = get_end_charact(line, ',');
+  ship->mvsys.front = valure;
+  line += jmp;//&(line[jmp]);
   valure = atoi(line);
   jmp = get_end_charact(line, ',');
-  ship->mvsys.front = (valure * ship->mvsys.front) / 100;
-  line = &(line[jmp]);
-
+  ship->mvsys.side = valure;
+  line += jmp;//&(line[jmp]);
   valure = atoi(line);
-  jmp = get_end_charact(line, ',');
-  ship->mvsys.side = (valure * ship->mvsys.side) / 100;
-  line = &(line[jmp]);
-
-  valure = atoi(line);
-  ship->mvsys.back = (valure * ship->mvsys.back) / 100;
+  ship->mvsys.back = valure;
   return (0);
 }
 

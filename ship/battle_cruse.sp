@@ -8,7 +8,5 @@ rmwp:75,20,10
 rar:1,1,2
 # action point
 ap:3
-# speed
-sp:3
-# repart of speed
-rsp: 100, 12.5, 12.5
+# repart of speed (cost for one case movement)
+sp:0.5,2,3
