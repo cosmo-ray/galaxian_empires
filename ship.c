@@ -127,7 +127,7 @@ static	int	set_mwp(char *line, t_ship *ship)
   ship->mwp.front = valure;
   ship->mwp.back = valure;
   ship->mwp.side = valure;
-  ship->mwp.pa = 1;
+  ship->mwp.ap = 1;
   ship->mwp.flag = MV_AT;
   return (0);
 }

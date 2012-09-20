@@ -19,11 +19,11 @@ typedef	struct	s_weapon
   /*the power with the back batrie*/
   int	back;
   /*the AP needed for one shoot*/
-  int	pa;
+  int	ap;
   char	flag;
 }	t_weapon;
 
-/*the power of the booster in the front, the back, and the side of the ship in case by AP*/
+/*the power of the booster in the front, the back, and the side of the ship in AP by case*/
 typedef	struct	s_mvsys
 {
   float	front;
