@@ -258,17 +258,22 @@ static int	set_data(t_ship *ship, char *file)
 
 /* -------------- non static functions ---------------- */
 
-int	get_pv(t_ship *ship)
+inline int	get_pv(t_ship *ship)
 {
   return (ship->pv);
 }
 
-int	get_ap(t_ship *this)
+inline int	get_ap(t_ship *this)
 {
   return (this->ap);
 }
 
-float	get_speed(t_ship *this, int dir)
+inline int	get_main_weapon_cost(t_ship *this)
+{
+  return (this->mwp.ap);
+}
+
+inline float	get_speed(t_ship *this, int dir)
 {
   if (dir == FRONT)
     return (this->mvsys.front);
