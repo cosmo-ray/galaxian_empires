@@ -95,6 +95,7 @@ void	turn(t_battle *bd, t_fleet *pfleet)
   display_case(bd, pfleet->pos.x, pfleet->pos.y);
 }
 
+/*get the direction defined for the move_tab by the direction defined by the define in ship.h*/
 static	int get_dir_by_dir(int dir)
 {
   if (dir == LEFTWARD || dir ==  RIGHTWARD)
