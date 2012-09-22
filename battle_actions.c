@@ -4,6 +4,19 @@
 #include	"mesage_box.h"
 #include	"menu_box.h"
 
+#define	FORWARD		0
+#define	LEFTWARD	1
+#define	RIGHTWARD	2
+#define	BACKWARD	3
+
+char	*move_tab[] = {
+  "Forward",
+  "Leftward",
+  "Rightward",
+  "Backward",
+  NULL
+};
+
 char	*turn_tab[] = {
   "Left",
   "Right",
@@ -82,9 +95,29 @@ void	turn(t_battle *bd, t_fleet *pfleet)
   display_case(bd, pfleet->pos.x, pfleet->pos.y);
 }
 
+static	int get_dir_by_dir(int dir)
+{
+  if (dir == LEFTWARD || dir ==  RIGHTWARD)
+    return (SIDE);
+  if (dir == FORWARD)
+    return (FRONT);
+  return (BACK);
+}
+/*
+#define	FORWARD		0
+#define	LEFTWARD	1
+#define	RIGHTWARD	2
+#define	BACKWARD	3
+
+*/
 int	move(t_battle *bd, t_fleet *pfleet)
 {
-  (void)bd;
-  (void)pfleet;
+  int	ret;
+  
+  ret = print_menu(move_tab);
+  if (fleet_rm_ap(pfleet, get_speed(pfleet->type, get_dir_by_dir(ret))))
+    return (print_msg("Move is on your way, but not this time"));
+  (void) ret;
+  (void) bd;
   return (0);
 }

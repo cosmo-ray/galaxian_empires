@@ -152,7 +152,7 @@ void	turn_left(t_fleet *fleet)
     fleet->pos.dir = EAST;
   else if (fleet->pos.dir == EAST)
     fleet->pos.dir = SOUTH;
-  else if (fleet->pos.dir == SOUTH)
+  else
     fleet->pos.dir = WEST;
 }
 
@@ -164,7 +164,7 @@ void	turn_right(t_fleet *fleet)
     fleet->pos.dir = WEST;
   else if (fleet->pos.dir == EAST)
     fleet->pos.dir = NORTH;
-  else if (fleet->pos.dir == SOUTH)
+  else
     fleet->pos.dir = EAST;
 }
 
