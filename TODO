@@ -1,8 +1,9 @@
 For Alpha 1 
 - move cmd.
-- turn cmd
-- detect then a player loose
-- finish the detetcion of the multipliers
+- Print who loose
+- gestion of action point
+- add limited range for weapon
+- add multiple fleet and gestion of multy fleet turn
  
 After:
 - have a full SDL graphical view
