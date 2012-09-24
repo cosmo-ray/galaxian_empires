@@ -168,13 +168,28 @@ void	turn_right(t_fleet *fleet)
     fleet->pos.dir = EAST;
 }
 
-int	fleet_rm_ap(t_fleet *fleet, float nbr)
+static void	move_handle_forward(t_fleet *fleet)
 {
-  if (nbr > fleet->remain_ap)
-    return (1);
-  fleet->remain_ap -= nbr;
-  printf("nbr:%f\nremain ap %f\n", nbr, fleet->remain_ap);
-  return (0);
+  if (fleet->pos.dir == WEST)
+    fleet->pos.x -= 1;
+  else if (fleet->pos.dir == NORTH)
+    fleet->pos.y -= 1;
+  else if (fleet->pos.dir == EAST)
+    fleet->pos.x += 1;
+  else
+    fleet->pos.y += 1;
+}
+
+static void	move_handle_backward(t_fleet *fleet)
+{
+  if (fleet->pos.dir == WEST)
+    fleet->pos.x += 1;
+  else if (fleet->pos.dir == NORTH)
+    fleet->pos.y += 1;
+  else if (fleet->pos.dir == EAST)
+    fleet->pos.x -= 1;
+  else
+    fleet->pos.y -= 1;
 }
 
 void handle_move_ret(t_fleet *fleet, int ret)
@@ -182,7 +197,19 @@ void handle_move_ret(t_fleet *fleet, int ret)
   switch (ret)
     {
     case FORWARD:
-      (void) fleet;
+      move_handle_forward(fleet);      
+      break;
+    case BACKWARD:
+    move_handle_backward(fleet);      
       break;
     }
+}
+
+int	fleet_rm_ap(t_fleet *fleet, float nbr)
+{
+  if (nbr > fleet->remain_ap)
+    return (1);
+  fleet->remain_ap -= nbr;
+  printf("nbr:%f\nremain ap %f\n", nbr, fleet->remain_ap);
+  return (0);
 }
