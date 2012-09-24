@@ -176,3 +176,13 @@ int	fleet_rm_ap(t_fleet *fleet, float nbr)
   printf("nbr:%f\nremain ap %f\n", nbr, fleet->remain_ap);
   return (0);
 }
+
+void handle_move_ret(t_fleet *fleet, int ret)
+{
+  switch (ret)
+    {
+    case FORWARD:
+      (void) fleet;
+      break;
+    }
+}

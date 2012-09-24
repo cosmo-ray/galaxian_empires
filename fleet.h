@@ -34,11 +34,17 @@ void	pos_fleet(t_fleet *fleet, int x, int y, int dir);
 /*display the fleet on the screen*/
 int	print_fleet_ship(t_fleet *fleet);
 
+/*turn's function*/
 void	turn_right(t_fleet *fleet);
 void	turn_left(t_fleet *fleet);
+
+/*move's function*/
+void	handle_move_ret(t_fleet *fleet, int ret);
+
 /*
  * substract the remaning ap by nbr
  * return 1 if the's not enought remaning ap in fleet, else retuen 0
  */
 int	fleet_rm_ap(t_fleet *fleet, float nbr);
+
 #endif

@@ -9,6 +9,12 @@
 #define	SIDE	1
 #define	BACK	2
 
+/* Define use for the movement */
+#define	FORWARD		0
+#define	LEFTWARD	1
+#define	RIGHTWARD	2
+#define	BACKWARD	3
+
 
 typedef	struct	s_weapon
 {
