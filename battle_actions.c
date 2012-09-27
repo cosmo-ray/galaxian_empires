@@ -114,7 +114,10 @@ int	move(t_battle *bd, t_fleet *fleet)
   ret = print_menu(move_tab);
   if (fleet_rm_ap(fleet, get_speed(fleet->type, get_dir_by_dir(ret))))
     return (print_msg("Move is on your way, but not this time"));
+  bmap_rm_ship(&bd->map, fleet->pos.x, fleet->pos.y);
+  display_case(bd, fleet->pos.x, fleet->pos.y);
   handle_move_ret(fleet, ret);
-  (void) bd;
+  bmap_add_ship(&bd->map, fleet->pos.x, fleet->pos.y);
+  display_case(bd, fleet->pos.x, fleet->pos.y);
   return (0);
 }
