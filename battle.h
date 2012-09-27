@@ -16,10 +16,10 @@ typedef	struct	s_battle
 int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet);
 void	turn(t_battle *bd, t_fleet *pfleet);
 int	move(t_battle *bd, t_fleet *pfleet);
+void	skip(t_fleet *fleet);
 int	display_map(t_battle *bd);
 void	display_case(t_battle *bd, int x, int y);
 int	pos_players_fleets_on_map(t_battle *bd);
 int     battle_do_turn(t_battle * bd, int player);
 int	battle(t_player *p1, t_player *p2);
-
 #endif

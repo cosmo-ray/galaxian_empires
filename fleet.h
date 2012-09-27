@@ -46,5 +46,5 @@ void	handle_move_ret(t_fleet *fleet, int ret);
  * return 1 if the's not enought remaning ap in fleet, else retuen 0
  */
 int	fleet_rm_ap(t_fleet *fleet, float nbr);
-
+void	fleet_set_ap(t_fleet *fleet, float nbr);
 #endif

@@ -46,6 +46,7 @@ static	int	exec_player_action(t_battle *bd, t_spos *pos, t_player *p, int action
       turn(bd, fleet);
       break;
     case SKIP:
+      skip(fleet);
       break;
     }
   return (0);  
@@ -59,8 +60,13 @@ int	battle_do_turn(t_battle * bd, int player)
 
   reset_ap(p);
   print_msg("player's "); print_int(player); print_msg(" turns\n");
-  if (select_ally_fleet(&pos, bd, get_player_from_int(bd, player)))
-    return (1);
-  ret = print_menu(menu_tab);
-  return (exec_player_action(bd, &pos, p, ret));
+  while (!full_empty_ap(p))
+    {
+      if (select_ally_fleet(&pos, bd, get_player_from_int(bd, player)))
+	return (1);
+      ret = print_menu(menu_tab);
+      if (exec_player_action(bd, &pos, p, ret))
+	return (1);
+    }
+  return (0);
 }

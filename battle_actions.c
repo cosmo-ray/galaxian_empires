@@ -62,6 +62,8 @@ int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
   int		dmg;
   t_fleet	*tfleet; /*target fleet*/
   
+  if (fleet_rm_ap(pfleet, get_speed(pfleet->type, SIDE)))
+    return (print_msg("not enought mp, you want to get it\n")); /*Fuck you Dougram*/
   if (select_enemy_fleet(&target, bd, p))
     return (1);
   tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
@@ -80,7 +82,7 @@ void	turn(t_battle *bd, t_fleet *pfleet)
   int	ret;
 
   if (fleet_rm_ap(pfleet, get_speed(pfleet->type, SIDE)))
-    return (v_print_msg("not enought mp, you want to get it")); /*Fuck you Dougram*/
+    return (v_print_msg("not enought mp, you want to get it\n")); /*Fuck you Dougram*/
   print_msg("Turn in which direction ?");
   ret = print_menu(turn_tab);
   if (ret == 0)
@@ -120,4 +122,9 @@ int	move(t_battle *bd, t_fleet *fleet)
   bmap_add_ship(&bd->map, fleet->pos.x, fleet->pos.y);
   display_case(bd, fleet->pos.x, fleet->pos.y);
   return (0);
+}
+
+void	skip(t_fleet *fleet)
+{
+  fleet_set_ap(fleet, 0);
 }

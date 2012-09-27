@@ -82,9 +82,25 @@ void	reset_ap(t_player *p)
   while (i < len)
     {
       fleet = get_data(&p->fleets, i);
-      fleet->remain_ap = fleet->type->ap;
+      fleet_set_ap(fleet, fleet->type->ap);
       ++i;
     }
+}
+
+int	full_empty_ap(t_player *p)
+{
+  int		i = 0;
+  int		len = p->fleets.len;
+  t_fleet	*fleet;
+  
+  while (i < len)
+    {
+      fleet = get_data(&p->fleets, i);
+      if (fleet->remain_ap > 0)
+	return (0);
+      ++i;
+    }
+  return (1);
 }
 
 int	player_delet_fleet(t_player *p, t_fleet *f)
