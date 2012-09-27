@@ -7,10 +7,12 @@
 
 t_game	life;
 
-int	main()
+int	main(int ac, char **av)
 {
   t_player	p1;
-  t_player	p2;  
+  t_player	p2;
+  (void) ac;
+  (void) av;
 
   if (give_life())
     return (-1);
