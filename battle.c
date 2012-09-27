@@ -53,6 +53,13 @@ static	int	end_battle(t_battle *bd)
   return (0);
 }
 
+t_player	*get_player_from_int(t_battle * bd, int nbr)
+{
+  if (nbr == 1)
+    return (bd->p1);
+  return (bd->p2);
+}
+
 int	battle(t_player *p1, t_player *p2)
 {
   t_battle	battle_data;

@@ -19,12 +19,6 @@ char	*menu_tab[] = {
   NULL
 };
 
-static	t_player	*get_player_from_int(t_battle * bd, int nbr)
-{
-  if (nbr == 1)
-    return (bd->p1);
-  return (bd->p2);
-}
 
 static	int	exec_player_action(t_battle *bd, t_spos *pos, t_player *p, int action_type)
 {
