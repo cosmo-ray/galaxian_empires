@@ -6,66 +6,6 @@
 #include	"mesage_box.h"
 #include	"menu_box.h"
 
-#define	ATTAQUE	0
-#define	MOVE	1
-#define	TURN	2
-#define	SKIP	3
-
-
-char	*menu_tab[] = {
-  "Attaque",
-  "Move",
-  "Turn", /*A TURN, TURN A TURN TURN AAAAAAAAAAAAA*/
-  "Skip turn",
-  NULL
-};
-
-static	t_player	*get_player_from_int(t_battle * bd, int nbr)
-{
-  if (nbr == 1)
-    return (bd->p1);
-  return (bd->p2);
-}
-
-static	int	exec_player_action(t_battle *bd, t_spos *pos, t_player *p, int action_type)
-{
-  t_fleet  *fleet = get_fleet_by_pos(p, pos->x, pos->y);
-
-  if (action_type == -2)
-    return (1);
-  switch (action_type)
-    {
-    case ATTAQUE:
-      if (attaque(bd, p, fleet))
-	return (1);
-      break;
-    case MOVE:
-      if (move(bd, fleet))
-	return (1);
-      break;
-    case TURN:
-      turn(bd, fleet);
-      break;
-    case SKIP:
-      break;
-    }
-  return (0);  
-}
-
-static	int	do_turn(t_battle * bd, int player)
-{
-  t_player *p = get_player_from_int(bd, player);
-  t_spos pos;
-  int	ret;
-
-  reset_ap(p);
-  print_msg("player's "); print_int(player); print_msg(" turns\n");
-  if (select_ally_fleet(&pos, bd, get_player_from_int(bd, player)))
-    return (1);
-  ret = print_menu(menu_tab);
-  return (exec_player_action(bd, &pos, p, ret));
-}
-
 static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)
 {
   bd->p1 = p1;
@@ -95,7 +35,7 @@ static int	battle_loop(t_battle * bd)
     {
       for (player = 1; player <= get_nbr_player() && !is_battle_end(bd); ++player)
 	{
-	  if ((ret = do_turn(bd, player)))
+	  if ((ret = battle_do_turn(bd, player)))
 	    {
 	      if (ret == 1)
 		return (0);

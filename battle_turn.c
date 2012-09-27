@@ -1,0 +1,66 @@
+#include        <unistd.h>
+#include        <stdio.h>
+#include        "game.h"
+#include        "battle.h"
+#include        "selector.h"
+#include        "mesage_box.h"
+#include        "menu_box.h"
+
+#define	ATTAQUE	0
+#define	MOVE	1
+#define	TURN	2
+#define	SKIP	3
+
+char	*menu_tab[] = {
+  "Attaque",
+  "Move",
+  "Turn", /*A TURN, TURN A TURN TURN AAAAAAAAAAAAA*/
+  "Skip turn",
+  NULL
+};
+
+static	t_player	*get_player_from_int(t_battle * bd, int nbr)
+{
+  if (nbr == 1)
+    return (bd->p1);
+  return (bd->p2);
+}
+
+static	int	exec_player_action(t_battle *bd, t_spos *pos, t_player *p, int action_type)
+{
+  t_fleet  *fleet = get_fleet_by_pos(p, pos->x, pos->y);
+
+  if (action_type == -2)
+    return (1);
+  switch (action_type)
+    {
+    case ATTAQUE:
+      if (attaque(bd, p, fleet))
+	return (1);
+      break;
+    case MOVE:
+      if (move(bd, fleet))
+	return (1);
+      break;
+    case TURN:
+      turn(bd, fleet);
+      break;
+    case SKIP:
+      break;
+    }
+  return (0);  
+}
+
+int	battle_do_turn(t_battle * bd, int player)
+{
+  t_player *p = get_player_from_int(bd, player);
+  t_spos pos;
+  int	ret;
+
+  reset_ap(p);
+  print_msg("player's "); print_int(player); print_msg(" turns\n");
+  if (select_ally_fleet(&pos, bd, get_player_from_int(bd, player)))
+    return (1);
+  ret = print_menu(menu_tab);
+  return (exec_player_action(bd, &pos, p, ret));
+}
