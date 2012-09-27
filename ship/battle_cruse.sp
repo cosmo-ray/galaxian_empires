@@ -10,3 +10,4 @@ rar:1,1,2
 ap:3
 # repart of speed (cost for one case movement)
 sp:0.5,2,3
+#yksvonim particul
