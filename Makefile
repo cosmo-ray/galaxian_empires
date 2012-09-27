@@ -8,6 +8,7 @@ SRC=		main.c \
 		battle.c \
 		battle_display.c \
 		battle_actions.c \
+		battle_init.c \
 		selector.c \
 		calculaor.c \
 		game.c \
