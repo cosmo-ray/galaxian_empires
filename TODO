@@ -12,7 +12,6 @@ After:
 - have a full non-graphical view
 - handle mouse
 - restructure sprite files
-- compat windows
 
 very after:
 - include 3d gameplay
