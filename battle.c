@@ -14,10 +14,13 @@ static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)
   return (0);
 }
 
+/*check, if a player loose the battle, and return the loosing player nbr*/
 static	int is_battle_end(t_battle * bd)
 {
-  if (!bd->p1->fleets.len || !bd->p2->fleets.len)
+  if (!bd->p1->fleets.len)
     return (1);
+  if (!bd->p2->fleets.len)
+    return (2);
   return (0);
 }
 

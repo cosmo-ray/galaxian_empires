@@ -58,14 +58,14 @@ typedef	struct	s_ship
   int		ap;
 }	t_ship;
 
-int     load_ship(char *file, t_ship *ship);
-void    destroy_ship(t_ship *ture);
-float	get_speed(t_ship *this, int dir);
-int	get_muldmg(t_ship *ship, int dir);
-inline int	get_pv(t_ship *ship);
-inline int	get_ship_atk(t_ship *ship, int dir);
-inline int	get_ap(t_ship *this);
-inline int	get_main_weapon_cost(t_ship *this);
+int			load_ship(char *file, t_ship *ship);
+void			destroy_ship(t_ship *ture);
+float			get_speed(t_ship *this, int dir);
+int			get_muldmg(t_ship *ship, int dir);
+inline int		get_pv(t_ship *ship);
+inline int		get_ship_atk(t_ship *ship, int dir);
+inline int		get_ap(t_ship *this);
+inline int		get_main_weapon_cost(t_ship *this);
 inline const char	*get_ship_name(t_ship *ship);
 
 #endif
