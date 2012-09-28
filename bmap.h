@@ -24,6 +24,7 @@ char	*data;
 }	t_bmap;
 
 int	init_bmap(t_bmap *map, int x, int y);
+void	init_pos(t_spos *pos);
 void	destroy_bmap(t_bmap *box);
 char	bmap_get_x_y(t_bmap *map, int x, int y);
 void	bmap_add_ship(t_bmap *map, int x, int y);

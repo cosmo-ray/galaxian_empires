@@ -52,6 +52,7 @@ int     pos_players_fleets_on_map(t_battle *bd)
 {
   t_spos        pos;
 
+  init_pos(&pos);
   print_msg("player's "); print_int(1); print_msg(" turns\n");
   if (pos_player_fleets_on_map(bd, 1, &pos, NORTH))
     return (1);

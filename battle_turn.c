@@ -52,6 +52,7 @@ int	battle_do_turn(t_battle * bd, int player)
   t_spos pos;
   int	ret;
 
+  init_pos(&pos);
   reset_ap(p);
   print_msg("player's "); print_int(player); print_msg(" turns\n");
   while (!full_empty_ap(p))

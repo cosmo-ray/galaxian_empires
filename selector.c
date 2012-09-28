@@ -18,7 +18,7 @@ static	void	move_pos(t_spos *opos, t_spos *npos, t_battle *bd)
   display_pos(npos);  
 }
 
-static	void	init_pos(t_spos *pos)
+void	init_pos(t_spos *pos)
 {
   pos->x = 0;
   pos->y = 0;
@@ -77,7 +77,6 @@ int	select_case(t_spos *pos, t_battle *bd)
   t_spos old;
   int	ret;
 
-  init_pos(pos);
   display_pos(pos);
   while (!0)
     {
@@ -138,7 +137,7 @@ int	select_y_limit_case(t_spos *pos, t_battle *bd, int low_y, int hight_y)
 {
   if (select_empty_case(pos, bd))
     return (1);
-  if (pos->y >= low_y && pos->y <= hight_y)
+  if (pos->y >= low_y && pos->y < hight_y)
     return (0);
   print_msg("you can not select this case\n");
   return (select_y_limit_case(pos, bd, low_y, hight_y));
