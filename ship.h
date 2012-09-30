@@ -53,6 +53,10 @@ typedef	struct	s_ship
   /*movement system*/
   t_mvsys	mvsys;
   t_armor	armor;
+  /*yksvonim particul*/
+  float		yp;
+  /*yksvonim particul range*/
+  int		ypr;
   int		pv;
   /*action point*/
   int		ap;

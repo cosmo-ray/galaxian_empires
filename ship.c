@@ -13,10 +13,11 @@ static	int     set_rmwp(char *line, t_ship *ship);
 static	int     set_rar(char *line, t_ship *ship);
 static	int     set_ap(char *line, t_ship *ship);
 static	int     set_sp(char *line, t_ship *ship);
+static	int	set_ypr(char *line, t_ship *ship);
+static	int	set_yp(char *line, t_ship *ship);
 
 /* data_type's define */
-
-#define	DATA_TYPE_SIZE	7
+#define	DATA_TYPE_SIZE	8
 /* yeah i know, enum is cool but i don't like it for manipulate tab */
 #define PV		0
 #define MWP		1
@@ -24,6 +25,8 @@ static	int     set_sp(char *line, t_ship *ship);
 #define RAR		3
 #define AP		4
 #define SP		5
+#define YP		6
+#define YPR		7
 
 static int (*asign_tab[]) (char *, t_ship *) = {
   &set_pv,
@@ -32,6 +35,8 @@ static int (*asign_tab[]) (char *, t_ship *) = {
   &set_rar,
   &set_ap,
   &set_sp,
+  &set_yp,
+  &set_ypr,
 };
 
 static const char	*data_type[] = {
@@ -41,6 +46,8 @@ static const char	*data_type[] = {
   "rar",
   "ap",
   "sp",
+  "yp",
+  "ypr",
 };
 
 /* -------------- lonely static functions ---------------- */
@@ -116,6 +123,21 @@ static	int	set_pv(char *line, t_ship *ship)
   int	valure = atoi(line);
 
   ship->pv = valure;
+  return (0);
+}
+
+static	int	set_ypr(char *line, t_ship *ship)
+{
+  int	valure = atoi(line);
+
+  ship->ypr = valure;
+  return (0);
+}
+static	int	set_yp(char *line, t_ship *ship)
+{
+  int	valure = atof(line);
+
+  ship->yp = valure;
   return (0);
 }
 

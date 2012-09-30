@@ -11,3 +11,6 @@ ap:3
 # repart of speed (cost for one case movement)
 sp:0.5,2,3
 #yksvonim particul
+yp:0.2
+#yksvonim particul range
+ypr:3
