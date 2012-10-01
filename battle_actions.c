@@ -48,7 +48,7 @@ static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet)
 }
 
 
-static	void	map_modifier_dmg(t_bmap *map, t_spos *src, t_spos *target, int *dmg)
+static	void	map_modifier_dmg(t_bmap *map, t_fleet *src, t_spos *target, int *dmg)
 {
   (void) map;
   (void) src;
@@ -68,7 +68,7 @@ int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
     return (1);
   tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
   dmg = get_fleet_dmg(pfleet, get_dir_fleet_target(pfleet, (t_pos *)&target));
-  map_modifier_dmg(&bd->map, (t_spos *)&pfleet->pos, &target, &dmg);
+  map_modifier_dmg(&bd->map, pfleet, &target, &dmg);
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, &pfleet->pos));
   printf("%d\n", tfleet->nbr);
   if (tfleet->nbr < 1)
