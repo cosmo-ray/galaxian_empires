@@ -1,3 +1,4 @@
+#include	"pos.h"
 #include	"game.h"
 #include	"battle.h"
 #include	"selector.h"
@@ -48,10 +49,12 @@ static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet)
 }
 
 
-static	void	map_modifier_dmg(t_bmap *map, t_fleet *src, t_spos *target, int *dmg)
+static	void	map_modifier_dmg(t_bmap *map, t_fleet *fleet, t_spos *target, int *dmg)
 {
+  t_pos pos;
+
+  pos_copy(&fleet->pos, &pos);
   (void) map;
-  (void) src;
   (void) target;
   (void) dmg;
 }

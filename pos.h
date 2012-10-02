@@ -14,4 +14,5 @@ typedef	struct	s_pos
   int		dir;
 }	t_pos;
 
+void	pos_copy(t_pos *src, t_pos *dest);
 #endif
