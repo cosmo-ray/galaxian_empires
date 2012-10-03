@@ -49,11 +49,19 @@ static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet)
 }
 
 
-static	void	map_modifier_dmg(t_bmap *map, t_fleet *fleet, t_spos *target, int *dmg)
+static	void	get_yp_modifier(t_bmap *map, t_fleet *fleet, t_spos *target)
 {
   t_pos pos;
 
   pos_copy(&fleet->pos, &pos);
+  (void) fleet;
+  (void) map;
+  (void) target;
+}
+
+static	void	map_modifier_dmg(t_bmap *map, t_fleet *fleet, t_spos *target, int *dmg)
+{
+  get_yp_modifier(map, fleet, target);
   (void) map;
   (void) target;
   (void) dmg;
