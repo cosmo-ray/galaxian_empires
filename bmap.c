@@ -34,3 +34,13 @@ void	destroy_bmap(t_bmap *box)
 {
   free(box->data);
 }
+
+int	is_spos_equale(t_spos *pos1, t_spos *pos2)
+{
+  return (pos1->x == pos2->x && pos1->y == pos2->y);
+}
+
+inline	t_spos	*pos_to_spos(t_pos *pos)
+{
+  return ((t_spos *)pos);
+}

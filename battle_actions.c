@@ -48,15 +48,23 @@ static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet)
   return (0);
 }
 
-
 static	void	get_yp_modifier(t_bmap *map, t_fleet *fleet, t_spos *target)
 {
   t_pos pos;
 
   pos_copy(&fleet->pos, &pos);
-  (void) fleet;
+  while (!is_spos_equale(pos_to_spos(&pos), target))
+    {
+      if (pos.x > target->x)
+	--pos.x;
+      else if (pos.x < target->x)
+	++pos.x;
+      else if (pos.y > target->y)
+	--pos.y;
+      else if (pos.y < target->y)
+	++pos.y;
+    }
   (void) map;
-  (void) target;
 }
 
 static	void	map_modifier_dmg(t_bmap *map, t_fleet *fleet, t_spos *target, int *dmg)
