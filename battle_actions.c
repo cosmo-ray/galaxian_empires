@@ -4,6 +4,7 @@
 #include	"selector.h"
 #include	"mesage_box.h"
 #include	"menu_box.h"
+#include	"calculaor.h"
 
 char	*move_tab[] = {
   "Forward",
@@ -55,14 +56,12 @@ static	void	get_yp_modifier(t_bmap *map, t_fleet *fleet, t_spos *target)
   pos_copy(&fleet->pos, &pos);
   while (!is_spos_equale(pos_to_spos(&pos), target))
     {
-      if (pos.x > target->x)
-	--pos.x;
-      else if (pos.x < target->x)
-	++pos.x;
-      else if (pos.y > target->y)
-	--pos.y;
-      else if (pos.y < target->y)
-	++pos.y;
+      if (cal_get_dist(pos.x, target->x) > cal_get_dist(pos.y, target->y))
+	pos.x += COME_NEAR(pos.x, target->x);
+      else
+	pos.y += COME_NEAR(pos.y, target->y);
+      printf("pos: x:%d, y:%d\n", pos.x, pos.y);
+      printf("target: x:%d, y:%d\n", target->x, target->y);
     }
   (void) map;
 }

@@ -18,10 +18,16 @@ t_pos	*cal_get_Line(t_pos *a, t_pos *b)
   return (b);
 }
 
-double	get_rad(t_pos *a)
+inline double	get_rad(t_pos *a)
 {
   return (atan((double)a->x / (double)a->y));
 }
+
+int	cal_get_dist(int a, int b)
+{
+  return ((ABS(b)) - (ABS(a)));
+}
+
 
 /*
   12345
@@ -36,3 +42,4 @@ p: 1  5
 p: 4  3
 d: 3 -2
 */
+
