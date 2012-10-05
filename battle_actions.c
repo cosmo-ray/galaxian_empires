@@ -60,8 +60,6 @@ static	void	get_yp_modifier(t_bmap *map, t_fleet *fleet, t_spos *target)
 	pos.x += COME_NEAR(pos.x, target->x);
       else
 	pos.y += COME_NEAR(pos.y, target->y);
-      printf("pos: x:%d, y:%d\n", pos.x, pos.y);
-      printf("target: x:%d, y:%d\n", target->x, target->y);
     }
   (void) map;
 }
