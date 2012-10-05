@@ -31,6 +31,7 @@ void	destroy_bmap(t_bmap *box);
 char	bmap_get_x_y(t_bmap *map, int x, int y);
 void	bmap_add_ship(t_bmap *map, int x, int y);
 void	bmap_rm_ship(t_bmap *map, int x, int y);
+void	bmap_avance_to_target(t_spos *pos, t_spos *target);
 
 /*spos func*/
 inline	t_spos	*pos_to_spos(t_pos *pos);

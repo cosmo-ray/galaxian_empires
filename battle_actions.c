@@ -56,10 +56,7 @@ static	void	get_yp_modifier(t_bmap *map, t_fleet *fleet, t_spos *target)
   pos_copy(&fleet->pos, &pos);
   while (!is_spos_equale(pos_to_spos(&pos), target))
     {
-      if (cal_get_dist(pos.x, target->x) > cal_get_dist(pos.y, target->y))
-	pos.x += COME_NEAR(pos.x, target->x);
-      else
-	pos.y += COME_NEAR(pos.y, target->y);
+      bmap_avance_to_target((t_spos *)&pos, target);
     }
   (void) map;
 }
