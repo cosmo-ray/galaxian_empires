@@ -1,3 +1,4 @@
+#include	<unistd.h>
 #include	<math.h>
 #include	<stdio.h>
 #include	"calculaor.h"
@@ -25,7 +26,7 @@ inline double	get_rad(t_pos *a)
 
 int	cal_get_dist(int a, int b)
 {
-  return ((ABS(b)) - (ABS(a)));
+  return ABS((b + 1) - (a + 1));
 }
 
 

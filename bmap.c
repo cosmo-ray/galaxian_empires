@@ -8,10 +8,10 @@
 /*get change an int in pos to comme near target*/
 void	bmap_avance_to_target(t_spos *pos, t_spos *target)
 {
-      if (cal_get_dist(pos->x, target->x) > cal_get_dist(pos->y, target->y))
-	pos->x += COME_NEAR(pos->x, target->x);
-      else
-	pos->y += COME_NEAR(pos->y, target->y);
+  if (cal_get_dist(pos->x, target->x) > cal_get_dist(pos->y, target->y))
+    pos->x += COME_NEAR(pos->x, target->x);
+  else
+    pos->y += COME_NEAR(pos->y, target->y);
 }
 
 char	bmap_get_x_y(t_bmap *map, int x, int y)

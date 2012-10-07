@@ -54,6 +54,7 @@ static	void	get_yp_modifier(t_bmap *map, t_fleet *fleet, t_spos *target)
   t_pos pos;
 
   pos_copy(&fleet->pos, &pos);
+  printf("%d%d\n", target->x, target->y);
   while (!is_spos_equale(pos_to_spos(&pos), target))
     {
       bmap_avance_to_target((t_spos *)&pos, target);
@@ -80,7 +81,7 @@ int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
   if (select_enemy_fleet(&target, bd, p))
     return (1);
   tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
-  dmg = get_fleet_dmg(pfleet, get_dir_fleet_target(pfleet, (t_pos *)&target));
+  dmg = get_fleet_dmg(pfleet, get_dir_fleet_dmg(pfleet, (t_pos *)&target));
   map_modifier_dmg(&bd->map, pfleet, &target, &dmg);
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, &pfleet->pos));
   printf("%d\n", tfleet->nbr);
