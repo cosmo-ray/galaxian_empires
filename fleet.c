@@ -144,7 +144,7 @@ int	print_fleet_ship(t_fleet *fleet)
   return (display_txt_on_pos(&fleet->pos, int_tab));
 }
 
-void	turn_left(t_fleet *fleet)
+void	turn_right(t_fleet *fleet)
 {
   if (fleet->pos.dir == WEST)
     fleet->pos.dir = NORTH;
@@ -156,7 +156,7 @@ void	turn_left(t_fleet *fleet)
     fleet->pos.dir = WEST;
 }
 
-void	turn_right(t_fleet *fleet)
+void	turn_left(t_fleet *fleet)
 {
   if (fleet->pos.dir == WEST)
     fleet->pos.dir = SOUTH;
