@@ -15,4 +15,5 @@ typedef	struct	s_pos
 }	t_pos;
 
 void	pos_copy(t_pos *src, t_pos *dest);
+float	comp_pos(t_pos *pos1, t_pos *pos2);
 #endif

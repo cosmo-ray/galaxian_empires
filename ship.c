@@ -135,9 +135,7 @@ static	int	set_ypr(char *line, t_ship *ship)
 }
 static	int	set_yp(char *line, t_ship *ship)
 {
-  int	valure = atof(line);
-
-  ship->yp = valure;
+  ship->yp = atof(line);
   return (0);
 }
 

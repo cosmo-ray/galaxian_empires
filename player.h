@@ -22,5 +22,6 @@ int	player_delet_fleet(t_player *p, t_fleet *f);
 /*set the action point at ther initial valure stocked in type*/
 void	reset_ap(t_player *p);
 int	full_empty_ap(t_player *p);
+float	player_yp_mod_at_case(t_player *p, t_fleet *f, t_pos *pos);
 
 #endif

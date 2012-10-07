@@ -103,6 +103,25 @@ int	full_empty_ap(t_player *p)
   return (1);
 }
 
+float	player_yp_mod_at_case(t_player *p, t_fleet *f, t_pos *pos)
+{
+  int		i = 0;
+  int		len = p->fleets.len;
+  t_fleet	*fleet;
+  float		ret = 0;
+
+  while (i < len)
+    {
+      fleet = get_data(&p->fleets, i);
+      if ((fleet != f) && (comp_pos(pos, &fleet->pos) < fleet->type->ypr))
+	{
+	  ret += fleet->type->yp;
+	}
+      ++i;
+    }
+  return (ret);
+}
+
 int	player_delet_fleet(t_player *p, t_fleet *f)
 {
   if (pop_data_elem(&p->fleets, f))

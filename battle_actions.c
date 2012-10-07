@@ -1,3 +1,4 @@
+#include	<unistd.h>
 #include	"pos.h"
 #include	"game.h"
 #include	"battle.h"
@@ -49,25 +50,31 @@ static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet)
   return (0);
 }
 
-static	void	get_yp_modifier(t_bmap *map, t_fleet *fleet, t_spos *target)
+static	float	get_other_yp(t_battle * bd, t_fleet *fleet, t_pos *cur_pos)
+{
+  float	ret;
+
+  ret = player_yp_mod_at_case(bd->p1, fleet, cur_pos);
+  ret += player_yp_mod_at_case(bd->p2, fleet, cur_pos);
+  return (ret);
+}
+
+
+static	void	get_yp_modifier(t_battle * bd, t_fleet *fleet, t_spos *target, int *dmg)
 {
   t_pos pos;
 
   pos_copy(&fleet->pos, &pos);
-  printf("%d%d\n", target->x, target->y);
   while (!is_spos_equale(pos_to_spos(&pos), target))
     {
+      *dmg -= (*dmg * get_other_yp(bd, fleet, &pos));
       bmap_avance_to_target((t_spos *)&pos, target);
-    }
-  (void) map;
+    }  
 }
 
-static	void	map_modifier_dmg(t_bmap *map, t_fleet *fleet, t_spos *target, int *dmg)
+static	void	map_modifier_dmg(t_battle * bd, t_fleet *fleet, t_spos *target, int *dmg)
 {
-  get_yp_modifier(map, fleet, target);
-  (void) map;
-  (void) target;
-  (void) dmg;
+  get_yp_modifier(bd, fleet, target, dmg);
 }
 
 int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
@@ -82,7 +89,7 @@ int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
     return (1);
   tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
   dmg = get_fleet_dmg(pfleet, get_dir_fleet_dmg(pfleet, (t_pos *)&target));
-  map_modifier_dmg(&bd->map, pfleet, &target, &dmg);
+  map_modifier_dmg(bd, pfleet, &target, &dmg);
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, &pfleet->pos));
   printf("%d\n", tfleet->nbr);
   if (tfleet->nbr < 1)

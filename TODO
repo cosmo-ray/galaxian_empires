@@ -1,9 +1,9 @@
 For Alpha 1 
-- move cmd.
 - Print who loose
 - add limited range for weapon (or not)
 - add multiple fleet and gestion of multy fleet turn
 - yksvonim particul
+- change s_player to s_hero
  
 After:
 - have a full SDL graphical view
