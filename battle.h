@@ -22,6 +22,7 @@ void		skip(t_fleet *fleet);
 /*display*/
 int		display_map(t_battle *bd);
 void		display_case(t_battle *bd, int x, int y);
+/*display the object(like ship or asteroide) on a case*/
 void		display_obj_on_case(t_battle *bd, int x, int y);
 
 /*other*/
