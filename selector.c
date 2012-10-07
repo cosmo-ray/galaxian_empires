@@ -8,7 +8,6 @@ static void	display_pos(t_spos *pos)
 
 static void	undisplay_pos(t_spos *pos, t_battle *bd)
 {
-  display_bg_sprite(pos->x, pos->y);
   display_case(bd, pos->x, pos->y);
 }
 
