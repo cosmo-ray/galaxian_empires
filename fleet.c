@@ -192,6 +192,30 @@ static void	move_handle_backward(t_fleet *fleet)
     fleet->pos.y -= 1;
 }
 
+static void	move_handle_rightward(t_fleet *fleet)
+{
+  if (fleet->pos.dir == WEST)
+    fleet->pos.y += 1;
+  else if (fleet->pos.dir == NORTH)
+    fleet->pos.x += 1;
+  else if (fleet->pos.dir == EAST)
+    fleet->pos.y -= 1;
+  else
+    fleet->pos.x -= 1;
+}
+
+static void	move_handle_leftward(t_fleet *fleet)
+{
+  if (fleet->pos.dir == WEST)
+    fleet->pos.y -= 1;
+  else if (fleet->pos.dir == NORTH)
+    fleet->pos.x -= 1;
+  else if (fleet->pos.dir == EAST)
+    fleet->pos.y += 1;
+  else
+    fleet->pos.x += 1;
+}
+
 void handle_move_ret(t_fleet *fleet, int ret)
 {
   switch (ret)
@@ -200,7 +224,13 @@ void handle_move_ret(t_fleet *fleet, int ret)
       move_handle_forward(fleet);      
       break;
     case BACKWARD:
-    move_handle_backward(fleet);      
+      move_handle_backward(fleet);      
+      break;
+    case RIGHTWARD:
+      move_handle_rightward(fleet);      
+      break;
+    case LEFTWARD:
+    move_handle_leftward(fleet);      
       break;
     }
 }
