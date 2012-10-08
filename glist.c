@@ -120,9 +120,9 @@ void	*get_data(t_list *list, int nbr)
   while (i < nbr)
     {
       ret = ret->next;
-      ++nbr;
+      ++i;
     }
-  return (ret-> data);
+  return (ret->data);
 }
 
 /*

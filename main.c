@@ -19,6 +19,8 @@ int	main(int ac, char **av)
   init_player(&p1);
   init_player(&p2);
   add_fleet(&p1, 10000, get_data(&life.ships, 0));
+  add_fleet(&p1, 10000, get_data(&life.ships, 0));
+  add_fleet(&p2, 10000, get_data(&life.ships, 0));
   add_fleet(&p2, 10000, get_data(&life.ships, 0));
 
   battle(&p1, &p2);
