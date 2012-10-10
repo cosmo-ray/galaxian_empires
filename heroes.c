@@ -1,16 +1,16 @@
-#include	"player.h"
+#include	"heroes.h"
 #include	"game.h"
 
  extern t_game	life;
 
- void	init_player(t_player *player)
+ void	init_heroes(t_heroes *heroes)
  {   
-   player->id = life.nb_plyaers + 1;
-   init_list(&(player->fleets));
+   heroes->id = life.nb_plyaers + 1;
+   init_list(&(heroes->fleets));
    life.nb_plyaers += 1;
  }
 
-void	delet_player(t_player *p)
+void	delet_heroes(t_heroes *p)
 {
   t_fleet	*dom;
 
@@ -22,7 +22,7 @@ void	delet_player(t_player *p)
     }
 }
 
-int	add_fleet(t_player *p, int nbr, t_ship *ship)
+int	add_fleet(t_heroes *p, int nbr, t_ship *ship)
 {
   t_fleet	*new = malloc(sizeof(*new));
 
@@ -34,12 +34,12 @@ int	add_fleet(t_player *p, int nbr, t_ship *ship)
   return (0);
 }
 
-t_fleet	*get_fleet(t_player *p, int nbr)
+t_fleet	*get_fleet(t_heroes *p, int nbr)
 {
   return (get_data(&p->fleets, nbr - 1));
 }
 
-int	get_fleet_on(t_player *p, int x, int y)
+int	get_fleet_on(t_heroes *p, int x, int y)
 {
   t_node	*node = p->fleets.first;
   int		ret = 1;
@@ -55,12 +55,12 @@ int	get_fleet_on(t_player *p, int x, int y)
   return (0);
 }
 
-t_fleet	*get_fleet_by_pos(t_player *p, int x, int y)
+t_fleet	*get_fleet_by_pos(t_heroes *p, int x, int y)
 {
   return (get_fleet(p, get_fleet_on(p, x, y)));
 }
 
-int	display_all_fleet(t_player *p)
+int	display_all_fleet(t_heroes *p)
 {
   int	i = 0;
   int	len = p->fleets.len;
@@ -73,7 +73,7 @@ int	display_all_fleet(t_player *p)
   return (0);
 }
 
-void	reset_ap(t_player *p)
+void	reset_ap(t_heroes *p)
 {
   int		i = 0;
   int		len = p->fleets.len;
@@ -87,7 +87,7 @@ void	reset_ap(t_player *p)
     }
 }
 
-int	full_empty_ap(t_player *p)
+int	full_empty_ap(t_heroes *p)
 {
   int		i = 0;
   int		len = p->fleets.len;
@@ -103,7 +103,7 @@ int	full_empty_ap(t_player *p)
   return (1);
 }
 
-float	player_yp_mod_at_case(t_player *p, t_fleet *f, t_pos *pos)
+float	heroes_yp_mod_at_case(t_heroes *p, t_fleet *f, t_pos *pos)
 {
   int		i = 0;
   int		len = p->fleets.len;
@@ -122,7 +122,7 @@ float	player_yp_mod_at_case(t_player *p, t_fleet *f, t_pos *pos)
   return (ret);
 }
 
-int	player_delet_fleet(t_player *p, t_fleet *f)
+int	heroes_delet_fleet(t_heroes *p, t_fleet *f)
 {
   if (pop_data_elem(&p->fleets, f))
     return (-1);

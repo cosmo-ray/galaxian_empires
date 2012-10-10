@@ -29,10 +29,10 @@ static	int	select_and_use_selector(t_battle *bd, t_spos *pos, int p_id)
   return (0);
 }
 
-/*set the position of the fleet of a player on a map*/
-static  int     pos_player_fleets_on_map(t_battle *bd, int p_id, t_spos *pos, int dir)
+/*set the position of the fleet of a heroes on a map*/
+static  int     pos_heroes_fleets_on_map(t_battle *bd, int p_id, t_spos *pos, int dir)
 {
-  t_player	*p = get_player_from_int(bd, p_id);
+  t_heroes	*p = get_heroes_from_int(bd, p_id);
   t_node        *node = p->fleets.first;
   int		i = -1; /*i set i to -1 because like this i increment i one time less*/
 
@@ -47,18 +47,18 @@ static  int     pos_player_fleets_on_map(t_battle *bd, int p_id, t_spos *pos, in
   return (0);
 }
 
-/*set the position of the 2 players in the map*/
-int     pos_players_fleets_on_map(t_battle *bd)
+/*set the position of the 2 heroess in the map*/
+int     pos_heroess_fleets_on_map(t_battle *bd)
 {
   t_spos        pos;
 
   init_pos(&pos);
-  print_msg("player's "); print_int(1); print_msg(" turns\n");
-  if (pos_player_fleets_on_map(bd, 1, &pos, NORTH))
+  print_msg("heroes's "); print_int(1); print_msg(" turns\n");
+  if (pos_heroes_fleets_on_map(bd, 1, &pos, NORTH))
     return (1);
   display_map(bd);
-  print_msg("player's "); print_int(2); print_msg(" turns\n");
-  if (pos_player_fleets_on_map(bd, 2, &pos, SOUTH))
+  print_msg("heroes's "); print_int(2); print_msg(" turns\n");
+  if (pos_heroes_fleets_on_map(bd, 2, &pos, SOUTH))
     return (1);
   return (0);
 }

@@ -32,7 +32,7 @@ static	t_fleet	*get_fleet_by_pos_battle(t_battle * bd, int x, int y)
   return (NULL);
 }
 
-static	t_player *get_enemy_player(t_battle *bd, t_fleet *fleet)
+static	t_heroes *get_enemy_heroes(t_battle *bd, t_fleet *fleet)
 {
   t_pos	*pos = &fleet->pos;
 
@@ -46,7 +46,7 @@ static	t_player *get_enemy_player(t_battle *bd, t_fleet *fleet)
 static	int	battle_rm_fleet(t_battle *bd, t_fleet *fleet)
 {
   bmap_rm_ship(&bd->map, fleet->pos.x, fleet->pos.y);
-  player_delet_fleet(get_enemy_player(bd, fleet), fleet);
+  heroes_delet_fleet(get_enemy_heroes(bd, fleet), fleet);
   return (0);
 }
 
@@ -54,8 +54,8 @@ static	float	get_other_yp(t_battle * bd, t_fleet *fleet, t_pos *cur_pos)
 {
   float	ret;
 
-  ret = player_yp_mod_at_case(bd->p1, fleet, cur_pos);
-  ret += player_yp_mod_at_case(bd->p2, fleet, cur_pos);
+  ret = heroes_yp_mod_at_case(bd->p1, fleet, cur_pos);
+  ret += heroes_yp_mod_at_case(bd->p2, fleet, cur_pos);
   return (ret);
 }
 
@@ -77,7 +77,7 @@ static	void	map_modifier_dmg(t_battle * bd, t_fleet *fleet, t_spos *target, int 
   get_yp_modifier(bd, fleet, target, dmg);
 }
 
-int	attaque(t_battle * bd, t_player *p, t_fleet *pfleet)
+int	attaque(t_battle * bd, t_heroes *p, t_fleet *pfleet)
 {
   t_spos	target;
   int		dmg;

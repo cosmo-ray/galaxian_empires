@@ -5,7 +5,7 @@ SRC=		main.c \
 		glist.c \
 		sdl_util.c \
 		pos.c \
-		player.c \
+		heroes.c \
 		battle.c \
 		battle_display.c \
 		battle_actions.c \

@@ -2,7 +2,7 @@
 # define GAME_H
 
 #include	"sdl_util.h"
-#include	"player.h"
+#include	"heroes.h"
 #include	"sprite.h"
 
 /*contain all the vital info for the game, that should be crast at the begin of the game and destriy at the end*/

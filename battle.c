@@ -6,7 +6,7 @@
 #include	"mesage_box.h"
 #include	"menu_box.h"
 
-static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)
+static int	init_battle_data(t_heroes *p1, t_heroes *p2, t_battle *bd)
 {
   bd->p1 = p1;
   bd->p2 = p2;
@@ -14,7 +14,7 @@ static int	init_battle_data(t_player *p1, t_player *p2, t_battle *bd)
   return (0);
 }
 
-/*check, if a player loose the battle, and return the loosing player nbr*/
+/*check, if a heroes loose the battle, and return the loosing heroes nbr*/
 static	int is_battle_end(t_battle * bd)
 {
   if (!bd->p1->fleets.len)
@@ -24,7 +24,7 @@ static	int is_battle_end(t_battle * bd)
   return (0);
 }
 
-static	int	get_nbr_player()
+static	int	get_nbr_heroes()
 {
   return (2);
 }
@@ -32,13 +32,13 @@ static	int	get_nbr_player()
 static int	battle_loop(t_battle * bd)
 {
   int	ret = 0;
-  int	player;
+  int	heroes;
 
   while (!is_battle_end(bd))
     {
-      for (player = 1; player <= get_nbr_player() && !is_battle_end(bd); ++player)
+      for (heroes = 1; heroes <= get_nbr_heroes() && !is_battle_end(bd); ++heroes)
 	{
-	  if ((ret = battle_do_turn(bd, player)))
+	  if ((ret = battle_do_turn(bd, heroes)))
 	    {
 	      if (ret == 1)
 		return (0);
@@ -56,14 +56,14 @@ static	int	end_battle(t_battle *bd)
   return (0);
 }
 
-t_player	*get_player_from_int(t_battle * bd, int nbr)
+t_heroes	*get_heroes_from_int(t_battle * bd, int nbr)
 {
   if (nbr == 1)
     return (bd->p1);
   return (bd->p2);
 }
 
-int	battle(t_player *p1, t_player *p2)
+int	battle(t_heroes *p1, t_heroes *p2)
 {
   t_battle	battle_data;
 
@@ -71,7 +71,7 @@ int	battle(t_player *p1, t_player *p2)
   if (p1->fleets.len == 0 || p2->fleets.len == 0)
     return (0);
   display_map(&battle_data);
-  if (pos_players_fleets_on_map(&battle_data))
+  if (pos_heroess_fleets_on_map(&battle_data))
     return (end_battle(&battle_data));
   display_map(&battle_data);
   battle_loop(&battle_data);
