@@ -1,10 +1,10 @@
-For Alpha 1 
+For near version
 - Print who loose
-- add limited range for weapon (or not)
 - add multiple fleet and gestion of multy fleet turn
-- change s_player to s_hero
+- prevent ship to go where they can't (ex: prevent ship to go out of map or to colision with another ship)
  
 After:
+- add optional limited range for weapon 
 - have a full SDL graphical view
 - creat a IA players
 - print error then ther's one

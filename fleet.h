@@ -39,7 +39,7 @@ void	turn_right(t_fleet *fleet);
 void	turn_left(t_fleet *fleet);
 
 /*move's function*/
-void	handle_move_ret(t_fleet *fleet, int ret);
+int	handle_move_ret(t_fleet *fleet, int ret, t_bmap *map);
 
 /*
  * substract the remaning ap by nbr

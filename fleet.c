@@ -216,8 +216,9 @@ static void	move_handle_leftward(t_fleet *fleet)
     fleet->pos.x += 1;
 }
 
-void handle_move_ret(t_fleet *fleet, int ret)
+int handle_move_ret(t_fleet *fleet, int ret, t_bmap *map)
 {
+  (void)map;
   switch (ret)
     {
     case FORWARD:
@@ -233,6 +234,7 @@ void handle_move_ret(t_fleet *fleet, int ret)
     move_handle_leftward(fleet);      
       break;
     }
+  return (0);
 }
 
 int	fleet_rm_ap(t_fleet *fleet, float nbr)
