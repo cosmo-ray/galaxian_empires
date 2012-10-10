@@ -19,7 +19,7 @@ SRC=		main.c \
 
 OBJ=		$(SRC:.c=.o)
 
-NAME=		galaxian_empires
+NAME=		BoGH
 
 CC=		gcc
 
