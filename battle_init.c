@@ -53,11 +53,11 @@ int     pos_heroess_fleets_on_map(t_battle *bd)
   t_spos        pos;
 
   init_pos(&pos);
-  print_msg("heroes's "); print_int(1); print_msg(" turns\n");
+  print_msg("hero's "); print_int(1); print_msg(" turns\n");
   if (pos_heroes_fleets_on_map(bd, 1, &pos, NORTH))
     return (1);
   display_map(bd);
-  print_msg("heroes's "); print_int(2); print_msg(" turns\n");
+  print_msg("hero's "); print_int(2); print_msg(" turns\n");
   if (pos_heroes_fleets_on_map(bd, 2, &pos, SOUTH))
     return (1);
   return (0);

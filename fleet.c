@@ -168,23 +168,31 @@ void	turn_left(t_fleet *fleet)
     fleet->pos.dir = EAST;
 }
 
-static void	move_handle_forward(t_fleet *fleet)
+static int	is_movable_pos(int x, int y, t_bmap *map)
 {
-  if (fleet->pos.dir == WEST)
+  if (x < 0 || y < 0 || y >= map->y  || x >= map->x
+      || bmap_get_x_y(map, x, y))
+    return (0);
+  return (1);
+}
+
+static void	move_handle_forward(t_fleet *fleet, t_bmap *map)
+{
+  if (fleet->pos.dir == WEST && is_movable_pos(fleet->pos.x -1, fleet->pos.y, map))
     fleet->pos.x -= 1;
-  else if (fleet->pos.dir == NORTH)
+  else if (fleet->pos.dir == NORTH && is_movable_pos(fleet->pos.x, fleet->pos.y - 1, map))
     fleet->pos.y -= 1;
-  else if (fleet->pos.dir == EAST)
+  else if (fleet->pos.dir == EAST && is_movable_pos(fleet->pos.x + 1, fleet->pos.y, map))
     fleet->pos.x += 1;
-  else
+  else if (is_movable_pos(fleet->pos.x, fleet->pos.y + 1, map))
     fleet->pos.y += 1;
 }
 
-static void	move_handle_backward(t_fleet *fleet)
+static void	move_handle_backward(t_fleet *fleet, t_bmap *map)
 {
-  if (fleet->pos.dir == WEST)
+  if (fleet->pos.dir == WEST && is_movable_pos(fleet->pos.x +1, fleet->pos.y, map))
     fleet->pos.x += 1;
-  else if (fleet->pos.dir == NORTH)
+  else if (fleet->pos.dir == NORTH && is_movable_pos(fleet->pos.x, fleet->pos.y + 1, map))
     fleet->pos.y += 1;
   else if (fleet->pos.dir == EAST)
     fleet->pos.x -= 1;
@@ -192,11 +200,11 @@ static void	move_handle_backward(t_fleet *fleet)
     fleet->pos.y -= 1;
 }
 
-static void	move_handle_rightward(t_fleet *fleet)
+static void	move_handle_rightward(t_fleet *fleet, t_bmap *map)
 {
   if (fleet->pos.dir == WEST)
     fleet->pos.y += 1;
-  else if (fleet->pos.dir == NORTH)
+  else if (fleet->pos.dir == NORTH && is_movable_pos(fleet->pos.x +1, fleet->pos.y, map))
     fleet->pos.x += 1;
   else if (fleet->pos.dir == EAST)
     fleet->pos.y -= 1;
@@ -204,11 +212,11 @@ static void	move_handle_rightward(t_fleet *fleet)
     fleet->pos.x -= 1;
 }
 
-static void	move_handle_leftward(t_fleet *fleet)
+static void	move_handle_leftward(t_fleet *fleet, t_bmap *map)
 {
   if (fleet->pos.dir == WEST)
     fleet->pos.y -= 1;
-  else if (fleet->pos.dir == NORTH)
+  else if (fleet->pos.dir == NORTH && is_movable_pos(fleet->pos.x -1, fleet->pos.y, map))
     fleet->pos.x -= 1;
   else if (fleet->pos.dir == EAST)
     fleet->pos.y += 1;
@@ -218,20 +226,19 @@ static void	move_handle_leftward(t_fleet *fleet)
 
 int handle_move_ret(t_fleet *fleet, int ret, t_bmap *map)
 {
-  (void)map;
   switch (ret)
     {
     case FORWARD:
-      move_handle_forward(fleet);      
+      move_handle_forward(fleet, map);      
       break;
     case BACKWARD:
-      move_handle_backward(fleet);      
+      move_handle_backward(fleet, map);      
       break;
     case RIGHTWARD:
-      move_handle_rightward(fleet);      
+      move_handle_rightward(fleet, map);      
       break;
     case LEFTWARD:
-    move_handle_leftward(fleet);      
+    move_handle_leftward(fleet, map);      
       break;
     }
   return (0);
