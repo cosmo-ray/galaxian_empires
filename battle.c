@@ -18,9 +18,9 @@ static int	init_battle_data(t_heroes *p1, t_heroes *p2, t_battle *bd)
 static	int is_battle_end(t_battle * bd)
 {
   if (!bd->p1->fleets.len)
-    return (1);
-  if (!bd->p2->fleets.len)
     return (2);
+  if (!bd->p2->fleets.len)
+    return (1);
   return (0);
 }
 
