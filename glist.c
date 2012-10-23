@@ -67,7 +67,7 @@ void	*pop_data_pos(t_list *list, int pos)
   else
     dent->prev->next = dent->next;
   if (list->last == dent)
-    list->first = dent->prev;
+    list->last = dent->prev;
   else
     dent->next->prev = dent->prev;
   tmp = dent->data;
