@@ -194,9 +194,9 @@ static void	move_handle_backward(t_fleet *fleet, t_bmap *map)
     fleet->pos.x += 1;
   else if (fleet->pos.dir == NORTH && is_movable_pos(fleet->pos.x, fleet->pos.y + 1, map))
     fleet->pos.y += 1;
-  else if (fleet->pos.dir == EAST)
+  else if (fleet->pos.dir == EAST && is_movable_pos(fleet->pos.x - 1, fleet->pos.y, map))
     fleet->pos.x -= 1;
-  else
+  else if (is_movable_pos(fleet->pos.x, fleet->pos.y - 1, map))
     fleet->pos.y -= 1;
 }
 
