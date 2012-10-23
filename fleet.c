@@ -238,7 +238,7 @@ int handle_move_ret(t_fleet *fleet, int ret, t_bmap *map)
       move_handle_rightward(fleet, map);      
       break;
     case LEFTWARD:
-    move_handle_leftward(fleet, map);      
+      move_handle_leftward(fleet, map);      
       break;
     }
   return (0);
