@@ -7,6 +7,8 @@
 ** Started on  Mon Mar 19 18:04:43 2012 charlie rubio-nevado
 ** Last update Sun Jul  1 17:09:37 2012 charlie rubio-nevado
 */
+
+#include <stdio.h>
 #include <stdlib.h>
 #include "glist.h"
 
@@ -101,7 +103,7 @@ int	pop_data_elem(t_list *list, void *elem)
   else
     dent->prev->next = dent->next; /*else the previous next node is the next node of the actuel one (so much segfault, because of this line at my first list)*/
   if (list->last == dent) 
-    list->first = dent->prev;
+    list->last = dent->prev;
   else
     dent->next->prev = dent->prev;
   free(dent);
