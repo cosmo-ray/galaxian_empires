@@ -1,7 +1,6 @@
 For near version
 - Print who loose
-- add multiple fleet and gestion of multy fleet turn
-- prevent ship to go where they can't (ex: prevent ship to go out of map or to colision with another ship)
+- fix the bug to the prevention of idiot movement
  
 After:
 - add optional limited range for weapon 

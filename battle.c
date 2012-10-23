@@ -34,7 +34,7 @@ static int	battle_loop(t_battle * bd)
   int	ret = 0;
   int	heroes;
 
-  while (!is_battle_end(bd))
+  while (!(ret = is_battle_end(bd)))
     {
       for (heroes = 1; heroes <= get_nbr_heroes() && !is_battle_end(bd); ++heroes)
 	{
@@ -47,7 +47,7 @@ static int	battle_loop(t_battle * bd)
 	    }
 	}
     }
-  return (0);
+  return (ret);
 }
 
 static	int	end_battle(t_battle *bd)
@@ -66,6 +66,7 @@ t_heroes	*get_heroes_from_int(t_battle * bd, int nbr)
 int	battle(t_heroes *p1, t_heroes *p2)
 {
   t_battle	battle_data;
+  int		ret;
 
   init_battle_data(p1, p2, &battle_data);
   if (p1->fleets.len == 0 || p2->fleets.len == 0)
@@ -74,6 +75,7 @@ int	battle(t_heroes *p1, t_heroes *p2)
   if (pos_heroess_fleets_on_map(&battle_data))
     return (end_battle(&battle_data));
   display_map(&battle_data);
-  battle_loop(&battle_data);
+  if ((ret = battle_loop(&battle_data)) > 0)
+    printf("Hero %d win the battle!\n", ret);
   return (end_battle(&battle_data));
 }
