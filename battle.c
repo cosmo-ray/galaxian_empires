@@ -14,7 +14,7 @@ static int	init_battle_data(t_heroes *p1, t_heroes *p2, t_battle *bd)
   return (0);
 }
 
-/*check, if a heroes loose the battle, and return the loosing heroes nbr*/
+/*check, if a heroes loose the battle, and return the wining heroes nbr*/
 static	int is_battle_end(t_battle * bd)
 {
   if (!bd->p1->fleets.len)

@@ -14,7 +14,7 @@ int	give_life()
   if (load_ship("battle_cruse.sp", ship))
     return (-1);
   push_elem(&(life.ships), new_elem(ship));
-  if (sdl_init(500, 500) == -1)
+  if (sdl_init(800, 600) == -1)
     return (-1);
   load_sprite();
   if ((life.bg = draw_load(BG_NAME)) == NULL)
