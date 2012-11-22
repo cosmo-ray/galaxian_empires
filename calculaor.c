@@ -21,7 +21,7 @@ t_pos	*cal_get_Line(t_pos *a, t_pos *b)
 
 inline double	get_rad(t_pos *a)
 {
-  return (atan((double)a->x / (double)a->y));
+  return (atan2((double)a->x, (double)a->y));
 }
 
 int	cal_get_dist(int a, int b)
