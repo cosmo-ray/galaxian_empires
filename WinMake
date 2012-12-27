@@ -1,3 +1,4 @@
+
 SRC=		main.c \
 		bmap.c \
 		ship.c \
@@ -21,14 +22,14 @@ OBJ=		$(SRC:.c=.o)
 
 NAME=		BoGH
 
-CC=		gcc
+CC=		i486-mingw32-gcc
 
 CFLAGS		+= -Wall -Wextra -g3 -Werror -o2
-CFLAGS		+= ${shell sdl-config --cflags}
-LDFLAGS		+= ${shell sdl-config --libs} -lSDL_image -lSDL_ttf -lm
+CFLAGS		+= -I/usr/i486-mingw32/include/SDL/ 
+LDFLAGS		+= -L/usr/i486-mingw32/lib/ -lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lm 
 
 all:	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
+	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 
 clean:
 		rm -f $(OBJ)

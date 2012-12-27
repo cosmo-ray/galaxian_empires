@@ -122,6 +122,7 @@ static	int get_dir_by_dir(int dir)
     return (FRONT);
   return (BACK);
 }
+
 /*
 #define	FORWARD		0
 #define	LEFTWARD	1
