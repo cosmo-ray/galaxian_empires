@@ -1,3 +1,5 @@
+NAME=		BoGH
+
 SRC=		main.c \
 		bmap.c \
 		ship.c \
@@ -19,8 +21,6 @@ SRC=		main.c \
 
 OBJ=		$(SRC:.c=.o)
 
-NAME=		BoGH
-
 CC=		gcc
 
 CFLAGS		+= -Wall -Wextra -g3 -Werror -o2
@@ -28,7 +28,7 @@ CFLAGS		+= ${shell sdl-config --cflags}
 LDFLAGS		+= ${shell sdl-config --libs} -lSDL_image -lSDL_ttf -lm
 
 all:	$(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
+	$(CC) -o $(NAME) $(OBJ) $(LDFLAGS)
 
 clean:
 		rm -f $(OBJ)
