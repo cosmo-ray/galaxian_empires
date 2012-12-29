@@ -53,23 +53,24 @@ double rad;
  
  cal_get_Line(&fleet->pos, target); // transform target to a vector 
  rad = get_rad(target);
- if (fleet->pos.dir == SOUTH)
-   {
-     if (rad > 1.1 && rad < 1.9)
-       { printf ("back attaque\n"); return (BACK); }
-     else if (rad < -1.1 && rad > -1.9)
-       { printf ("front attaque\n"); return (FRONT); }
-     { printf ("side attaque\n"); return (SIDE); }
-   }
- if (fleet->pos.dir == NORTH)
-   {
-     if (rad > 1.1 && rad < 1.9)
-       { printf ("front attaque\n"); return (FRONT); }
-     else if (rad < -1.1 && rad > -1.9)
-       { printf ("back attaque\n"); return (BACK); }
-     { printf ("side attaque\n"); return (SIDE); }
-   }
  if (fleet->pos.dir == LEFT)
+   { 
+     printf("rad: %f\n", rad);
+    if (rad > 1.1 && rad < 1.9)
+       { printf ("back attaque\n"); return (BACK); }
+     else if (rad < -1.1 && rad > -1.9)
+       { printf ("front attaque\n"); return (FRONT); }
+     { printf ("side attaque\n"); return (SIDE); }
+   }
+ if (fleet->pos.dir == RIGHT)
+   {
+     if (rad > 1.1 && rad < 1.9)
+       { printf ("front attaque\n"); return (FRONT); }
+     else if (rad < -1.1 && rad > -1.9)
+       { printf ("back attaque\n"); return (BACK); }
+     { printf ("side attaque\n"); return (SIDE); }
+   }
+ if (fleet->pos.dir == UP)
    {
      if (ABS(rad) > 2.7)
        { printf ("front attaque\n"); return (FRONT); }
@@ -77,7 +78,7 @@ double rad;
        { printf ("back attaque\n"); return (BACK); }
      { printf ("side attaque\n"); return (SIDE); }
    }
- if (fleet->pos.dir == LEFT)
+ if (fleet->pos.dir == DOWN)
    {
      if (ABS(rad) > 2.7)
        { printf ("back attaque\n"); return (BACK); }
@@ -95,23 +96,24 @@ int	get_dir_fleet_dmg(t_fleet *fleet, t_pos *from)
 
   cal_get_Line_ret(&fleet->pos, from, &vector);
   rad = get_rad(&vector);
-  if (fleet->pos.dir == SOUTH)
-    {
-      if (rad > 1.1 && rad < 1.9)
-	{ printf ("back dommage\n"); return (BACK); }
-      else if (rad < -1.1 && rad > -1.9)
-	{ printf ("front dommage\n"); return (FRONT); }
-      { printf ("side dommage\n"); return (SIDE); }
-    }
-  if (fleet->pos.dir == NORTH)
-    {
-      if (rad > 1.1 && rad < 1.9)
-	{ printf ("front dommage\n"); return (FRONT); }
-      else if (rad < -1.1 && rad > -1.9)
-	{ printf ("back dommage\n"); return (BACK); }
-      { printf ("side dommage\n"); return (SIDE); }
-    }
   if (fleet->pos.dir == LEFT)
+    {
+      printf("rad: %f\n", rad);
+      if (rad > 1.1 && rad < 1.9)
+	{ printf ("back dommage\n"); return (BACK); }
+      else if (rad < -1.1 && rad > -1.9)
+	{ printf ("front dommage\n"); return (FRONT); }
+      { printf ("side dommage\n"); return (SIDE); }
+    }
+  if (fleet->pos.dir == RIGHT)
+    {
+      if (rad > 1.1 && rad < 1.9)
+	{ printf ("front dommage\n"); return (FRONT); }
+      else if (rad < -1.1 && rad > -1.9)
+	{ printf ("back dommage\n"); return (BACK); }
+      { printf ("side dommage\n"); return (SIDE); }
+    }
+  if (fleet->pos.dir == UP)
     {
       if (ABS(rad) > 2.7)
 	{ printf ("front dommage\n"); return (FRONT); }
@@ -119,7 +121,7 @@ int	get_dir_fleet_dmg(t_fleet *fleet, t_pos *from)
 	{ printf ("back dommage\n"); return (BACK); }
       { printf ("side dommage\n"); return (SIDE); }
     }
-  if (fleet->pos.dir == LEFT)
+  if (fleet->pos.dir == DOWN)
     {
       if (ABS(rad) > 2.7)
 	{ printf ("back dommage\n"); return (BACK); }
