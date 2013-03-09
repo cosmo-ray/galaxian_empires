@@ -36,7 +36,7 @@ static int	battle_loop(t_battle * bd)
 
   while (!(ret = is_battle_end(bd)))
     {
-      for (heroes = 1; heroes <= get_nbr_heroes() && !is_battle_end(bd); ++heroes)
+      for (heroes = 1; heroes <= get_nbr_heroes() && !is_battle_end(bd); ++heroes) //play all heros turn
 	{
 	  if ((ret = battle_do_turn(bd, heroes)))
 	    {

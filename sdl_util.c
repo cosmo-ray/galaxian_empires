@@ -2,7 +2,6 @@
 
 extern t_game	life;
 
-/*yeah !, hem no fuck you balck magic !*/
 void	set_color(int color)
 {
   life.color.r = ((char *)(&color))[0];
@@ -29,6 +28,17 @@ int	sdl_init(int width, int height)
   set_color(0xFFFFFF);
   return (0);
 }
+
+void	tbs_init(t_battle_screen *tbs)
+{
+  tbs->battle_screen.x = 0;
+  tbs->battle_screen.y = 0;
+  tbs->menu_box.x = 500;
+  tbs->menu_box.y = 0;
+  tbs->message_box.y = 0;
+  tbs->message_box.x = 500;
+}
+
 
 void	sdl_uninit()
 {

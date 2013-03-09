@@ -18,6 +18,19 @@
 
 #define	CASE_SIZE		50
 
+typedef	struct
+{
+  t_spos	battle_screen;
+  t_spos	menu_box;
+  t_spos	message_box;
+}	t_battle_screen;
+
+/*t_battle_screen manipulations function*/
+void	tbs_init(t_battle_screen *tbs); /*init all rectangle to 0*/
+
+
+/* other sdl manipulation function*/
+
 int		sdl_init(int width, int height);
 void		sdl_uninit();
 SDL_Surface	*draw_load(char *file);
