@@ -24,7 +24,7 @@ NAME=		BoGH
 
 CC=		i486-mingw32-gcc
 
-CFLAGS		+= -Wall -Wextra -g3 -Werror -o2
+CFLAGS		+= -Wall -Wextra -Werror -O2
 CFLAGS		+= -I/usr/i486-mingw32/include/SDL/ 
 LDFLAGS		+= -L/usr/i486-mingw32/lib/ -lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lm 
 

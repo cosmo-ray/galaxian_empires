@@ -23,7 +23,7 @@ OBJ=		$(SRC:.c=.o)
 
 CC=		gcc
 
-CFLAGS		+= -Wall -Wextra -g3 -Werror -o2
+CFLAGS		+= -Wall -Wextra  -Werror -O2
 CFLAGS		+= ${shell sdl-config --cflags}
 LDFLAGS		+= ${shell sdl-config --libs} -lSDL_image -lSDL_ttf -lm
 
