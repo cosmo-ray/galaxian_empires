@@ -3,23 +3,36 @@
 #include	<stdio.h>
 #include	"mesage_box.h"
 
-void	v_print_msg(char *msg)
-{
-  printf("%s", msg);  
-}
+char	g_msg[1024];
+int	g_index = 0;
 
-int	print_msg(char *msg)
+int	message_box_print_msg(char *msg)
 {
-  printf("%s", msg);
+  display_txt_on_msg_box(msg);
   return (0);
 }
 
-int	print_int(int nbr)
+int	message_box_add_msg(char *msg)
 {
-  printf("%d", nbr);
+  g_index += sprintf(g_msg + (long)g_index, msg);
   return (0);
 }
 
-void	msg_box_clean()
+int	message_box_add_int(int nbr)
 {
+  g_index += sprintf(g_msg + (long)g_index, "%d", nbr);
+  return (0);
+}
+
+int	message_box_flush(void)
+{
+  g_index = 0;
+  display_txt_on_msg_box(g_msg);
+  return (0);
+}
+
+int	message_box_clean()
+{
+  g_index = 0;
+  return (0);
 }

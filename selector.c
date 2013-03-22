@@ -98,7 +98,7 @@ int	select_empty_case(t_spos *pos, t_battle *bd)
     return (1);
   if (bmap_get_x_y(&bd->map, pos->x, pos->y) == EMPTY)
     return (0);
-  print_msg("an empty case must be selected\n");
+  message_box_print_msg("an empty case must be selected\n");
   return (select_empty_case(pos, bd));
 }
 
@@ -108,7 +108,7 @@ int	select_fleet(t_spos *pos, t_battle *bd)
     return (1);
   if (bmap_get_x_y(&bd->map, pos->x, pos->y) & SHIP)
     return (0);
-  print_msg("an case whith a fleet must be selected\n");
+  message_box_print_msg("an case whith a fleet must be selected\n");
   return (select_fleet(pos, bd));
 }
 
@@ -118,7 +118,7 @@ int	select_ally_fleet(t_spos *pos, t_battle *bd, t_heroes *p)
     return (1);
   if (get_fleet_on(p, pos->x, pos->y))
     return (0);
-  print_msg("an case whith a ally fleet must be selected\n");
+  message_box_print_msg("an case whith a ally fleet must be selected\n");
   return (select_ally_fleet(pos, bd, p));
 }
 
@@ -128,7 +128,7 @@ int	select_enemy_fleet(t_spos *pos, t_battle *bd, t_heroes *p)
     return (1);
   if (!get_fleet_on(p, pos->x, pos->y))
     return (0);
-  print_msg("yeah shoot your friend, good idie !\n");
+  message_box_print_msg("yeah shoot your friend, good idie !\n");
   return (select_enemy_fleet(pos, bd, p));
 }
 
@@ -138,6 +138,6 @@ int	select_y_limit_case(t_spos *pos, t_battle *bd, int low_y, int hight_y)
     return (1);
   if (pos->y >= low_y && pos->y < hight_y)
     return (0);
-  print_msg("you can not select this case\n");
+  message_box_print_msg("you can not select this case\n");
   return (select_y_limit_case(pos, bd, low_y, hight_y));
 }

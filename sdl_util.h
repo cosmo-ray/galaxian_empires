@@ -6,6 +6,7 @@
 #include <SDL/SDL_ttf.h>
 #include "pos.h"
 #include "battle.h"
+#include "rectangle.h"
 
 #define	KEY_MOUSE_1		1
 #define	KEY_MOUSE_2		3
@@ -20,9 +21,9 @@
 
 typedef	struct
 {
-  t_spos	battle_screen;
-  t_spos	menu_box;
-  t_spos	message_box;
+  t_rectangle	battle_screen;
+  t_rectangle	menu_box;
+  t_rectangle	message_box;
 }	t_battle_screen;
 
 /*t_battle_screen manipulations function*/
@@ -35,11 +36,17 @@ int		sdl_init(int width, int height);
 void		sdl_uninit();
 SDL_Surface	*draw_load(char *file);
 int		load_sprite(void);
+int		get_pos_case(int pix_pos);
+int		display_all_bg(t_battle *bd);
+
+/*battle display functions*/
 int		display_ship_sprite(t_pos *pos);
 int		display_txt_on_pos(t_pos *pos, char *txt);
 int		display_somethink(int x, int y, int id_x, int id_y);
 int		display_bg_sprite(int x, int y);
-int		get_pos_case(int pix_pos);
-int		display_all_bg(t_battle *bd);
+
+
+/*msg box display functions*/
+int		display_txt_on_msg_box(char *txt);
 
 #endif

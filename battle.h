@@ -1,6 +1,7 @@
 #ifndef BATTLE_H
 #define BATTLE_H
 
+#include	"mesage_box.h"
 #include	"bmap.h"
 #include	"heroes.h"
 

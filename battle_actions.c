@@ -84,7 +84,7 @@ int	attaque(t_battle * bd, t_heroes *p, t_fleet *pfleet)
   t_fleet	*tfleet; /*target fleet*/
   
   if (fleet_rm_ap(pfleet, get_main_weapon_cost(pfleet->type)))
-    return (print_msg("not enought mp, you want to get it\n")); /*Fuck you Dougram*/
+    return (message_box_print_msg("not enought mp, you want to get it\n")); /*Fuck you Dougram*/
   if (select_enemy_fleet(&target, bd, p))
     return (1);
   tfleet = get_fleet_by_pos_battle(bd, target.x, target.y);
@@ -103,8 +103,8 @@ void	turn(t_battle *bd, t_fleet *pfleet)
   int	ret;
 
   if (fleet_rm_ap(pfleet, get_speed(pfleet->type, SIDE)))
-    return (v_print_msg("not enought mp, you want to get it\n")); /*Fuck you Dougram*/
-  print_msg("Turn in which direction ?");
+    return ((void)message_box_print_msg("not enought mp, you want to get it\n")); /*Fuck you Dougram*/
+  message_box_print_msg("Turn in which direction ?");
   ret = print_menu(turn_tab);
   if (ret == 0)
     turn_left(pfleet);
@@ -137,7 +137,7 @@ int	move(t_battle *bd, t_fleet *fleet)
   
   ret = print_menu(move_tab);
   if (fleet_rm_ap(fleet, get_speed(fleet->type, get_dir_by_dir(ret))))
-    return (print_msg("Move is on your way, but not this time"));
+    return (message_box_print_msg("Move is on your way, but not this time"));
   bmap_rm_ship(&bd->map, fleet->pos.x, fleet->pos.y);
   display_case(bd, fleet->pos.x, fleet->pos.y);
   if (handle_move_ret(fleet, ret, &bd->map))

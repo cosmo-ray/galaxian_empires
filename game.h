@@ -12,6 +12,7 @@ typedef	struct	s_game
   SDL_Surface		*sprite; /*gordon, what do you mean? sprite gordon approching*/
   SDL_Surface		*bg;
   SDL_Surface		*txtsurface;
+  SDL_Surface		*msg_txtsurface;
   SDL_Color		color;
   TTF_Font		*font;
   t_list		ships; /*lays*/

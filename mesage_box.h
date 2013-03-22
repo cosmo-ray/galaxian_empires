@@ -1,10 +1,13 @@
 #ifndef	PRINTER_H
 #define PRINTER_H
 
-/*like print_msg but return void*/
-void	v_print_msg(char *msg);
-int	print_msg(char *msg);
-int	print_int(int nbr);
-void	msg_box_clean();
+#include	"sdl_util.h"
+
+int	message_box_print_msg(char *msg);
+
+int	message_box_add_msg(char *msg);
+int	message_box_add_int(int nbr);
+int	message_box_flush(void);
+int	message_box_clean();
 
 #endif

@@ -54,7 +54,8 @@ int	battle_do_turn(t_battle * bd, int heroes)
 
   init_pos(&pos);
   reset_ap(p);
-  print_msg("heroes's "); print_int(heroes); print_msg(" turns\n");
+  message_box_add_msg("heroes's "); message_box_add_int(heroes); message_box_add_msg(" turns\n");
+  message_box_flush();
   while (!full_empty_ap(p))
     {
       if (select_ally_fleet(&pos, bd, get_heroes_from_int(bd, heroes)))

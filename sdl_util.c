@@ -34,10 +34,16 @@ void	tbs_init()
 {
   life.tbs.battle_screen.x = 0;
   life.tbs.battle_screen.y = 0;
+  life.tbs.battle_screen.h = 500;
+  life.tbs.battle_screen.w = 500;
   life.tbs.menu_box.x = 500;
   life.tbs.menu_box.y = 0;
-  life.tbs.message_box.y = 0;
-  life.tbs.message_box.x = 500;
+  life.tbs.menu_box.h = 300;
+  life.tbs.menu_box.w = 500;
+  life.tbs.message_box.x = 0;
+  life.tbs.message_box.y = 500;
+  life.tbs.message_box.h = 500;
+  life.tbs.message_box.w = 100;
 }
 
 
@@ -99,6 +105,24 @@ int	display_txt_on_pos(t_pos *pos, char *txt)
   return (0);
 }
 
+int	display_txt_on_msg_box(char *txt)
+{
+  static SDL_Rect	dest;
+  static int	y_pos;
+
+  dest.w = life.tbs.message_box.w;
+  dest.h = life.tbs.message_box.h;
+  dest.x = life.tbs.message_box.x;
+  dest.y = life.tbs.message_box.y + (y_pos * 11);
+  life.msg_txtsurface = TTF_RenderText_Solid(life.font, txt, life.color);
+
+  if (SDL_BlitSurface(life.msg_txtsurface, NULL, life.win, &dest))
+    return (-1);
+  SDL_Flip(life.win);
+  ++y_pos;
+  return (0);
+}
+
 int	display_bg_sprite(int x, int y)
 {
   static SDL_Rect	src;
@@ -149,6 +173,6 @@ int	display_all_bg(t_battle *bd)
   src.w = bd->map.y * CASE_SIZE;
   if (SDL_BlitSurface(life.bg, &src, life.win, &dest))
     return (-1);
-  SDL_UpdateRect(life.win, 0, 0, 0, 0);
+  SDL_UpdateRect(life.win, life.tbs.battle_screen.x, life.tbs.battle_screen.y, 0, 0);
   return (0);
 }
