@@ -26,7 +26,7 @@ typedef	struct
 }	t_battle_screen;
 
 /*t_battle_screen manipulations function*/
-void	tbs_init(t_battle_screen *tbs); /*init all rectangle to 0*/
+void	tbs_init(void);
 
 
 /* other sdl manipulation function*/

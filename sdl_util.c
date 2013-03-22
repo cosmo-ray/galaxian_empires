@@ -26,17 +26,18 @@ int	sdl_init(int width, int height)
   life.font = TTF_OpenFont("./font/FOO.ttf", 10);
   /*we set the default color of the text to white*/
   set_color(0xFFFFFF);
+  tbs_init();
   return (0);
 }
 
-void	tbs_init(t_battle_screen *tbs)
+void	tbs_init()
 {
-  tbs->battle_screen.x = 0;
-  tbs->battle_screen.y = 0;
-  tbs->menu_box.x = 500;
-  tbs->menu_box.y = 0;
-  tbs->message_box.y = 0;
-  tbs->message_box.x = 500;
+  life.tbs.battle_screen.x = 0;
+  life.tbs.battle_screen.y = 0;
+  life.tbs.menu_box.x = 500;
+  life.tbs.menu_box.y = 0;
+  life.tbs.message_box.y = 0;
+  life.tbs.message_box.x = 500;
 }
 
 
@@ -75,8 +76,8 @@ int	display_ship_sprite(t_pos *pos)
   src.y = 0;
   src.x = pos->dir * CASE_SIZE;
   src.w = src.h = dest.w = dest.h = CASE_SIZE;
-  dest.x = pos->x * CASE_SIZE;
-  dest.y = pos->y * CASE_SIZE;
+  dest.x = (pos->x * CASE_SIZE) + life.tbs.battle_screen.x;
+  dest.y = (pos->y * CASE_SIZE) + life.tbs.battle_screen.y;
   if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
     return (-1);
   SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
@@ -88,8 +89,8 @@ int	display_txt_on_pos(t_pos *pos, char *txt)
   static SDL_Rect	dest;
 
   dest.w = dest.h = CASE_SIZE;
-  dest.x = pos->x * CASE_SIZE;
-  dest.y = pos->y * CASE_SIZE;
+  dest.x = (pos->x * CASE_SIZE) + life.tbs.battle_screen.x;
+  dest.y = (pos->y * CASE_SIZE) + life.tbs.battle_screen.y;
   life.txtsurface = TTF_RenderText_Solid(life.font, txt, life.color);
 
   if (SDL_BlitSurface(life.txtsurface, NULL, life.win, &dest))
@@ -106,6 +107,9 @@ int	display_bg_sprite(int x, int y)
   src.y = y * CASE_SIZE;
   src.x = x * CASE_SIZE;
   src.w = src.h = dest.w = dest.h = CASE_SIZE;
+  dest.x = (x * CASE_SIZE) + life.tbs.battle_screen.x;
+  dest.y = (y * CASE_SIZE) + life.tbs.battle_screen.y;
+
   dest.x = x * CASE_SIZE;
   dest.y = y * CASE_SIZE;
   if (SDL_BlitSurface(life.bg, &src, life.win, &dest))
@@ -122,8 +126,8 @@ int	display_somethink(int x, int y, int id_x, int id_y)
   src.y = id_y * CASE_SIZE;
   src.x = id_x * CASE_SIZE;
   src.w = src.h = CASE_SIZE;
-  dest.x = x * CASE_SIZE;
-  dest.y = y * CASE_SIZE;
+  dest.x = (x * CASE_SIZE) + life.tbs.battle_screen.x;
+  dest.y = (y * CASE_SIZE) + life.tbs.battle_screen.y;
   if (SDL_BlitSurface(life.sprite, &src, life.win, &dest))
     return (-1);
   SDL_UpdateRect(life.win, dest.x, dest.y, src.w, src.h);
