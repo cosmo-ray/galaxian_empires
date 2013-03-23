@@ -37,13 +37,13 @@ void	tbs_init()
   life.tbs.battle_screen.h = 500;
   life.tbs.battle_screen.w = 500;
   life.tbs.menu_box.x = 500;
-  life.tbs.menu_box.y = 0;
+  life.tbs.menu_box.y = 250;
   life.tbs.menu_box.h = 300;
-  life.tbs.menu_box.w = 500;
+  life.tbs.menu_box.w = 250;
   life.tbs.message_box.x = 0;
   life.tbs.message_box.y = 500;
-  life.tbs.message_box.h = 500;
-  life.tbs.message_box.w = 100;
+  life.tbs.message_box.h = 100;
+  life.tbs.message_box.w = 500;
 }
 
 
@@ -110,9 +110,16 @@ int	display_txt_on_msg_box(char *txt)
   static SDL_Rect	dest;
   static int	y_pos;
 
+
   dest.w = life.tbs.message_box.w;
   dest.h = life.tbs.message_box.h;
   dest.x = life.tbs.message_box.x;
+  if (y_pos > 8)
+    {
+      y_pos = 0;
+      dest.y = life.tbs.message_box.y;
+      SDL_FillRect(life.win, &dest, 0X000000);
+    }
   dest.y = life.tbs.message_box.y + (y_pos * 11);
   life.msg_txtsurface = TTF_RenderText_Solid(life.font, txt, life.color);
 
