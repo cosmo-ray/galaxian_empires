@@ -24,6 +24,7 @@ int	sdl_init(int width, int height)
     return (-1);
   /*for the moment we use FOO.ttf*/
   life.font = TTF_OpenFont("./font/FOO.ttf", 10);
+  life.mb_font = TTF_OpenFont("./font/Arimo-Regular-Latin.ttf", 12);
   /*we set the default color of the text to white*/
   set_color(0xFFFFFF);
   tbs_init();
@@ -121,7 +122,7 @@ int	display_txt_on_msg_box(char *txt)
       SDL_FillRect(life.win, &dest, 0X000000);
     }
   dest.y = life.tbs.message_box.y + (y_pos * 11);
-  life.msg_txtsurface = TTF_RenderText_Solid(life.font, txt, life.color);
+  life.msg_txtsurface = TTF_RenderText_Solid(life.mb_font, txt, life.color);
 
   if (SDL_BlitSurface(life.msg_txtsurface, NULL, life.win, &dest))
     return (-1);

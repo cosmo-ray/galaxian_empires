@@ -15,6 +15,7 @@ typedef	struct	s_game
   SDL_Surface		*msg_txtsurface;
   SDL_Color		color;
   TTF_Font		*font;
+  TTF_Font		*mb_font;
   t_list		ships; /*lays*/
   int			nb_plyaers;
   t_battle_screen	tbs;
