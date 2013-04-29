@@ -45,6 +45,9 @@ int		display_txt_on_pos(t_pos *pos, char *txt);
 int		display_somethink(int x, int y, int id_x, int id_y);
 int		display_bg_sprite(int x, int y);
 
+/*menu box displat functions*/
+int		display_txt_on_menu_box(char *txt, int reset_y);
+
 
 /*msg box display functions*/
 int		display_txt_on_msg_box(char *txt);

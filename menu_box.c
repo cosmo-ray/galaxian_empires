@@ -1,6 +1,8 @@
 #include	<stdio.h>
 #include	"sdl_util.h"
 
+char	msg_buf[256];
+
 static	inline int	mb_is_num_key(unsigned int  key, unsigned int nb_anw)
 {
   return ((key - SDLK_0) <= nb_anw && (key - SDLK_0) > 0);
@@ -36,10 +38,11 @@ int	print_menu(char **menu)
 {
   int	i;
 
-  printf("enter the number of the action you want to do\n");
+  display_txt_on_menu_box("enter the number of the action you want to do\n", 1);
   for (i = 0; menu[i] != NULL; ++i)
     {
-      printf("%d: %s\n", i + 1, menu[i]);
+      sprintf(msg_buf, "%d: %s\n", i + 1, menu[i]);
+      display_txt_on_menu_box(msg_buf, 0);
     }
   return (wait_answer(i));
 }

@@ -131,6 +131,32 @@ int	display_txt_on_msg_box(char *txt)
   return (0);
 }
 
+
+int	display_txt_on_menu_box(char *txt, int reset_y)
+{
+  static SDL_Rect	dest;
+  static int	y_pos;
+
+  dest.w = life.tbs.menu_box.w;
+  dest.h = life.tbs.menu_box.h;
+  dest.x = life.tbs.menu_box.x;
+  if (reset_y)
+    {
+      dest.y = life.tbs.menu_box.y;
+      y_pos = 0;
+      SDL_FillRect(life.win, &dest, 0X000000);
+    }
+  dest.y = life.tbs.menu_box.y + (y_pos * 11);
+  life.msg_txtsurface = TTF_RenderText_Solid(life.font, txt, life.color);
+
+  if (SDL_BlitSurface(life.msg_txtsurface, NULL, life.win, &dest))
+    return (-1);
+  SDL_Flip(life.win);
+  ++y_pos;
+  return (0);
+}
+
+
 int	display_bg_sprite(int x, int y)
 {
   static SDL_Rect	src;

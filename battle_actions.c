@@ -91,7 +91,8 @@ int	attaque(t_battle * bd, t_heroes *p, t_fleet *pfleet)
   dmg = get_fleet_dmg(pfleet, get_dir_fleet_dmg(pfleet, (t_pos *)&target));
   map_modifier_dmg(bd, pfleet, &target, &dmg);
   do_fleet_dmg(tfleet, dmg, get_dir_fleet_dmg(tfleet, &pfleet->pos));
-  printf("%d\n", tfleet->nbr);
+  message_box_add_int(tfleet->nbr);
+  message_box_flush();
   if (tfleet->nbr < 1)
     battle_rm_fleet(bd, tfleet);
   display_case(bd, target.x, target.y);
