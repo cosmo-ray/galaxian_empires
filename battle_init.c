@@ -30,8 +30,9 @@ static	int	select_and_use_selector(t_battle *bd, t_spos *pos, int p_id)
 }
 
 /*set the position of the fleet of a heroes on a map*/
-static  int     pos_heroes_fleets_on_map(t_battle *bd, int p_id, t_spos *pos, int dir)
+static  int     pos_heroes_fleets_on_map(t_battle *bd, t_spos *pos, int dir)
 {
+  int p_id	= bd->cur_heros_turn;
   t_heroes	*p = get_heroes_from_int(bd, p_id);
   t_node        *node = p->fleets.first;
   int		i = -1; /*i set i to -1 because like this i increment i one time less*/
@@ -52,13 +53,17 @@ int     pos_heroess_fleets_on_map(t_battle *bd)
 {
   t_spos        pos;
 
+  
   init_pos(&pos);
-  message_box_add_msg("hero's "); message_box_add_int(1); message_box_add_msg(" turns\n"); message_box_flush();
-  if (pos_heroes_fleets_on_map(bd, 1, &pos, NORTH))
-    return (1);
-  display_map(bd);
-  message_box_add_msg("hero's "); message_box_add_int(2); message_box_add_msg(" turns\n"); message_box_flush();
-  if (pos_heroes_fleets_on_map(bd, 2, &pos, SOUTH))
-    return (1);
+  bd->cur_heros_turn = 1;
+
+  while (bd->cur_heros_turn <= 2)
+    {
+      message_box_add_msg("hero's "); message_box_add_int(bd->cur_heros_turn); message_box_add_msg(" turns\n"); message_box_flush();
+      if (pos_heroes_fleets_on_map(bd, &pos, NORTH))
+	return (1);
+      bd->cur_heros_turn += 1;
+      display_map(bd);
+    }
   return (0);
 }

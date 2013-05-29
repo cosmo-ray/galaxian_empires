@@ -10,7 +10,8 @@ typedef	struct	s_battle
   int		nb_heroess;
   t_bmap	map;
   t_heroes	*p1;
-  t_heroes	*p2;  
+  t_heroes	*p2;
+  int		cur_heros_turn;
   int		cur_turn; /*TODO*/
 }	t_battle;
 
