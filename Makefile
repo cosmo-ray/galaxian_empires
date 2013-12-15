@@ -39,5 +39,3 @@ fclean:		clean
 re:		clean all
 
 .PHONY:		all clean re
-
-
